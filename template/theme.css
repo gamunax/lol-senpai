@@ -1,0 +1,78 @@
+
+/* PAGE */
+body{
+    margin:0;
+    color:#444444;
+    font-family: "Bookman", Georgia, "Times New Roman", serif
+}
+.container{max-width:1170px;margin:0 auto;}
+
+/* NAV */
+nav{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #FFF;
+    z-index: 100;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    line-height: 64px;
+}
+#logo {
+    display: inline-block;
+    line-height: 64px;
+}
+nav ul{
+    padding:0;
+    margin:0;
+    float:right;
+    list-style-type:none;
+}
+nav ul li {
+    padding:0;
+    float:left;
+    transition: background-color 0.3s;
+}
+nav ul li a {
+    font-size:1em;
+    color:#444444;
+    display:block;
+    padding:0 15px;
+    line-height: 64px;
+}
+nav ul li:hover {
+    background-color: #EFEFEF;
+}
+/* https://github.com/lipis/flag-icon-css */
+.lang{
+    display: inline-block;
+    width: 1.33em;
+    line-height: 1em;
+    background-size: contain;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+}
+.lang:hover{opacity:0.8}
+.lang-active:hover{opacity:1}
+.lang-active{opacity:1}
+.lang:before{content:'\00a0';}
+.lang span{display:none}
+.lang-english{background-image:url("gb.svg")}
+.lang-french{background-image:url("fr.svg")}
+
+/* HEADER */
+body>header{background-color:#b33737;padding:100px 0;color:white}
+
+/* ARTICLE */
+article{
+    border-radius: 2px;
+    border: 0;
+    box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
+    margin: 20px 0;
+}
+article>header{color:white;border:0;padding:10px 15px;background-color:#03a9f4;border-top-left-radius: 3px;border-top-right-radius: 3px;}
+article>header>h3{margin-top:0;margin-bottom:0;font-size:16px}
+article.good>header{background-color:#4caf50;}
+article.danger>header{background-color:#f44336;}
+article>div{padding:10px 0}
+
