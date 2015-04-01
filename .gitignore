@@ -1,3 +1,7 @@
+#our local settings containing our api_key
+/server/local_settings.py
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
