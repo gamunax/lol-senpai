@@ -4,8 +4,8 @@ RUN apt-get update
 RUN apt-get install -y supervisor
 RUN service supervisor stop
 
-ADD ../server/ /data
-ADD supervisor.conf /etc/supervisor.conf
+ADD server/ /data
+ADD deploy/supervisor.conf /etc/supervisor.conf
 
 RUN pip install -r /data/requirements.txt
 RUN pip install gunicorn
