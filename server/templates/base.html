@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <meta name="robots" content="all">
+
+    <link rel="stylesheet" href="/static/theme.css" media="screen, projection" type="text/css">
+
+    <meta name="author" content="Nucera Alexandre, Maigret Aurélien">
+    <meta name="description" content="LoL Senpai - Please, teach me how to win is an app aiming to provide valuable information about an upcoming ranked match for a given player. This app would provide the win conditions and various warnings, acting as a coach. It would try to expose the ennemy team's weakness and put the emphasis on good thing about yours.">
+    <title>{% block title %}{{ title }}{% endblock %} - LoL Senpai</title>
+
+    <!--[if ie]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    {% endblock %}
+</head>
+<body>
+
+    <nav id="navigation">
+        <div class="container">
+            <a href="/" id="logo"><img src="/static/logo_white.png"></a>
+            <ul>
+                <li><a href="/">Search</a></li>
+                <li><a href="/disclamer">Disclaimer</a></li>
+                <li><a href="/about">About</a></li>
+                <li class="little"><a href="#" class="lang lang-english lang-active"><span>ENGLISH</span></a></li>
+                <li class="little"><a href="#" class="lang lang-french"><span>FRENCH</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            {% block header %}
+            <h1>{{ self.title() }}</h1>
+            {% endblock %}
+        </div>
+    </header>
+
+    <section class="container">
+        {% block content %}{% endblock %}
+    </section>
+
+</body>
+</html>
