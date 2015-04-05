@@ -2,14 +2,14 @@
 
 ## Preparation
 
-- Install Docker in your machine (see <https://get.docker.com/> or <https://docs.docker.com/installation/>).
+- Install Docker on your machine (see <https://get.docker.com/> or <https://docs.docker.com/installation/>).
 - `git clone https://github.com/Stegoo/lol-senpai.git`
 - `docker build -t lol-senpai lol-senpai/`
 - `docker run --name lol-senpai -p 5000:5000 -d lol-senpai`
 
 ## Access
 
-You can access to this website through `http://your-domain.tld:5000`.
+You can access this website through `http://your-domain.tld:5000`.
 
 If you want to use port 80, run your image with this command: `docker run --name lol-senpai -p 80:5000 -d lol-senpai`.
 
@@ -17,7 +17,7 @@ Otherwise, if you want use Apache or Nginx, here is their configurations:
 
 ### Apache
 
-Beforehand, you must to enable modules `proxy` and `proxy_http`.
+Beforehand, you must enable modules `proxy` and `proxy_http`.
 
 ```
 <VirtualHost your-domain.tld:80>
