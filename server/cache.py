@@ -1,14 +1,14 @@
 __author__ = 'Dewep'
 
-from flask import Flask
+from flask import g
 import redis
 from settings import REDIS_URL
 
 
 def get_db():
-    db = getattr(Flask, '_database', None)
+    db = getattr(g, '_database', None)
     if db is None:
-        db = Flask._database = redis.from_url(REDIS_URL)
+        db = g._database = redis.from_url(REDIS_URL)
     return db
 
 

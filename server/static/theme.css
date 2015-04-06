@@ -57,8 +57,8 @@ nav ul li:hover {
 .lang-active{opacity:1}
 .lang:before{content:'\00a0';}
 .lang span{display:none}
-.lang-english{background-image:url("gb.svg")}
-.lang-french{background-image:url("fr.svg")}
+.lang-en{background-image:url("gb.svg")}
+.lang-fr{background-image:url("fr.svg")}
 
 /* HEADER */
 body>header{background-color:#b33737;padding:100px 0;color:white}
