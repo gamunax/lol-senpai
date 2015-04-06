@@ -48,11 +48,12 @@ class LeagueOfLegends(object):
         try:
             if Cache.get(url) is None:
                 print('requesting url: ', url)
-                data = request.urlopen(url + 'api_key=' + self.api_key).read().decode('utf-8')
+                data = request.urlopen(url + 'api_key=' + self.api_key).read()
                 if data is not None:
                     Cache.set(url, data, ex=cache_expire)
             else:
                 data = Cache.get(url)
+            data = data.decode('iso-8859-1')
             if data is not None:
                 response = json.loads(data, strict=False)
                 print('JSON DATA: ', response)
@@ -65,7 +66,6 @@ class LeagueOfLegends(object):
                 raise errors.SERVER_ERROR('Server error')
             else:
                 raise errors.LoLSenpaiException('Bad request')
-            return None
 
     def _get_platform_id(self):
         if self.region not in REGIONAL_ENDPOINTS:

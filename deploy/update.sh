@@ -3,6 +3,7 @@
 if [ $# -eq 0 ]
 then
     echo "Usage: ./deploy/update.sh API_KEY"
+    exit 1
 fi
 
 git pull
