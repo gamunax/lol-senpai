@@ -5,6 +5,7 @@ API_LIST = {'champion': 1.2,
             'league': 2.5,
             'match': 2.2,
             'matchhistory': 2.2,
+            'stats': 1.3,
             'static-data': 1.2,
             'summoner': 1.4}
 
@@ -19,3 +20,7 @@ REGIONAL_ENDPOINTS = {'br': 'BR1',
            'tr': 'TR1',
            'ru': 'RU',
            'pbe': 'PBE1'}
+
+SEASONS = {'3': 'SEASON3',
+           '4': 'SEASON2014',
+           '5': 'SEASON2015'}

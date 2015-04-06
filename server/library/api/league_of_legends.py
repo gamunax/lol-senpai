@@ -1,5 +1,6 @@
-from library.api.constants import API_LIST, REGIONAL_ENDPOINTS
+from library.api.constants import API_LIST, REGIONAL_ENDPOINTS, SEASONS
 from library.business.summoner import Summoner
+from library.api import errors
 import urllib.request as request
 import json
 
@@ -23,7 +24,7 @@ class LeagueOfLegends(object):
     def _request(self, API, path, params=None):
         """ Returns a json coming from Riot's server API or our own cache if existing """
         if API not in API_LIST:
-            print('API NOT FOUND')
+            raise errors.UNKNOWN_API('Unknown API %s' % API)
 
         protocol_prefix = 'https://'
         if API == 'static-data':
@@ -43,12 +44,21 @@ class LeagueOfLegends(object):
                 url += key + '=' + value + '&'
         url += 'api_key=' + self.api_key
         print('requesting url: ', url)
-        data = request.urlopen(url).read().decode('utf-8')
-        if data is not None:
-            response = json.loads(data, strict=False)
-            print('JSON DATA: ', response)
-            return response
-        return data
+        try:
+            data = request.urlopen(url).read().decode('utf-8')
+            if data is not None:
+                response = json.loads(data, strict=False)
+                print('JSON DATA: ', response)
+                return response
+            return data
+        except request.HTTPError as e:
+            if e.code == 429:
+                raise errors.RATE_LIMIT_EXCEEDED('Too many requests')
+            elif e.code == 500 or e.code == 503:
+                raise errors.SERVER_ERROR('Server error')
+            else:
+                raise errors.LoLSenpaiException('Bad request')
+            return None
 
     def _get_platform_id(self):
         if self.region not in REGIONAL_ENDPOINTS:
@@ -72,3 +82,25 @@ class LeagueOfLegends(object):
     def get_current_game_for_summoner(self, summoner_id):
         path = self.platform_id + '/' + str(summoner_id)
         data = self._request('current-game', path)
+
+    def get_match_history(self, summoner_id):
+        """ Returns the last 15 games for a given summoner """
+        data = self._request('matchhistory', str(summoner_id))
+
+    def get_summoner_runes(self, summoner_id):
+        """ Returns the runes of a summoner """
+        path = str(summoner_id) + '/runes'
+        data = self._request('summoner', path)
+
+    def get_summoner_masteries(self, summoner_id):
+        """ Returns the masteries of a summoner """
+        path = str(summoner_id) + '/masteries'
+        data = self._request('summoner', path)
+
+    def get_ranked_stats(self, summoner_id, season='3'):
+        """ Rturns the ranked stats of a summoner for the given season (3,4,5) """
+        if season not in SEASONS:
+            raise errors.BAD_PARAMETER('Season not found %s' % season)
+        path = 'by-summoner/' + str(summoner_id) + '/ranked'
+        params = {'season': SEASONS[season]}
+        data = self._request('stats', path, params)
