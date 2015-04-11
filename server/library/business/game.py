@@ -19,7 +19,7 @@ class Game(object):
         self.platformId = json_data.get('platformId')
 
 
-class CurrentGame(object):
+class CurrentGame(Game):
 
     class BannedChampions(object):
         def __init__(self, json_data):
