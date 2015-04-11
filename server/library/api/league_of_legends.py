@@ -4,7 +4,6 @@ from library.business.current_game import CurrentGame
 from library.api.constants import API_LIST, REGIONAL_ENDPOINTS, SEASONS
 from library.api import errors
 import urllib.request as request
-from cache import Cache
 import json
 
 
@@ -47,6 +46,7 @@ class LeagueOfLegends(object):
             for key, value in params.items():
                 url += key + '=' + value + '&'
 
+        from cache import Cache
         try:
             if Cache.get(url) is None:
                 print('requesting url: ', url)

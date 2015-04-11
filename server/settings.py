@@ -18,4 +18,4 @@ REDIS_URL = getattr(local_settings, "REDIS_URL", ('redis://'
                                                   + os.getenv("REDIS_PORT_6379_TCP_PORT", DEFAULT_REDIS_PORT) + '/'
                                                   + os.getenv("REDIS_DATABASE", DEFAULT_REDIS_DATABASE)))
 
-API_KEY = os.getenv("API_KEY", DEFAULT_REDIS_DATABASE)
+API_KEY = os.getenv("API_KEY", DEFAULT_API_KEY)

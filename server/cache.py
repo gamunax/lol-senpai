@@ -2,21 +2,31 @@ __author__ = 'Dewep'
 
 from flask import g
 import redis
-from settings import REDIS_URL
+from settings import REDIS_URL, API_KEY
+
+
+def _cache_instance_flask(_id, new):
+    _id = '_' + _id
+    try:
+        instance = getattr(g, _id, None)
+    except RuntimeError:
+        instance = None
+    if instance is None:
+        instance = new()
+        try:
+            setattr(g, _id, instance)
+        except RuntimeError:
+            pass
+    return instance
+
+
+def get_wrapper():
+    from library.api.league_of_legends import LeagueOfLegends
+    return _cache_instance_flask('wrapper', lambda: LeagueOfLegends(API_KEY))
 
 
 def get_db():
-    try:
-        db = getattr(g, '_database', None)
-    except RuntimeError:
-        db = None
-    if db is None:
-        db = redis.from_url(REDIS_URL)
-        try:
-            g._database = db
-        except RuntimeError:
-            pass
-    return db
+    return _cache_instance_flask('database', lambda: redis.from_url(REDIS_URL))
 
 
 class Cache(object):
