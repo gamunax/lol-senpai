@@ -4,9 +4,9 @@ from library.business.current_game import CurrentGame
 from library.api.constants import API_LIST, REGIONAL_ENDPOINTS, SEASONS
 from library.api import errors
 import urllib.request as request
-from general import log
+from general import log, Cache
 from local_settings import API_KEY
-from cache import Cache
+
 import json
 
 
@@ -95,6 +95,11 @@ class LeagueOfLegends(object):
             summoner = Summoner(data.get(summoner_names.lower()))
             summoner.region = self.region
             return summoner
+
+    def get_summoner_runes(self, summoner_id):
+        """ Returns a match history based on  'summoner_id' """
+        data = self._request('summoner', str(summoner_id) + '/runes')
+        return data.get(str(summoner_id)).get('pages')
 
     def get_match_history(self, summoner_id):
         """ Returns a match history based on  'summoner_id' """

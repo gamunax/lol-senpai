@@ -13,5 +13,5 @@ class Summoner(object):
         from library.api.league_of_legends import LeagueOfLegends
         if self.rune_pages is None:
             lol_wrapper = LeagueOfLegends()
-            lol_wrapper.get_summoner_runes(self.id)
+            self.rune_pages = lol_wrapper.get_summoner_runes(self.id)
         return self.rune_pages
