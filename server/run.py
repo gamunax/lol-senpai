@@ -1,33 +1,13 @@
-from flask import Flask, render_template, request, g, redirect, url_for, abort
-from flask.ext.babel import Babel
+from flask import render_template, redirect, url_for, abort
 from general import log
+from app.flask import create_application
 
-app = Flask(__name__)
-babel = Babel(app)
-
-
-@app.before_request
-def before_request():
-    if request.view_args and 'lang' in request.view_args:
-        g.lang = request.view_args['lang']
-        if g.lang not in ('en', 'fr'):
-            return abort(404, {'message': "Language not found."})
-        request.view_args.pop('lang')
-    if request.view_args and 'region' in request.view_args:
-        region = request.view_args['region']
-        from library.api.constants import REGIONAL_ENDPOINTS
-        if region not in REGIONAL_ENDPOINTS:
-            return abort(404, {'message': "Region not found."})
-
-
-@babel.localeselector
-def get_locale():
-    log.info("Language: " + g.get('lang', 'en'))
-    return g.get('lang', 'en')
+app = create_application(__name__)
 
 
 @app.route('/')
 def root():
+    log.warn("Redirect / -> /lang")
     return redirect(url_for('main', lang='en'))
 
 
@@ -40,15 +20,14 @@ def main():
 @app.route('/<lang>/game/<region>/<username>')
 def match(region, username):
     title = username + "'s match"
+    try:
+        #good, danger, advices = get_results_game(region, username)
+        raise Exception("Toto")
+    except:
+        abort(503, {'message': "Internal server error."})
     return render_template('match.html', **locals())
 
 
-@app.errorhandler(404)
-def page_not_found(error):
-    title = "Not found"
-    message = error.description['message'] if 'message' in error.description else "Not found"
-    return render_template('404.html', **locals()), 404
-
-
 if __name__ == '__main__':
+    log.info("Start application...")
     app.run(debug=True)
