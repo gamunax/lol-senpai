@@ -8,6 +8,7 @@ ADD server/ /data
 ADD deploy/supervisor.conf /etc/supervisor.conf
 
 RUN pip install -r /data/requirements.txt
+RUN pybabel compile -d /data/translations
 RUN pip install gunicorn
 
 EXPOSE 5000

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ g.lang }}">
 <head>
     {% block head %}
     <meta charset="UTF-8">
@@ -25,13 +25,13 @@
 
     <nav id="navigation">
         <div class="container">
-            <a href="/" id="logo"><img src="/static/logo_white.png"></a>
+            <a href="/{{ g.lang }}" id="logo"><img src="/static/logo_white.png"></a>
             <ul>
-                <li><a href="/">Search</a></li>
-                <li><a href="/disclamer">Disclaimer</a></li>
-                <li><a href="/about">About</a></li>
-                <li class="little"><a href="#" class="lang lang-english lang-active"><span>ENGLISH</span></a></li>
-                <li class="little"><a href="#" class="lang lang-french"><span>FRENCH</span></a></li>
+                <li><a href="/{{ g.lang }}">{{ _("Search") }}</a></li>
+                <li><a href="/{{ g.lang }}/disclamer">{{ _("Disclamer") }}</a></li>
+                <li><a href="/{{ g.lang }}/about">{{ _("About") }}</a></li>
+                <li class="little"><a href="#" class="lang lang-en"><span>ENGLISH</span></a></li>
+                <li class="little"><a href="#" class="lang lang-fr"><span>FRENCH</span></a></li>
             </ul>
         </div>
     </nav>
@@ -47,6 +47,8 @@
     <section class="container">
         {% block content %}{% endblock %}
     </section>
+
+    <script type="text/javascript" src="/static/lang.js"></script>
 
 </body>
 </html>
