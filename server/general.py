@@ -24,7 +24,7 @@ def _cache_instance_flask(_id, new):
 
 def get_wrapper():
     from library.api.league_of_legends import LeagueOfLegends
-    return _cache_instance_flask('wrapper', lambda: LeagueOfLegends())
+    return _cache_instance_flask('wrapper', LeagueOfLegends)
 
 
 def get_db():
@@ -45,7 +45,7 @@ def get_logger():
         stream.setFormatter(formatter)
         logger.addHandler(stream)
         return logger
-    return _cache_instance_flask('logging', lambda: new())
+    return _cache_instance_flask('logging', new)
 
 
 log = get_logger()

@@ -48,7 +48,6 @@ class LeagueOfLegends(object):
             for key, value in params.items():
                 url += key + '=' + value + '&'
 
-        from general import Cache
         try:
             if Cache.get(url) is None:
                 log.info('requesting url: %s' % url)
