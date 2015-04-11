@@ -1,6 +1,11 @@
 __author__ = 'Dewep'
 
 
+from general import get_wrapper
+from library.api.errors import LoLSenpaiException
+from flask import abort
+
+
 class SenpaiAdvices(object):
     PROS = 0
     CONS = 1
@@ -21,14 +26,25 @@ class SenpaiAdvices(object):
         self._analyse()
 
     def _initialise_game(self):
-        # Fetch summoner
-        # Abort if summoner not found
-        # Fetch current game
-        # Abort if not current game for this summoner
+        lol_wrapper = get_wrapper()
+
+        try:
+            summoner = lol_wrapper.get_summoners(self.username)
+        except LoLSenpaiException:
+            summoner = None
+            abort(404, {'message': 'Impossible to find this summoner.'})
+
+        try:
+            self.game = lol_wrapper.get_current_game_for_summoner(summoner.id)
+        except LoLSenpaiException:
+            abort(400, {'message': 'This summoner is not currently in a game.'})
+
+        if self.game.gameMode != "CLASSIC" or self.game.gameQueueConfigId[:7] != "RANKED_":
+            abort(400, {'message': 'Lol-Senpai works only for ranked games.'})
+
         # Abort if game's type is not supported
         # Construct teams (blue and purple)
         # Set the current summoner (+ make the method checking if it's an allie or not)
-        pass
 
     def _analyse(self):
         # Loop on teams

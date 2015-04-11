@@ -6,6 +6,14 @@ from flask.ext.babel import Babel
 from general import log
 
 
+def page_error(error, code=400):
+    title = str(error)
+    if title[:5] == ("%d: " % code):
+        title = title[5:]
+    message = error.description['message'] if 'message' in error.description else title
+    return render_template('error.html', **locals()), code
+
+
 def create_application(root):
     app = Flask(root)
     babel = Babel(app)
@@ -28,20 +36,14 @@ def create_application(root):
         log.info("Language: " + g.get('lang', 'en'))
         return g.get('lang', 'en')
 
-    def page_error(error, code):
-        title = str(error)
-        if title[:5] == ("%d: " % code):
-            title = title[5:]
-        message = error.description['message'] if 'message' in error.description else title
-        return render_template('error.html', **locals()), code
+    def page_errors(error):
+        try:
+            code = int(str(error)[:3])
+        except:
+            code = 503
+        return page_error(error, code)
 
     for error_code in [400, 403, 404, 503, 509]:
-        @app.errorhandler(error_code)
-        def page_not_found(error):
-            try:
-                code = int(str(error)[:3])
-            except:
-                code = 503
-            return page_error(error, code)
+        app.register_error_handler(error_code, page_errors)
 
     return app

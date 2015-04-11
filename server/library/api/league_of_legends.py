@@ -90,8 +90,8 @@ class LeagueOfLegends(object):
                 summoners[summoner.id] = summoner
             return summoners
         else:
-            summoner = Summoner(data.get(summoner_names.lower()), self.region)
-            return summoner
+            for user in data:
+                return Summoner(data[user], self.region)
 
     def get_summoner_runes(self, summoner_id):
         """ Returns a match history based on  'summoner_id' """

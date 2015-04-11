@@ -21,10 +21,10 @@ def main():
 @app.route('/<lang>/game/<region>/<username>')
 def match(region, username):
     title = username + "'s match"
-    try:
-        senpai = SenpaiAdvices(region, username)
-    except Exception as e:
-        abort(503, {'message': "Internal server error: %s" % str(e)})
+    senpai = SenpaiAdvices(region, username)
+    # try:
+    # except Exception as e:
+    #     abort(503, {'message': "Internal server error: %s" % str(e)})
     return render_template('game.html', **locals())
 
 
