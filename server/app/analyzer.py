@@ -6,19 +6,19 @@ from settings import ANALYZER_CLASSES
 
 
 class AnalyzerBase(object):
-    def analyze_player_as_an_ally(self, player):
+    def analyze_player_as_an_ally(self, senpai, player):
         pass
 
-    def analyze_player_as_an_enemy(self, player):
+    def analyze_player_as_an_enemy(self, senpai, player):
         pass
 
-    def analyze_team_as_an_ally(self, team):
+    def analyze_team_as_an_ally(self, senpai, team):
         pass
 
-    def analyze_team_as_an_enemy(self, team):
+    def analyze_team_as_an_enemy(self, senpai, team):
         pass
 
-    def analyze_game(self, game):
+    def analyze_game(self, senpai, game):
         pass
 
 
@@ -26,12 +26,13 @@ def get_analyzers():
     return _analyzers
 
 
-def dialer_analyzers(instance, package, obj, is_ally=None):
-    method = "analyze_" + package
+def dialer_analyzers(instance, package, senpai, obj, is_ally=None):
+    method_name = "analyze_" + package
     if is_ally is not None:
-        method += "_as_an" + ("ally" if is_ally else "enemy")
-    if hasattr(instance, method) and callable(instance.method):
-        instance.method(obj)
+        method_name += "_as_an_" + ("ally" if is_ally else "enemy")
+    method = getattr(instance, method_name, None)
+    if callable(method):
+        method(senpai, obj)
 
 
 _analyzers = []
@@ -55,7 +56,7 @@ for analyzer_class in ANALYZER_CLASSES:
         continue
     try:
         instance_analyzer = analyzer()
-        _analyzer.append(instance_analyzer)
+        _analyzers.append(instance_analyzer)
     except TypeError:
         log.error("Analyzer is not callable: " + analyzer_class)
         continue

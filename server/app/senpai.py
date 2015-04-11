@@ -9,7 +9,7 @@ from flask import abort
 class SenpaiAdvices(object):
     PROS = 0
     CONS = 1
-    INFOS = 2
+    INFO = 2
 
     def __init__(self, region, username):
         self.region = region
@@ -17,7 +17,7 @@ class SenpaiAdvices(object):
         self.advices = {
             self.PROS: list(),
             self.CONS: list(),
-            self.INFOS: list()
+            self.INFO: list()
         }
         self.game = None
         self.current_player = None
@@ -52,13 +52,13 @@ class SenpaiAdvices(object):
 
     def _analyze(self):
         for analyzer in get_analyzers():
-            dialer_analyzers(analyzer, 'game', self.game)
-            dialer_analyzers(analyzer, 'team', self.game.blue_team, self.is_blue_team)
+            dialer_analyzers(analyzer, 'game', self, self.game)
+            dialer_analyzers(analyzer, 'team', self, self.game.blue_team, self.is_blue_team)
             for player in self.game.blue_team:
-                dialer_analyzers(analyzer, 'player', player, self.is_blue_team)
-            dialer_analyzers(analyzer, 'team', self.game.purple_team, self.is_purple_team)
+                dialer_analyzers(analyzer, 'player', self, player, self.is_blue_team)
+            dialer_analyzers(analyzer, 'team', self, self.game.purple_team, self.is_purple_team)
             for player in self.game.purple_team:
-                dialer_analyzers(analyzer, 'player', player, self.is_purple_team)
+                dialer_analyzers(analyzer, 'player', self, player, self.is_purple_team)
 
     def get_advices(self, type_advice):
         return self.advices[type_advice]
