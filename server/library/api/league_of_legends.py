@@ -1,6 +1,6 @@
 from library.business.summoner import Summoner
 from library.business.champion import Champion
-from library.business.current_game import CurrentGame
+from library.business.game import Game
 from library.api.constants import API_LIST, REGIONAL_ENDPOINTS, SEASONS
 from library.api import errors
 import urllib.request as request
@@ -98,9 +98,14 @@ class LeagueOfLegends(object):
         data = self._request('summoner', str(summoner_id) + '/runes')
         return data.get(str(summoner_id)).get('pages')
 
-    def get_match_history(self, summoner_id):
+    def get_match_history(self, summoner_id, ranked_queue='RANKED_SOLO_5x5'):
         """ Returns a match history based on  'summoner_id' """
-        data = self._request('matchhistory', str(summoner_id))
+        params = {'rankedQueues': ranked_queue}
+        data = self._request('matchhistory', str(summoner_id), params)
+        games = []
+        for game in data.get('matches'):
+            games.append(Game(game, self.region))
+        return games
 
     def get_champions(self, champion_id=None, champ_data='all'):
         """ Returns the list of champions or info about a specific champion """
@@ -121,7 +126,7 @@ class LeagueOfLegends(object):
     def get_current_game_for_summoner(self, summoner_id):
         path = self.platform_id + '/' + str(summoner_id)
         data = self._request('current-game', path)
-        return CurrentGame(data, self.region)
+        return Game(data, self.region)
 
     def get_ranked_stats(self, summoner_id, season='5'):
         """ Returns the ranked stats of a summoner for the given season (3,4,5) """
@@ -140,6 +145,11 @@ class LeagueOfLegends(object):
         params = {'season': SEASONS[season]}
         data = self._request('stats', path, params)
         return data
+
+    def get_league_info_for_summoner(self, summoner_id):
+        path = 'by-summoner/' + str(summoner_id) + '/entry'
+        data = self._request('league', path)
+        return data.get(str(summoner_id))
 
 
 class LeagueOfLegendsImage(object):

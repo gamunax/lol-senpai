@@ -1,5 +1,5 @@
 from general import get_wrapper
-
+from library.business.league import League
 
 class Summoner(object):
 
@@ -8,6 +8,7 @@ class Summoner(object):
         self.name = json_data.get('name') or json_data.get("summonerName")
         self.region = region
         self.rune_pages = None
+        self.leagues = {}
 
     def __str__(self):
         return '%s, id: %s, region: %s' % (self.name, str(self.id), self.region)
@@ -16,6 +17,16 @@ class Summoner(object):
         if self.rune_pages is None:
             self.rune_pages = get_wrapper().get_summoner_runes(self.id)
         return self.rune_pages
+
+    def get_league_info(self, queue=None):
+        if len(self.leagues) == 0:
+            leagues = get_wrapper().get_league_info_for_summoner(self.id)
+            for league in leagues:
+                    self.leagues[league.get('queue')] = League(league, self.region)
+        if queue is not None:
+            return self.leagues[queue]
+        else:
+            return self.leagues
 
 
 class Participant(Summoner):
