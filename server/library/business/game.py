@@ -1,5 +1,5 @@
 from library.api.constants import MATCHMAKING_QUEUES, MAP_NAMES
-from library.business.summoner import Participant
+from library.business.summoner import Player
 
 
 class Game(object):
@@ -13,13 +13,18 @@ class Game(object):
         self.gameType = json_data.get('gameType')
         self.mapId = MAP_NAMES[json_data.get('mapId')]
         self.observers = json_data.get('observers')
-        self.participants = list()
-        for participant in json_data.get('participants'):
-            self.participants.append(Participant(participant, self.region))
         self.platformId = json_data.get('platformId')
         self.gameQueue = MATCHMAKING_QUEUES[json_data.get('subType') or json_data.get('gameQueueConfigId')]
+        self.players = list()
         self.blue_team = list()
         self.purple_team = list()
+        for player in json_data.get('participants'):
+            obj = Player(player, self.region)
+            self.players.append(obj)
+            if len(self.blue_team) == 0 or self.blue_team[0].teamId == obj.teamId:
+                self.blue_team.append(obj)
+            else:
+                self.purple_team.append(obj)
 
     def is_ranked(self):
         return self.gameMode == "CLASSIC" and self.gameQueue[:7] == "RANKED_"

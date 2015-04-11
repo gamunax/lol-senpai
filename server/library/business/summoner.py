@@ -1,6 +1,7 @@
 from general import get_wrapper
 from library.business.league import League
 
+
 class Summoner(object):
 
     def __init__(self, json_data, region):
@@ -29,7 +30,7 @@ class Summoner(object):
             return self.leagues
 
 
-class Participant(Summoner):
+class Player(Summoner):
     def __init__(self, json_data, region):
         super().__init__(json_data, region)
         self.is_bot = json_data.get("bot")
