@@ -1,6 +1,7 @@
 from flask import render_template, redirect, url_for, abort
 from general import log
 from app.flask import create_application
+from app.senpai import get_results_game
 
 app = create_application(__name__)
 
@@ -21,10 +22,9 @@ def main():
 def match(region, username):
     title = username + "'s match"
     try:
-        #good, danger, advices = get_results_game(region, username)
-        raise Exception("Toto")
-    except:
-        abort(503, {'message': "Internal server error."})
+        good, danger, advices = get_results_game(region, username)
+    except Exception as e:
+        abort(503, {'message': "Internal server error: %s" % str(e)})
     return render_template('match.html', **locals())
 
 
