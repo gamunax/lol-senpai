@@ -6,9 +6,16 @@ from settings import REDIS_URL
 
 
 def get_db():
-    db = getattr(g, '_database', None)
+    try:
+        db = getattr(g, '_database', None)
+    except RuntimeError:
+        db = None
     if db is None:
-        db = g._database = redis.from_url(REDIS_URL)
+        db = redis.from_url(REDIS_URL)
+        try:
+            g._database = db
+        except RuntimeError:
+            pass
     return db
 
 

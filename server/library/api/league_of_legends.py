@@ -1,5 +1,6 @@
 from library.business.summoner import Summoner
 from library.business.champion import Champion
+from library.business.current_game import CurrentGame
 from library.api.constants import API_LIST, REGIONAL_ENDPOINTS, SEASONS
 from library.api import errors
 import urllib.request as request
@@ -57,7 +58,7 @@ class LeagueOfLegends(object):
             data = data.decode('iso-8859-1')
             if data is not None:
                 response = json.loads(data, strict=False)
-                print('JSON DATA: ', response)
+                print('JSON DATA: ', json.dumps(response, indent=4))
                 return response
             return data
         except request.HTTPError as e:
@@ -116,6 +117,7 @@ class LeagueOfLegends(object):
     def get_match_history(self, summoner_id):
         """ Returns the last 15 games for a given summoner """
         data = self._request('matchhistory', str(summoner_id))
+        return CurrentGame(data)
 
     def get_summoner_runes(self, summoner_id):
         """ Returns the runes of a summoner """
