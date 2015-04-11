@@ -1,11 +1,11 @@
 from library.api.league_of_legends import LeagueOfLegends
 from library.business.summoner import Summoner
 from library.business.champion import Champion
-from local_settings import API_KEY
 
-lol_wrapper = LeagueOfLegends(API_KEY)
+lol_wrapper = LeagueOfLegends()
 summoner = lol_wrapper.get_summoners('Stegoo')
-print(summoner)
+summoner.get_rune_pages()
+print(summoner.rune_pages)
 #lol_wrapper.get_match_history(20818053)
 #champions = lol_wrapper.get_champions(72)
 #print(champions[56])

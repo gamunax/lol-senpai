@@ -3,6 +3,7 @@ from library.business.champion import Champion
 from library.api.constants import API_LIST, REGIONAL_ENDPOINTS, SEASONS
 from library.api import errors
 import urllib.request as request
+from local_settings import API_KEY
 from cache import Cache
 import json
 
@@ -13,12 +14,12 @@ class LeagueOfLegends(object):
         It makes it more convenient to access various data
     """
 
-    def __init__(self, api_key, region='euw'):
+    def __init__(self, region='euw'):
         self.api_base_url = 'api.pvp.net/'
         self.api_global_base_url = 'global.api.pvp.net/'
         self.api_prefix = 'api/lol/'
         self.api_observer_url = 'observer-mode/rest/consumer/getSpectatorGameInfo/'
-        self.api_key = api_key
+        self.api_key = API_KEY
         self.api_endpoint = 'euw'  # Location of our server
         self.region = region
         self.platform_id = self._get_platform_id()
@@ -85,10 +86,13 @@ class LeagueOfLegends(object):
             summoners = {}
             for user in data:
                 summoner = Summoner(data[user])
+                summoner.region = self.region
                 summoners[summoner.id] = summoner
             return summoners
         else:
-            return Summoner(data.get(summoner_names.lower()))
+            summoner = Summoner(data.get(summoner_names.lower()))
+            summoner.region = self.region
+            return summoner
 
     def get_match_history(self, summoner_id):
         """ Returns a match history based on  'summoner_id' """
@@ -109,6 +113,7 @@ class LeagueOfLegends(object):
                 champions[champion.id] = champion
             return champions
 
+    #https://global.api.pvp.net/api/lol/static-data/euw/v1.2/rune?runeListData=stats&api_key=fcb32d30-62c9-4888-a299-0596441978f8
     def get_current_game_for_summoner(self, summoner_id):
         path = self.platform_id + '/' + str(summoner_id)
         data = self._request('current-game', path)
@@ -116,16 +121,6 @@ class LeagueOfLegends(object):
     def get_match_history(self, summoner_id):
         """ Returns the last 15 games for a given summoner """
         data = self._request('matchhistory', str(summoner_id))
-
-    def get_summoner_runes(self, summoner_id):
-        """ Returns the runes of a summoner """
-        path = str(summoner_id) + '/runes'
-        data = self._request('summoner', path)
-
-    def get_summoner_masteries(self, summoner_id):
-        """ Returns the masteries of a summoner """
-        path = str(summoner_id) + '/masteries'
-        data = self._request('summoner', path)
 
     def get_ranked_stats(self, summoner_id, season='3'):
         """ Rturns the ranked stats of a summoner for the given season (3,4,5) """
