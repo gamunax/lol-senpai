@@ -86,13 +86,11 @@ class LeagueOfLegends(object):
         if is_list:
             summoners = {}
             for user in data:
-                summoner = Summoner(data[user])
-                summoner.region = self.region
+                summoner = Summoner(data[user], self.region)
                 summoners[summoner.id] = summoner
             return summoners
         else:
-            summoner = Summoner(data.get(summoner_names.lower()))
-            summoner.region = self.region
+            summoner = Summoner(data.get(summoner_names.lower()), self.region)
             return summoner
 
     def get_summoner_runes(self, summoner_id):
@@ -123,11 +121,7 @@ class LeagueOfLegends(object):
     def get_current_game_for_summoner(self, summoner_id):
         path = self.platform_id + '/' + str(summoner_id)
         data = self._request('current-game', path)
-
-    def get_match_history(self, summoner_id):
-        """ Returns the last 15 games for a given summoner """
-        data = self._request('matchhistory', str(summoner_id))
-        return CurrentGame(data)
+        return CurrentGame(data, self.region)
 
     def get_ranked_stats(self, summoner_id, season='5'):
         """ Returns the ranked stats of a summoner for the given season (3,4,5) """

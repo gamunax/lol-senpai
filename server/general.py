@@ -1,7 +1,7 @@
 __author__ = 'Dewep'
 
 from flask import g
-from settings import REDIS_URL, API_KEY, LOG_LEVEL
+from settings import REDIS_URL, LOG_LEVEL
 
 
 _local_cache = dict()

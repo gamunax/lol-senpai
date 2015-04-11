@@ -5,7 +5,7 @@ lol_wrapper = get_wrapper()
 
 
 @function_logger
-def get_stats_champion_ranked(summoner_id, champion_id):
+def get_stats_champion_ranked(summoner_id, champion_id=0):
     data = lol_wrapper.get_ranked_stats(summoner_id)
     for champ in data.get('champions'):
         if champ.get('id') == champion_id:
