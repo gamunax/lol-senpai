@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="good">
+    <header>
+        <h3>Good news!</h3>
+    </header>
+    <div>
+        <ul>
+            {% if senpai.get_advices(senpai.PROS)|length == 0 %}
+            <li><i>{{ _("No such data") }}</i></li>
+            {% endif %}
+            {% for message in senpai.get_advices(senpai.PROS) %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</article>
+<article class="danger">
+    <header>
+        <h3>Be careful!</h3>
+    </header>
+    <div>
+        <ul>
+            {% if senpai.get_advices(senpai.CONS)|length == 0 %}
+            <li><i>{{ _("No such data") }}</i></li>
+            {% endif %}
+            {% for message in senpai.get_advices(senpai.CONS) %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</article>
+<article class="advices">
+    <header>
+        <h3>Information</h3>
+    </header>
+    <div>
+        <ul>
+            {% if senpai.get_advices(senpai.INFOS)|length == 0 %}
+            <li><i>{{ _("No such data") }}</i></li>
+            {% endif %}
+            {% for message in senpai.get_advices(senpai.INFOS) %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</article>
+{% endblock %}
