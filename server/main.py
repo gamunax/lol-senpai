@@ -5,7 +5,8 @@ from app.senpai import get_stats_champion_ranked
 
 lol_wrapper = get_wrapper()
 summoner = lol_wrapper.get_summoners('AurelienM')
-print(summoner)
+summoner.get_rune_pages()
+print(summoner.rune_pages)
 print(get_stats_champion_ranked(summoner.id, 59))
 # lol_wrapper.get_match_history(summoner.id)
 # champions = lol_wrapper.get_champions(72)
