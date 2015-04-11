@@ -41,8 +41,33 @@ class Player(Summoner):
         self.teamId = json_data.get("teamId")
         self.runes = json_data.get('runes')
         self.masteries = json_data.get('masteries')
+        self.stats = json_data.get('stats')
+        self.timeline = json_data.get('timeline')
+        self.lane = self.timeline.get('lane')  # MID, MIDDLE, TOP, JUNGLE, BOT, BOTTOM
+        self.role = self.timeline.get('role')  # DUO, NONE, SOLO, DUO_CARRY, DUO_SUPPORT
+        if 'winner' in self.stats:
+            self.left = False
+            self.win = self.stats.get('winner')
+        else:
+            self.left = True
 
     def get_champion(self):
         if self.champion is None:
             self.champion = get_wrapper().get_champions(champion_id=self.championId)
         return self.champion
+
+    def get_true_role(self):
+        if self.lane == 'BOT' or self.lane == 'BOTTOM':
+            if self.role == 'DUO_CARRY':
+                return 'ADC'
+            else:
+                return 'SUPPORT'
+        elif self.lane == 'MID' or self.lane == 'MID':
+            return 'MID'
+        elif self.lane == 'JUNGLE':
+            return 'JUNGLE'
+        else:
+            return 'TOP'
+
+    def __str__(self):
+        return '%s, role: %s, lane: %s' % (self.get_champion().name, self.role, self.lane)

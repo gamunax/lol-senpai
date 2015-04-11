@@ -1,5 +1,5 @@
 from general import get_wrapper, function_logger
-
+import datetime
 
 lol_wrapper = get_wrapper()
 
@@ -28,17 +28,42 @@ def get_stats_champion_ranked(summoner_id, champion_id=0):
             }
     return None
 
+
 @function_logger
-def get_stats_history_ranked(summoner_id, ranked_queue= None):
-    data = lol_wrapper.get_match_history(summoner_id)
+def get_stats_history_ranked(summoner_id, ranked_queue=None, batch=2):
     stats = {
-        'left_games' : 0,
+        'game': 0,
+        'left': 0,
         'loss': 0,
         'loss_in_a_row': 0,
         'win': 0,
-        'win_in_a_row': 0
+        'win_in_a_row': 0,
+        'top': 0,
+        'jungle': 0,
+        'mid': 0,
+        'adc': 0,
+        'support': 0
     }
-    for game in data:
-        print('________________', game)
 
+    data = []
+    for i in range(0, batch):
+        data += lol_wrapper.get_match_history(summoner_id, ranked_queue, len(data))
+
+    print(len(data))
+    for game in sorted(data):
+        print(datetime.datetime.fromtimestamp(game.gameStartTime / 1e3).strftime('%Y-%m-%d %H:%M:%S'))
+        for player in game.blue_team:
+            print('__________BLUE______', player)
+            stats[player.get_true_role().lower()] += 1
+            stats['game'] += 1
+            if hasattr(player, 'win'):
+                if player.win:
+                    stats['win'] += 1
+                else:
+                    stats['loss'] += 1
+
+            if player.left:
+                stats['left'] += 1
+
+    print(stats)
     return stats

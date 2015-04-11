@@ -9,7 +9,7 @@ class Game(object):
         self.gameId = json_data.get('gameId')
         self.gameLength = json_data.get('gameLength')
         self.gameMode = json_data.get('gameMode')
-        self.gameStartTime = json_data.get('gameStartTime')
+        self.gameStartTime = json_data.get('gameStartTime') or json_data.get('matchCreation')
         self.gameType = json_data.get('gameType')
         self.mapId = MAP_NAMES[json_data.get('mapId')]
         self.observers = json_data.get('observers')
@@ -28,6 +28,9 @@ class Game(object):
 
     def is_ranked(self):
         return self.gameMode == "CLASSIC" and self.gameQueue[:7] == "RANKED_"
+
+    def __lt__(self, other):
+        return other.gameStartTime < self.gameStartTime
 
 
 class CurrentGame(Game):

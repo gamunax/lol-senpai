@@ -98,9 +98,13 @@ class LeagueOfLegends(object):
         data = self._request('summoner', str(summoner_id) + '/runes')
         return data.get(str(summoner_id)).get('pages')
 
-    def get_match_history(self, summoner_id, ranked_queue='RANKED_SOLO_5x5'):
+    def get_match_history(self, summoner_id, ranked_queue='RANKED_SOLO_5x5', begin_index=0, end_index=None):
         """ Returns a match history based on  'summoner_id' """
         params = {'rankedQueues': ranked_queue}
+        if begin_index is not None:
+            params['beginIndex'] = str(begin_index)
+        if end_index is not None:
+            params['endIndex'] = str(end_index)
         data = self._request('matchhistory', str(summoner_id), params)
         games = []
         for game in data.get('matches'):
