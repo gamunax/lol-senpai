@@ -5,7 +5,7 @@ from library.api.constants import API_LIST, REGIONAL_ENDPOINTS, SEASONS
 from library.api import errors
 import urllib.request as request
 from general import log, Cache
-from local_settings import API_KEY
+from settings import API_KEY
 
 import json
 
