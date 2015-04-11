@@ -39,10 +39,9 @@ class SenpaiAdvices(object):
         except LoLSenpaiException:
             abort(400, {'message': 'This summoner is not currently in a game.'})
 
-        if self.game.gameMode != "CLASSIC" or self.game.gameQueueConfigId[:7] != "RANKED_":
+        if not self.game.is_ranked():
             abort(400, {'message': 'Lol-Senpai works only for ranked games.'})
 
-        # Abort if game's type is not supported
         # Construct teams (blue and purple)
         # Set the current summoner (+ make the method checking if it's an allie or not)
 

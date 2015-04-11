@@ -1,6 +1,6 @@
 from library.business.summoner import Summoner
 from library.business.champion import Champion
-from library.business.game import Game
+from library.business.game import CurrentGame, Game
 from library.api.constants import API_LIST, REGIONAL_ENDPOINTS, SEASONS
 from library.api import errors
 import urllib.request as request
@@ -126,7 +126,7 @@ class LeagueOfLegends(object):
     def get_current_game_for_summoner(self, summoner_id):
         path = self.platform_id + '/' + str(summoner_id)
         data = self._request('current-game', path)
-        return Game(data, self.region)
+        return CurrentGame(data, self.region)
 
     def get_ranked_stats(self, summoner_id, season='5'):
         """ Returns the ranked stats of a summoner for the given season (3,4,5) """

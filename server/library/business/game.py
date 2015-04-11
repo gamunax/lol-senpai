@@ -17,6 +17,12 @@ class Game(object):
         for participant in json_data.get('participants'):
             self.participants.append(Participant(participant, self.region))
         self.platformId = json_data.get('platformId')
+        self.gameQueue = MATCHMAKING_QUEUES[json_data.get('subType') or json_data.get('gameQueueConfigId')]
+        self.blue_team = list()
+        self.purple_team = list()
+
+    def is_ranked(self):
+        return self.gameMode == "CLASSIC" and self.gameQueue[:7] == "RANKED_"
 
 
 class CurrentGame(Game):
@@ -32,5 +38,4 @@ class CurrentGame(Game):
         self.bannedChampions = list()
         for champ in json_data.get('bannedChampions'):
             self.bannedChampions.append(self.BannedChampions(champ))
-        self.gameQueueConfigId = MATCHMAKING_QUEUES[json_data.get('gameQueueConfigId')]
 
