@@ -24,5 +24,5 @@ API_KEY = os.getenv("API_KEY", DEFAULT_API_KEY)
 LOG_LEVEL = os.getenv("LOG_LEVEL", DEFAULT_LOG_LEVEL)
 
 ANALYZER_CLASSES = [
-    # 'app.analysers.'
+    'app.analyzers.skill_champion.AnalyzerSkillChampion'
 ]

@@ -37,10 +37,10 @@
     </header>
     <div>
         <ul>
-            {% if senpai.get_advices(senpai.INFOS)|length == 0 %}
+            {% if senpai.get_advices(senpai.INFO)|length == 0 %}
             <li><i>{{ _("No such data") }}</i></li>
             {% endif %}
-            {% for message in senpai.get_advices(senpai.INFOS) %}
+            {% for message in senpai.get_advices(senpai.INFO) %}
             <li>{{ message }}</li>
             {% endfor %}
         </ul>

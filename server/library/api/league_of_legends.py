@@ -5,7 +5,7 @@ from library.api.constants import API_LIST, REGIONAL_ENDPOINTS, SEASONS
 from library.api import errors
 import urllib.request as request
 from general import log, Cache
-from local_settings import API_KEY
+from settings import API_KEY
 
 import json
 
@@ -63,6 +63,7 @@ class LeagueOfLegends(object):
                 return response
             return data
         except request.HTTPError as e:
+            log.error("HTTPError " + str(e.code) + ": " + str(e))
             if e.code == 429:
                 raise errors.RATE_LIMIT_EXCEEDED('Too many requests')
             elif e.code == 500 or e.code == 503:
