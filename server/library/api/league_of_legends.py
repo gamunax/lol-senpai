@@ -4,6 +4,7 @@ from library.business.current_game import CurrentGame
 from library.api.constants import API_LIST, REGIONAL_ENDPOINTS, SEASONS
 from library.api import errors
 import urllib.request as request
+from general import log
 import json
 
 
@@ -42,14 +43,13 @@ class LeagueOfLegends(object):
         url += '?'
 
         if params:
-            # print('params', params)
             for key, value in params.items():
                 url += key + '=' + value + '&'
 
-        from cache import Cache
+        from general import Cache
         try:
             if Cache.get(url) is None:
-                print('requesting url: ', url)
+                log.info('requesting url: %s' % url)
                 data = request.urlopen(url + 'api_key=' + self.api_key).read()
                 if data is not None:
                     Cache.set(url, data, ex=cache_expire)
@@ -58,7 +58,7 @@ class LeagueOfLegends(object):
             data = data.decode('iso-8859-1')
             if data is not None:
                 response = json.loads(data, strict=False)
-                print('JSON DATA: ', json.dumps(response, indent=4))
+                log.debug('JSON DATA: ' + json.dumps(response, indent=4))
                 return response
             return data
         except request.HTTPError as e:
@@ -129,13 +129,23 @@ class LeagueOfLegends(object):
         path = str(summoner_id) + '/masteries'
         data = self._request('summoner', path)
 
-    def get_ranked_stats(self, summoner_id, season='3'):
-        """ Rturns the ranked stats of a summoner for the given season (3,4,5) """
+    def get_ranked_stats(self, summoner_id, season='5'):
+        """ Returns the ranked stats of a summoner for the given season (3,4,5) """
         if season not in SEASONS:
             raise errors.BAD_PARAMETER('Season not found %s' % season)
         path = 'by-summoner/' + str(summoner_id) + '/ranked'
         params = {'season': SEASONS[season]}
         data = self._request('stats', path, params)
+        return data
+
+    def get_summary_stats(self, summoner_id, season='5'):
+        """ Returns the summary stats of a summoner for the given season (3,4,5) """
+        if season not in SEASONS:
+            raise errors.BAD_PARAMETER('Season not found %s' % season)
+        path = 'by-summoner/' + str(summoner_id) + '/summary'
+        params = {'season': SEASONS[season]}
+        data = self._request('stats', path, params)
+        return data
 
 
 class LeagueOfLegendsImage(object):

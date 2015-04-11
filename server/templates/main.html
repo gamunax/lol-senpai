@@ -1,5 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <p>Example : <a href="/{{ g.lang }}/match/AurelienM">here</a>.</p>
+    <form id="summoner_form">
+        <select id="summoner_region">
+            <option value="na">NA</option>
+            <option value="euw" selected>EUW</option>
+            <option value="eune">EUNE</option>
+            <option value="br">BR</option>
+            <option value="tr">TR</option>
+            <option value="ru">RU</option>
+            <option value="lan">LAN</option>
+            <option value="las">LAS</option>
+            <option value="oce">OCE</option>
+        </select>
+        <input id="summoner_name" type="text" placeholder="Summoner name"/>
+        <input type="submit" value="{{ _('Search') }}"/>
+    </form>
+    <script type="text/javascript">
+        document.getElementById('summoner_form').onsubmit = function onsubmit() {
+            var select = document.getElementById('summoner_region');
+            var region = select.options[select.selectedIndex].value;
+            var name = encodeURIComponent(document.getElementById('summoner_name').value);
+            window.location.href = "/{{ g.lang }}/game/" + region + "/" + name;
+            return false;
+        };
+    </script>
 {% endblock %}
