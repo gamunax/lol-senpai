@@ -1,11 +1,12 @@
 from general import get_wrapper
-from app.data import get_stats_champion_ranked
+from app.data import get_stats_champion_ranked, get_stats_history_ranked
 
 # Find a summoner in a game : http://www.lolnexus.com/recent-games?filter-region=2&filter-queue-type=2&filter-sort=1
 
 lol_wrapper = get_wrapper()
 summoner = lol_wrapper.get_summoners('AurelienM')
-print(summoner.get_league_info('RANKED_SOLO_5x5').is_in_promo())
+#print(summoner.get_league_info('RANKED_SOLO_5x5').is_in_promo())
+get_stats_history_ranked(summoner.id)
 #summoner.get_rune_pages()
 #print(summoner.rune_pages)
 #print(get_stats_champion_ranked(summoner.id, 59))

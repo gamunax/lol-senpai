@@ -17,7 +17,7 @@ class Game(object):
         for participant in json_data.get('participants'):
             self.participants.append(Participant(participant, self.region))
         self.platformId = json_data.get('platformId')
-        self.gameQueue = MATCHMAKING_QUEUES[json_data.get('subType') or json_data.get('gameQueueConfigId')]
+        self.gameQueue = json_data.get('queueType') or MATCHMAKING_QUEUES[json_data.get('subType') or json_data.get('gameQueueConfigId')]
         self.blue_team = list()
         self.purple_team = list()
 

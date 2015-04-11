@@ -27,3 +27,18 @@ def get_stats_champion_ranked(summoner_id, champion_id=0):
                 'percent_win': round(stats.get('totalSessionsWon') * 100 / stats.get('totalSessionsPlayed'), 2)
             }
     return None
+
+@function_logger
+def get_stats_history_ranked(summoner_id, ranked_queue= None):
+    data = lol_wrapper.get_match_history(summoner_id)
+    stats = {
+        'left_games' : 0,
+        'loss': 0,
+        'loss_in_a_row': 0,
+        'win': 0,
+        'win_in_a_row': 0
+    }
+    for game in data:
+        print('________________', game)
+
+    return stats
