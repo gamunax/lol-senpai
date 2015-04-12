@@ -23,15 +23,16 @@ class AnalyzerSummonerHistory(AnalyzerBase):
         # 'vision_wards': 0,
         # 'sight_wards': 0
         # }
-        print('Game queue', senpai.game.gameQueue)
         stats = get_stats_history_ranked(player.id, senpai.game.gameQueue)
-        wards_per_game = stats['vision_wards'] / stats['game'] + stats['sight_wards'] / stats['game']
+        wards_per_game = stats['wards_placed'] / stats['game']
+        #print('wards per game', wards_per_game)
         if stats['last_losses_in_a_row'] > 2:
-            senpai.add_advice(senpai.PROS, gettext(u'The enemy %(champion) is on a %(loss) losing streak',
+            senpai.add_advice(senpai.PROS, gettext(u'The enemy %(champion)s is on a %(loss)d losing streak',
                                                    champion=player.champion.name, loss=stats['last_losses_in_a_row']))
         if stats['last_wins_in_a_row'] > 2:
-            senpai.add_advice(senpai.CONS, gettext(u'The enemy %(champion) is on a %(win) winning streak',
+            print('champion', player.champion.name)
+            senpai.add_advice(senpai.CONS, gettext(u'The enemy %(champion)s is on a %(win)d winning streak',
                                                    champion=player.champion.name, win=stats['last_wins_in_a_row']))
-        if wards_per_game < 4:
-            senpai.add_advice(senpai.PROS, gettext(u'The enemy %(champion) does not ward a lot (less than %(wards_per_game) wards on average))',
+        if wards_per_game < 8:
+            senpai.add_advice(senpai.PROS, gettext(u'The enemy %(champion)s does not ward a lot (less than %(wards_per_game)d wards placed per game on average))',
                                                    champion=player.champion.name, wards_per_game=wards_per_game))
