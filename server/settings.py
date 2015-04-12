@@ -25,5 +25,5 @@ LOG_LEVEL = os.getenv("LOG_LEVEL", DEFAULT_LOG_LEVEL)
 
 ANALYZER_CLASSES = [
     'app.analyzers.skill_champion.AnalyzerSkillChampion',
-    'app.analyzers.skill_champion.AnalyzerSummonerHistory'
+    'app.analyzers.summoner_history.AnalyzerSummonerHistory'
 ]

@@ -57,9 +57,9 @@ def get_stats_history_ranked(summoner_id, ranked_queue=None, batch=2):
     win_in_a_row = 0
     loss_in_a_row = 0
     for game in sorted(data):
-        print(datetime.datetime.fromtimestamp(game.gameStartTime / 1e3).strftime('%Y-%m-%d %H:%M:%S'))
+        #print(datetime.datetime.fromtimestamp(game.gameStartTime / 1e3).strftime('%Y-%m-%d %H:%M:%S'))
         for player in game.blue_team:
-            print('__________BLUE______', player)
+            #print('__________BLUE______', player)
             stats['wards_placed'] += player.wards_placed
             stats['wards_killed'] += player.wards_killed
             stats['vision_wards'] += player.vision_wards
