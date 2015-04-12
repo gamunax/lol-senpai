@@ -1,28 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form id="summoner_form">
-        <select id="summoner_region">
-            <option value="na">NA</option>
-            <option value="euw" selected>EUW</option>
-            <option value="eune">EUNE</option>
-            <option value="br">BR</option>
-            <option value="tr">TR</option>
-            <option value="ru">RU</option>
-            <option value="lan">LAN</option>
-            <option value="las">LAS</option>
-            <option value="oce">OCE</option>
-        </select>
-        <input id="summoner_name" type="text" placeholder="Summoner name"/>
-        <input type="submit" value="{{ _('Search') }}"/>
-    </form>
-    <script type="text/javascript">
-        document.getElementById('summoner_form').onsubmit = function onsubmit() {
-            var select = document.getElementById('summoner_region');
-            var region = select.options[select.selectedIndex].value;
-            var name = encodeURIComponent(document.getElementById('summoner_name').value);
-            window.location.href = "/{{ g.lang }}/game/" + region + "/" + name;
-            return false;
-        };
-    </script>
+
+    <h1>LoL-Senpai</h1>
+
+    <h2>What is it ?</h2>
+
+    <p>Description de LoL-Senpai ... lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum
+        and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem
+        ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum.
+        Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem
+        ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum.</p>
+
+    <h2>FAQ</h2>
+
+    <p>FAQ LoL-Senpai ... lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum
+        and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem
+        ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum.
+        Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem
+        ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum.</p>
+
+    <h2>About</h2>
+
+    <p>About LoL-Senpai ... lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum
+        and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem
+        ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum.
+        Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem
+        ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum. Lorem ipsum and lorem ipsum.</p>
+
 {% endblock %}
