@@ -1,6 +1,7 @@
 from app.analyzer import AnalyzerBase
-from app.data import get_stats_champion_ranked, get_stats_history_ranked
+from app.data import get_stats_history_ranked
 from flask.ext.babel import gettext, ngettext
+from app.advice import EnemyLosingStreakAdvice, EnemyWinningStreakAdvice, EnemyPoorWardCoverageAdvice
 
 
 class AnalyzerSummonerHistory(AnalyzerBase):
@@ -27,12 +28,9 @@ class AnalyzerSummonerHistory(AnalyzerBase):
         wards_per_game = stats['wards_placed'] / stats['game']
         #print('wards per game', wards_per_game)
         if stats['last_losses_in_a_row'] > 2:
-            senpai.add_advice(senpai.PROS, gettext(u'The enemy %(champion)s is on a %(loss)d losing streak',
-                                                   champion=player.champion.name, loss=stats['last_losses_in_a_row']))
+            senpai.add_advice(senpai.PROS, EnemyLosingStreakAdvice(player.champion.name, stats['last_losses_in_a_row']))
         if stats['last_wins_in_a_row'] > 2:
             print('champion', player.champion.name)
-            senpai.add_advice(senpai.CONS, gettext(u'The enemy %(champion)s is on a %(win)d winning streak',
-                                                   champion=player.champion.name, win=stats['last_wins_in_a_row']))
+            senpai.add_advice(senpai.CONS, EnemyWinningStreakAdvice(player.champion.name, stats['last_wins_in_a_row']))
         if wards_per_game < 8:
-            senpai.add_advice(senpai.PROS, gettext(u'The enemy %(champion)s does not ward a lot (less than %(wards_per_game)d wards placed per game on average))',
-                                                   champion=player.champion.name, wards_per_game=wards_per_game))
+            senpai.add_advice(senpai.PROS, EnemyPoorWardCoverageAdvice(player.champion.name, wards_per_game))

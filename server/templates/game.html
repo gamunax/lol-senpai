@@ -10,8 +10,8 @@
             {% if senpai.get_advices(senpai.PROS)|length == 0 %}
             <li><i>{{ _("No such data") }}</i></li>
             {% endif %}
-            {% for message in senpai.get_advices(senpai.PROS) %}
-            <li>{{ message }}</li>
+            {% for advice in senpai.get_advices(senpai.PROS) %}
+            <li>{{ advice.get_message() }}</li>
             {% endfor %}
         </ul>
     </div>
@@ -25,8 +25,8 @@
             {% if senpai.get_advices(senpai.CONS)|length == 0 %}
             <li><i>{{ _("No such data") }}</i></li>
             {% endif %}
-            {% for message in senpai.get_advices(senpai.CONS) %}
-            <li>{{ message }}</li>
+            {% for advice in senpai.get_advices(senpai.CONS) %}
+            <li>{{ advice.get_message() }}</li>
             {% endfor %}
         </ul>
     </div>
@@ -40,8 +40,8 @@
             {% if senpai.get_advices(senpai.INFO)|length == 0 %}
             <li><i>{{ _("No such data") }}</i></li>
             {% endif %}
-            {% for message in senpai.get_advices(senpai.INFO) %}
-            <li>{{ message }}</li>
+            {% for advice in senpai.get_advices(senpai.INFO) %}
+            <li>{{ advice.get_message() }}</li>
             {% endfor %}
         </ul>
     </div>

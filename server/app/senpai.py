@@ -6,7 +6,7 @@ from library.api.errors import LoLSenpaiException
 from flask import abort
 
 
-class SenpaiAdvices(object):
+class Senpai(object):
     PROS = 0
     CONS = 1
     INFO = 2
