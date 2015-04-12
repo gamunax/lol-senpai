@@ -42,14 +42,19 @@ class Player(Summoner):
         self.runes = json_data.get('runes')
         self.masteries = json_data.get('masteries')
         self.stats = json_data.get('stats')
+        self.wards_placed = self.stats.get('wardsPlaced') if self.stats else None
+        self.wards_killed = self.stats.get('wardsKilled') if self.stats else None
+        self.vision_wards = self.stats.get('visionWardsBoughtInGame') if self.stats else None# Pink
+        self.sight_wards = self.stats.get('sightWardsBoughtInGame') if self.stats else None # Green
         self.timeline = json_data.get('timeline')
-        self.lane = self.timeline.get('lane')  # MID, MIDDLE, TOP, JUNGLE, BOT, BOTTOM
-        self.role = self.timeline.get('role')  # DUO, NONE, SOLO, DUO_CARRY, DUO_SUPPORT
-        if 'winner' in self.stats:
-            self.left = False
-            self.win = self.stats.get('winner')
-        else:
-            self.left = True
+        self.lane = self.timeline.get('lane') if self.timeline else None # MID, MIDDLE, TOP, JUNGLE, BOT, BOTTOM
+        self.role = self.timeline.get('role') if self.timeline else None  # DUO, NONE, SOLO, DUO_CARRY, DUO_SUPPORT
+        if self.stats:
+            if 'winner' in self.stats:
+                self.left = False
+                self.win = self.stats.get('winner')
+            else:
+                self.left = True
 
     def get_champion(self):
         if self.champion is None:
@@ -70,4 +75,4 @@ class Player(Summoner):
             return 'TOP'
 
     def __str__(self):
-        return '%s, role: %s, lane: %s' % (self.get_champion().name, self.role, self.lane)
+        return '%s, role: %s, lane: %s, result: %s' % (self.get_champion().name, self.role, self.lane, self.win)
