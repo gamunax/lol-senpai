@@ -22,7 +22,7 @@ class LeagueOfLegends(object):
         self.api_prefix = 'api/lol/'
         self.api_observer_url = 'observer-mode/rest/consumer/getSpectatorGameInfo/'
         self.api_key = API_KEY
-        self.api_endpoint = 'euw'  # Location of our server
+        self.api_endpoint = region  # Location of our server
         self.region = region
         self.platform_id = self._get_platform_id()
 

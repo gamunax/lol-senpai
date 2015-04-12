@@ -26,7 +26,7 @@ class SenpaiAdvices(object):
         self._analyze()
 
     def _initialise_game(self):
-        lol_wrapper = get_wrapper()
+        lol_wrapper = get_wrapper(self.region)
 
         try:
             summoner = lol_wrapper.get_summoners(self.username)

@@ -22,9 +22,9 @@ def _cache_instance_flask(_id, new):
     return instance
 
 
-def get_wrapper():
+def get_wrapper(region=None):
     from library.api.league_of_legends import LeagueOfLegends
-    return _cache_instance_flask('wrapper', LeagueOfLegends)
+    return _cache_instance_flask('wrapper', lambda: LeagueOfLegends() if not region else LeagueOfLegends(region))
 
 
 def get_db():
