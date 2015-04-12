@@ -47,7 +47,7 @@ class EnemyPoorWardCoverageAdvice(Advice):
 
     def get_message(self):
         return gettext('The enemy %(champion)s does not ward a lot. '
-                       'He places less than %(wards_per_game)d wards per game on average)',
+                       'He places %(wards_per_game)d wards per game on average)',
                         champion=self.champion_name, wards_per_game=self.wards_per_game)
 
     def get_description(self):
