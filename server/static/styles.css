@@ -1,0 +1,189 @@
+/* PAGE */
+html, body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    color: #444444;
+    font-family: "Bookman", Georgia, "Times New Roman", serif;
+    background-color: #1a1b1f;
+}
+.container {
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+/* GLOBAL */
+a, a:link, a:visited {
+    color: #b33737;
+    text-decoration: none;
+}
+a:hover, a:focus, a:active {
+    text-decoration: underline;
+}
+
+/* LANG */
+/* https://github.com/lipis/flag-icon-css */
+.lang {
+    display: inline-block;
+    width: 1.33em;
+    line-height: 1em;
+    background-size: contain;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    text-decoration: none;
+}
+.lang:hover { opacity: 0.8 }
+.lang-active:hover { opacity: 1 }
+.lang-active { opacity: 1 }
+.lang:before { content: '\00a0' }
+.lang span { display: none }
+.lang-en { background-image: url("gb.svg") }
+.lang-fr { background-image: url("fr.svg") }
+
+/* NAV */
+#navigation {
+    background-color: #FFF;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    line-height: 60px;
+    margin: 0;
+    padding: 5px 0;
+}
+#logo {
+    display: block;
+    line-height: 60px;
+    float: left;
+}
+#logo img {
+    max-height: 60px;
+    display: block;
+}
+#navigation .widgets {
+    text-align: right;
+}
+#navigation .widgets > span {
+    margin: 0 5px;
+}
+#navigation .clear {
+    clear: both;
+}
+
+/* SECTION */
+section.container {
+    background-color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+}
+.body {
+    min-height: calc(100% - 90px - 40px - 70px);
+    background: url("back-kayle.png") no-repeat fixed top center;
+    padding: 20px 0;
+    margin: 0 auto;
+}
+
+/* FOOTER */
+#footer {
+    background-color: #FFFFFF;
+    margin: 0;
+    padding: 15px 0;
+    line-height: 30px;
+}
+#footer p {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+#footer p a {
+    margin: 0 20px;
+}
+
+/* WIDGET SEARCH */
+.w_search {
+}
+.w_search form {
+    display: inline;
+}
+.w_search input[type=text] {
+    padding: 4px 12px;
+    border: 1px solid #d79797;
+    border-radius: 6px 0 0 6px;
+    height: 25px;
+    width: 200px;
+    margin: 0;
+    color: #b33737;
+    outline: none;
+    font-weight: bold;
+}
+.w_search select {
+    padding: 5px 20px 5px 5px;
+    margin: 0 0 0 -5px;
+    background: #f8f8f8;
+    color: #b33737;
+    outline: none;
+    display: inline-block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    height: 35px;
+    border: 1px solid #d79797;
+    font-weight: bold;
+}
+.w_search label {
+    position: relative;
+}
+.w_search label:after {
+    content: '>';
+    font: bold 16px "Consolas", monospace;
+    color: #b33737;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    right: 12px;
+    top: 1px;
+    position: absolute;
+    pointer-events: none;
+}
+.w_search button[type=submit] {
+    padding: 4px 12px;
+    color: #FFFFFF;
+    outline: none;
+    border: 1px solid #d79797;
+    border-radius: 0 6px 6px 0;
+    height: 35px;
+    margin: 0 0 0 -5px;
+    cursor: pointer;
+    background: #b33737;
+    font: normal normal normal 14px/1 FontAwesome;
+}
+
+/* ARTICLE */
+article{
+    border-radius: 2px;
+    border: 0;
+    box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
+    margin: 20px 0;
+}
+article>header{color:white;border:0;padding:10px 15px;background-color:#03a9f4;border-top-left-radius: 3px;border-top-right-radius: 3px;}
+article>header>h3{margin-top:0;margin-bottom:0;font-size:16px}
+article.good>header{background-color:#4caf50;}
+article.danger>header{background-color:#f44336;}
+article>div{padding:10px 0}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
