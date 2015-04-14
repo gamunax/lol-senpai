@@ -26,7 +26,7 @@ class LeagueOfLegends(object):
         self.region = region
         self.platform_id = self._get_platform_id()
 
-    def _request(self, api, path, params=None, cache_expire=600):
+    def _request(self, api, path, params=None, cache_expire=60*15):
         """ Returns a json coming from Riot's server API or our own cache if existing """
         if api not in API_LIST:
             raise errors.UNKNOWN_API('Unknown API %s' % api)
@@ -82,7 +82,7 @@ class LeagueOfLegends(object):
         if isinstance(summoner_names, list):
             is_list = True
             summoner_names = ','.join(summoner_names)
-        data = self._request('summoner', 'by-name/' + summoner_names)
+        data = self._request('summoner', 'by-name/' + summoner_names, cache_expire=60*60*24*7)
 
         if is_list:
             summoners = {}
@@ -106,7 +106,7 @@ class LeagueOfLegends(object):
             params['beginIndex'] = str(begin_index)
         if end_index is not None:
             params['endIndex'] = str(end_index)
-        data = self._request('matchhistory', str(summoner_id), params)
+        data = self._request('matchhistory', str(summoner_id), params, cache_expire=60*30)
         games = []
         for game in data.get('matches'):
             games.append(Game(game, self.region))
@@ -116,7 +116,7 @@ class LeagueOfLegends(object):
         """ Returns the list of champions or info about a specific champion """
         path = 'champion' + ('/' + str(champion_id) if champion_id else '')
         params = {'champData': champ_data}
-        data = self._request('static-data', path, params)
+        data = self._request('static-data', path, params, cache_expire=60*60*24*7)
         if champion_id:
             return Champion(data)
         else:
@@ -130,7 +130,7 @@ class LeagueOfLegends(object):
     #https://global.api.pvp.net/api/lol/static-data/euw/v1.2/rune?runeListData=stats&api_key=fcb32d30-62c9-4888-a299-0596441978f8
     def get_current_game_for_summoner(self, summoner_id):
         path = self.platform_id + '/' + str(summoner_id)
-        data = self._request('current-game', path)
+        data = self._request('current-game', path, cache_expire=60)
         return CurrentGame(data, self.region)
 
     def get_ranked_stats(self, summoner_id, season='5'):
@@ -139,7 +139,7 @@ class LeagueOfLegends(object):
             raise errors.BAD_PARAMETER('Season not found %s' % season)
         path = 'by-summoner/' + str(summoner_id) + '/ranked'
         params = {'season': SEASONS[season]}
-        data = self._request('stats', path, params)
+        data = self._request('stats', path, params, cache_expire=60*60*4)
         return data
 
     def get_summary_stats(self, summoner_id, season='5'):
@@ -148,7 +148,7 @@ class LeagueOfLegends(object):
             raise errors.BAD_PARAMETER('Season not found %s' % season)
         path = 'by-summoner/' + str(summoner_id) + '/summary'
         params = {'season': SEASONS[season]}
-        data = self._request('stats', path, params)
+        data = self._request('stats', path, params, cache_expire=60*60*4)
         return data
 
     def get_league_info_for_summoner(self, summoner_id):
