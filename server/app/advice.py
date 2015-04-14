@@ -47,7 +47,7 @@ class EnemyPoorWardCoverageAdvice(Advice):
 
     def get_message(self):
         return gettext('The enemy %(champion)s does not ward a lot. '
-                       'He places %(wards_per_game)d wards per game on average)',
+                       'He places %(wards_per_game)d wards per game on average.',
                         champion=self.champion_name, wards_per_game=self.wards_per_game)
 
     def get_description(self):
@@ -78,7 +78,7 @@ class EnemyGoodWithThisChampionAdvice(Advice):
         msg = gettext('The enemy team %(champion)s is good with this champion (%(percent_win)f win ratio).',
                       champion=self.champion_name, percent_win=self.percent_win)
         if self.penta_kills > 0:
-            msg += gettext(' He has  already done %(penta_kills)d penta kills with him', self.penta_kills)
+            msg += gettext(' He has  already done %(penta_kills)d penta kills with it.', self.penta_kills)
         return msg
 
     def get_description(self):
@@ -92,7 +92,7 @@ class EnemyHasAGoodKDAWithThisChampionAdvice(Advice):
         self.kda = kda
 
     def get_message(self):
-        return gettext('"The enemy team %(champion)s has a bad KDA with this champion (%(kda)f)',
+        return gettext('"The enemy team %(champion)s has a bad KDA with this champion (%(kda)f).',
                         champion=self.champion_name, kda=self.kda)
 
     def get_description(self):
