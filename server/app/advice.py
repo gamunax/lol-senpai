@@ -73,7 +73,7 @@ class EnemyGoodWithThisChampionAdvice(Advice):
         msg = gettext('The enemy team %(champion)s is good with this champion (%(percent_win).2f win ratio).',
                       champion=self.champion_name, percent_win=self.percent_win)
         if self.penta_kills > 0:
-            msg += gettext(' He has already done %(penta_kills)d penta kills with him', penta_kills=self.penta_kills)
+            msg += gettext(' He has already done %(penta_kills)d penta kills with it', penta_kills=self.penta_kills)
         return msg
 
     def get_description(self):

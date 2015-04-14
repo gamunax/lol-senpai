@@ -3,45 +3,81 @@
 {% block content %}
 <article class="good">
     <header>
-        <h3>Good news!</h3>
+        <h3>{{ _("Good news") }}</h3>
     </header>
     <div>
         <ul>
             {% if senpai.get_advices(senpai.PROS)|length == 0 %}
-            <li><i>{{ _("No such data") }}</i></li>
+                <li><i>{{ _("No data") }}</i></li>
             {% endif %}
             {% for advice in senpai.get_advices(senpai.PROS) %}
-            <li>{{ advice.get_message() }}</li>
+            <li>
+                <div class="title">
+                    <span class="message">{{ advice.get_message() }}</span>
+                    {% if  advice.get_description()|length == 0 %}
+                        <span class="icon arrow-down" title="{{ _('More information') }}"></span>
+                    {% endif %}
+                </div>
+                 {% if  advice.get_description()|length == 0 %}
+                 <div class="description hide">
+                        {{ advice.get_description() }}
+                 </div>
+                {% endif %}
+            </li>
             {% endfor %}
         </ul>
     </div>
 </article>
 <article class="danger">
     <header>
-        <h3>Be careful!</h3>
+        <h3>{{ _("Watch out") }}</h3>
     </header>
     <div>
         <ul>
             {% if senpai.get_advices(senpai.CONS)|length == 0 %}
-            <li><i>{{ _("No such data") }}</i></li>
+                <li><i>{{ _("No data") }}</i></li>
             {% endif %}
             {% for advice in senpai.get_advices(senpai.CONS) %}
-            <li>{{ advice.get_message() }}</li>
+            <li>
+                <div class="title">
+                    <span class="message">{{ advice.get_message() }}</span>
+                    {% if  advice.get_description()|length == 0 %}
+                        <span class="icon arrow-down" title="{{ _('More information') }}"></span>
+                    {% endif %}
+                </div>
+                 {% if  advice.get_description()|length == 0 %}
+                 <div class="description hide">
+                        {{ advice.get_description() }}
+                 </div>
+                {% endif %}
+            </li>
             {% endfor %}
         </ul>
     </div>
 </article>
-<article class="advices">
+<article class="advice">
     <header>
-        <h3>Information</h3>
+        <h3>{{ _("Information") }}</h3>
     </header>
     <div>
         <ul>
             {% if senpai.get_advices(senpai.INFO)|length == 0 %}
-            <li><i>{{ _("No such data") }}</i></li>
+                <li><i>{{ _("No data") }}</i></li>
             {% endif %}
             {% for advice in senpai.get_advices(senpai.INFO) %}
-            <li>{{ advice.get_message() }}</li>
+            <li>
+                <div class="title">
+                    <span class="message">{{ advice.get_message() }}</span>
+                    {% if  advice.get_description()|length == 0 %}
+                        <span class="icon arrow-down" title="{{ _('More information') }}"></span>
+                    {% endif %}
+                </div>
+                 {% if  advice.get_description()|length == 0 %}
+                 <div class="description hide">
+                        {{ advice.get_description() }}
+                 </div>
+                {% endif %}
+            </li>
             {% endfor %}
         </ul>
     </div>

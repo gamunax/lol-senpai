@@ -36,10 +36,25 @@
                 var select = form.querySelector("[name=summoner_region]");
                 var region = select.options[select.selectedIndex].value;
                 var name = encodeURIComponent(form.querySelector("[name=summoner_name]").value);
-                window.location.href = "/" + page_lang + "/game/" + region + "/" + name;
+                if (name.trim().length > 0)
+                    window.location.href = "/" + page_lang + "/game/" + region + "/" + name;
                 return false;
             }
         }(forms[i]);
+    }
+
+    /* Description for given tips */
+    var descriptions = document.getElementsByClassName("description");
+     for (i = 0; i < descriptions.length; i++) {
+        var title = descriptions[i].previousElementSibling;
+        title.onclick = function(elem){
+            return function() {
+                if (elem.className === 'description')
+                    elem.className = 'description hide';
+                else
+                    elem.className = 'description';
+            }
+        }(descriptions[i]);
     }
 
 })();
