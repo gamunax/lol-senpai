@@ -28,9 +28,8 @@ class AnalyzerSummonerHistory(AnalyzerBase):
         wards_per_game = stats['wards_placed'] / stats['game']
         #print('wards per game', wards_per_game)
         if stats['last_losses_in_a_row'] > 2:
-            senpai.add_advice(senpai.PROS, EnemyLosingStreakAdvice(player.champion.name, stats['last_losses_in_a_row']))
+            senpai.add_advice(senpai.PROS, EnemyLosingStreakAdvice(player.get_champion().name, stats['last_losses_in_a_row']))
         if stats['last_wins_in_a_row'] > 2:
-            print('champion', player.champion.name)
-            senpai.add_advice(senpai.CONS, EnemyWinningStreakAdvice(player.champion.name, stats['last_wins_in_a_row']))
+            senpai.add_advice(senpai.CONS, EnemyWinningStreakAdvice(player.get_champion().name, stats['last_wins_in_a_row']))
         if wards_per_game < 8:
-            senpai.add_advice(senpai.PROS, EnemyPoorWardCoverageAdvice(player.champion.name, wards_per_game))
+            senpai.add_advice(senpai.PROS, EnemyPoorWardCoverageAdvice(player.get_champion().name, wards_per_game))
