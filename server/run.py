@@ -1,8 +1,8 @@
 from flask import render_template, redirect, url_for, abort
 from general import log
-from app.flask import create_application
+from app.flask import create_application, page_error
 from app.senpai import Senpai
-from library.api.errors import SERVER_ERROR
+import library.api.errors as errors
 
 app = create_application(__name__)
 
@@ -24,10 +24,14 @@ def match(region, username):
     title = username + "'s match"
     try:
         senpai = Senpai(region, username)
-    except SERVER_ERROR as e:
-        abort(503, {'message': "Impossible to connect to the Riot API."})
-    except Exception as e:
-        abort(503, {'message': "Internal server error: %s" % str(e)})
+    except errors.SERVER_ERROR:
+        return page_error(title="Server error", message="Unable to connect to the Riot's API.", code=500)
+    except errors.RATE_LIMIT_EXCEEDED:
+        return page_error(title="Rate limit exceeded", message="Rate limit exceeded. :( Could you please try again in a few moments?", code=500)
+    except errors.LoLSenpaiException:
+        return page_error(title="Error Riot's API", message="Error with the Riot's API.", code=500)
+    except Exception:
+        return page_error(title="Internal server error", message="Unknown error. :( Could you please try again in a few moments?", code=500)
     return render_template('game.html', **locals())
 
 

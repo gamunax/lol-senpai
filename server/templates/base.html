@@ -37,11 +37,13 @@
         </div>
     </nav>
 
+    {% block body %}
     <div class="body">
         <section class="container">
             {% block content %}{% endblock %}
         </section>
     </div>
+    {% endblock %}
 
     <footer id="footer">
         <div class="container">

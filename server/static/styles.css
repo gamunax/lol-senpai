@@ -109,9 +109,23 @@ section.container {
 }
 .body {
     min-height: calc(100% - 90px - 40px - 70px);
-    background: url('back-kayle.png') no-repeat fixed top center;
+    background: #bd9677 url('back.jpg') no-repeat fixed center 50px;
     padding: 20px 0;
     margin: 0 auto;
+}
+.body.body_error {
+    background: #111111 url('error_page.jpg') no-repeat fixed center 75px;
+}
+.body.body_error section.container {
+    background-color: #B33737;
+    background-color: rgba(223, 70, 70, 0.8);
+    padding: 5px 15px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    max-width: 500px;
+    font-size: 1.2em;
+    margin-top: 10px;
 }
 
 

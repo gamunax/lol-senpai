@@ -6,11 +6,22 @@ from flask.ext.babel import Babel
 from general import log
 
 
-def page_error(error, code=400):
-    title = str(error)
-    if title[:5] == ("%d: " % code):
-        title = title[5:]
-    message = error.description['message'] if 'message' in error.description else title
+def page_error(error=None, code=400, title=None, message=None):
+    if not title:
+        if error:
+            title = str(error)
+            if title[:5] == ("%d: " % code):
+                title = title[5:]
+        else:
+            title = "Error"
+    if message:
+        pass
+    elif error and 'message' in error.description:
+        message = error.description['message']
+    elif code == 404:
+        message = "Page not found... Fiddlestick got lost! :("
+    else:
+        message = title
     return render_template('error.html', **locals()), code
 
 
@@ -23,6 +34,7 @@ def create_application(root):
         if request.view_args and 'lang' in request.view_args:
             g.lang = request.view_args['lang']
             if g.lang not in ('en', 'fr'):
+                g.lang = 'en'
                 return abort(404, {'message': "Language not found."})
             request.view_args.pop('lang')
         if request.view_args and 'region' in request.view_args:
