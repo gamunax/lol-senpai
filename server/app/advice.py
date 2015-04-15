@@ -95,6 +95,21 @@ class EnemyMainRoleAdvice(Advice):
                                champion=self.champion_name, role=self.role)
 
 
+class EnemyLeftRecentlyAdvice(Advice):
+    def __init__(self, champion_name, nb_left):
+        self.champion_name = champion_name
+        self.nb_left = nb_left
+        self.message = gettext('The <span class="info enemy">enemy %(champion)s</span> left a ranked game recently',
+                               champion=self.champion_name)
+
+
+class EnemyInPromoAdvice(Advice):
+    def __init__(self, champion_name):
+        self.champion_name = champion_name
+        self.message = gettext('The <span class="info enemy">enemy %(champion)s</span> is in a promotion series.',
+                               champion=self.champion_name)
+
+
 class AllyGoodWithThisChampionAdvice(Advice):
     def __init__(self, champion_name, percent_win, played, penta_kills, kda):
         self.champion_name = champion_name
@@ -118,3 +133,10 @@ class AllyWinningStreakAdvice(Advice):
         self.message = gettext('The <span class="info ally">allied %(champion)s</span> is on a %(wins)d winning streak.',
                                champion=self.champion_name, wins=self.number_of_wins)
         self.description = gettext('A winning streak provides a boost of confidence.')
+
+
+class AllyInPromoAdvice(Advice):
+    def __init__(self, champion_name):
+        self.champion_name = champion_name
+        self.message = gettext('The <span class="info ally">allied %(champion)s</span> is in a promotion series.',
+                               champion=self.champion_name)

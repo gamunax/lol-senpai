@@ -85,8 +85,14 @@ def get_stats_history_ranked(summoner_id, ranked_queue=None, batch=1):
     # print(stats)
     return stats
 
+
 @function_logger
-def get_info_summoner(summoner_id):
-    data = get_wrapper().get_league_info_for_summoner(summoner_id)
-    print('DATA', data)
-    return data
+def get_info_summoner(summoner_id, ranked_queue):
+    stats = {
+        'is_in_promo': False
+    }
+    data = get_wrapper().get_league_info_for_summoner(summoner_id, ranked_queue)
+    entries = data.get('entries')[0]
+    if entries.get('miniSeries'):
+        stats['is_in_promo'] = True
+    return stats
