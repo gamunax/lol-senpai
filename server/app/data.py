@@ -1,12 +1,9 @@
 from general import get_wrapper, function_logger
-import datetime
-
-lol_wrapper = get_wrapper()
 
 
 @function_logger
 def get_stats_champion_ranked(summoner_id, champion_id=0):
-    data = lol_wrapper.get_ranked_stats(summoner_id)
+    data = get_wrapper().get_ranked_stats(summoner_id)
     for champ in data.get('champions'):
         if champ.get('id') == champion_id:
             stats = champ.get('stats')
@@ -51,7 +48,7 @@ def get_stats_history_ranked(summoner_id, ranked_queue=None, batch=2):
 
     data = []
     for i in range(0, batch):
-        data += lol_wrapper.get_match_history(summoner_id, ranked_queue, len(data))
+        data += get_wrapper().get_match_history(summoner_id, ranked_queue, len(data))
 
     # print('nb result', len(data))
     win_in_a_row = 0
