@@ -27,7 +27,7 @@ def get_stats_champion_ranked(summoner_id, champion_id=0):
 
 
 @function_logger
-def get_stats_history_ranked(summoner_id, ranked_queue=None, batch=2):
+def get_stats_history_ranked(summoner_id, ranked_queue=None, batch=1):
     stats = {
         'game': 0,
         'left': 0,
@@ -82,5 +82,11 @@ def get_stats_history_ranked(summoner_id, ranked_queue=None, batch=2):
             if player.left:
                 stats['left'] += 1
 
-    print(stats)
+    # print(stats)
     return stats
+
+@function_logger
+def get_info_summoner(summoner_id):
+    data = get_wrapper().get_league_info_for_summoner(summoner_id)
+    print('DATA', data)
+    return data

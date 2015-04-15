@@ -14,14 +14,14 @@
             {% for advice in senpai.get_advices(senpai.PROS) %}
             <li>
                 <div class="title">
-                    <span class="message">{{ advice.get_message() }}</span>
+                    <span class="message">{{ advice.get_message()|safe }}</span>
                     {% if  advice.get_description()|length > 0 %}
                         <span class="icon arrow-down" title="{{ _('More information') }}"></span>
                     {% endif %}
                 </div>
                  {% if  advice.get_description()|length > 0 %}
                  <div class="description hide">
-                        {{ advice.get_description() }}
+                        {{ advice.get_description()|safe }}
                  </div>
                 {% endif %}
             </li>
@@ -41,14 +41,14 @@
             {% for advice in senpai.get_advices(senpai.CONS) %}
             <li>
                 <div class="title">
-                    <span class="message">{{ advice.get_message() }}</span>
+                    <span class="message">{{ advice.get_message()|safe }}</span>
                     {% if  advice.get_description()|length > 0 %}
                         <span class="icon arrow-down" title="{{ _('More information') }}"></span>
                     {% endif %}
                 </div>
                  {% if  advice.get_description()|length > 0 %}
                  <div class="description hide">
-                        {{ advice.get_description() }}
+                        {{ advice.get_description()|safe }}
                  </div>
                 {% endif %}
             </li>
@@ -68,14 +68,14 @@
             {% for advice in senpai.get_advices(senpai.INFO) %}
             <li>
                 <div class="title">
-                    <span class="message">{{ advice.get_message() }}</span>
+                    <span class="message">{{ advice.get_message()|safe }}</span>
                     {% if  advice.get_description()|length > 0 %}
                         <span class="icon arrow-down" title="{{ _('More information') }}"></span>
                     {% endif %}
                 </div>
                  {% if  advice.get_description()|length > 0 %}
                  <div class="description hide">
-                        {{ advice.get_description() }}
+                        {{ advice.get_description()|safe }}
                  </div>
                 {% endif %}
             </li>

@@ -14,5 +14,9 @@ class RATE_LIMIT_EXCEEDED(LoLSenpaiException):
     pass
 
 
+class GAME_NOT_FOUND(LoLSenpaiException):
+    pass
+
+
 class SERVER_ERROR(LoLSenpaiException):
     pass

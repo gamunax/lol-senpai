@@ -237,6 +237,18 @@ article ul li {
     /* padding: 5px 0; */
 }
 
+article ul li .message .info {
+    font-weight: bold;
+}
+
+article ul li .message .enemy {
+    color: #B33737;
+}
+
+article ul li .message .ally {
+    color: #33CC66;
+}
+
 article ul li .description {
     font-family: sansation_lightregular;
     padding: 16px;
