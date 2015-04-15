@@ -33,7 +33,7 @@
 
 
 {% block content %}
-    <h2>{{ _("%(summoner_name)s's match", summoner_name = senpai.get_current_player().name) }}</h2>
+    <h2>{{ title }}</h2>
 
     {{ print_advice("good", _("Good news"), senpai.PROS) }}
     {{ print_advice("danger", _("Watch out"), senpai.CONS) }}

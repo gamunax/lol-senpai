@@ -2,7 +2,7 @@ __author__ = 'Dewep'
 
 from general import get_wrapper
 from app.analyzer import get_analyzers, dialer_analyzers
-from library.api.errors import LoLSenpaiException
+import library.api.errors as errors
 from flask import abort
 
 
@@ -30,17 +30,16 @@ class Senpai(object):
 
         try:
             summoner = lol_wrapper.get_summoners(self.username)
-        except LoLSenpaiException:
-            summoner = None
-            abort(404, {'message': 'Impossible to find this summoner.'})
+        except errors.LoLSenpaiException:
+            raise errors.SUMMONERS_NOT_FOUND()
 
         try:
             self.game = lol_wrapper.get_current_game_for_summoner(summoner.id)
-        except LoLSenpaiException:
-            abort(400, {'message': 'This summoner is not currently in a game.'})
+        except errors.LoLSenpaiException:
+            raise errors.GAME_NOT_FOUND()
 
         if not self.game.is_ranked():
-            abort(400, {'message': 'Lol-Senpai works only for ranked games.'})
+            raise errors.GAME_NOT_RANKED()
 
         for player in self.game.players:
             if player.id == summoner.id:

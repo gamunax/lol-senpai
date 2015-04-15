@@ -14,7 +14,15 @@ class RATE_LIMIT_EXCEEDED(LoLSenpaiException):
     pass
 
 
+class SUMMONERS_NOT_FOUND(LoLSenpaiException):
+    pass
+
+
 class GAME_NOT_FOUND(LoLSenpaiException):
+    pass
+
+
+class GAME_NOT_RANKED(LoLSenpaiException):
     pass
 
 

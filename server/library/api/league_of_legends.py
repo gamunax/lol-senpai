@@ -64,9 +64,7 @@ class LeagueOfLegends(object):
             return data
         except request.HTTPError as e:
             log.error("HTTPError " + str(e.code) + ": " + str(e))
-            if e.code == 404:
-                raise errors.GAME_NOT_FOUND('Game not found')
-            elif e.code == 429:
+            if e.code == 429:
                 raise errors.RATE_LIMIT_EXCEEDED('Too many requests')
             elif e.code == 500 or e.code == 503:
                 raise errors.SERVER_ERROR('Server error')
