@@ -7,26 +7,211 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-04-06 16:49+0200\n"
-"PO-Revision-Date: 2015-04-06 17:44+0100\n"
+"POT-Creation-Date: 2015-04-15 23:03+0200\n"
+"PO-Revision-Date: 2015-04-15 23:09+0100\n"
+"Last-Translator: \n"
 "Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 1.3\n"
-"Last-Translator: \n"
-"Language: en\n"
 "X-Generator: Poedit 1.7.5\n"
 
-#: templates/base.html:30
-msgid "Search"
-msgstr "Search"
+#: run.py:29
+msgid "Game not found"
+msgstr "Game not found"
 
-#: templates/base.html:31
-msgid "Disclamer"
-msgstr "Disclamer"
+#: run.py:29
+msgid "This summoner is not in game"
+msgstr "This summoner is not in game"
 
-#: templates/base.html:32
-msgid "About"
-msgstr "About"
+#: run.py:31
+msgid "Server error"
+msgstr "Server error"
+
+#: run.py:31
+msgid "Unable to connect to the Riot's API."
+msgstr "Unable to connect to the Riot's API."
+
+#: run.py:33
+msgid "Rate limit exceeded"
+msgstr "Rate limit exceeded"
+
+#: run.py:34
+msgid "Rate limit exceeded :(. Could you please try again in a few moments ?"
+msgstr "Rate limit exceeded :(. Could you please try again in a few moments ?"
+
+#: run.py:36
+msgid "Error Riot's API"
+msgstr "Error Riot's API"
+
+#: run.py:36
+msgid "Error with the Riot's API."
+msgstr "Error with the Riot's API."
+
+#: run.py:38
+msgid "Internal server error"
+msgstr "Internal server error"
+
+#: run.py:39
+msgid "Unknown error :(. Could you please try again in a few moments ?"
+msgstr "Unknown error :(. Could you please try again in a few moments ?"
+
+#: app/advice.py:18
+#, python-format
+msgid ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> is on a %(loss)d "
+"losing streak."
+msgstr ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> is on a %(loss)d "
+"losing streak."
+
+#: app/advice.py:22
+msgid ""
+"Some players are prone to tilt and cannot think straight after a losing "
+"streak. Try to focus them and take them down to ensure an easier win."
+msgstr ""
+"Some players are prone to tilt and cannot think straight after a losing "
+"streak. Try to focus them and take them down to ensure an easier win."
+
+#: app/advice.py:32
+#, python-format
+msgid ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> is on a %(wins)d "
+"winning streak."
+msgstr ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> is on a %(wins)d "
+"winning streak."
+
+#: app/advice.py:36 app/advice.py:160
+msgid "A winning streak provides a boost of confidence."
+msgstr "A winning streak provides a boost of confidence."
+
+#: app/advice.py:45
+#, python-format
+msgid ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> does not ward a "
+"lot. He places %(wards_per_game)d wards per game on average"
+msgstr ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> does not ward a "
+"lot. He places %(wards_per_game)d wards per game on average"
+
+#: app/advice.py:50
+msgid ""
+"Vision is everything. A poor ward coverage means that this enemy is easier "
+"to gank and cannot properly control objectives (dragon, nashor). They are in "
+"the dark most of the time."
+msgstr ""
+"Vision is everything. A poor ward coverage means that this enemy is easier "
+"to gank and cannot properly control objectives (dragon, nashor). They are in "
+"the dark most of the time."
+
+#: app/advice.py:59
+#, python-format
+msgid ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> has never played "
+"this champion before."
+msgstr ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> has never played "
+"this champion before."
+
+#: app/advice.py:74
+#, python-format
+msgid ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> is good with this "
+"champion (%(percent_win).1f%% win ratio with %(kda).1f KDA over over "
+"%(played)d games)."
+msgstr ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> is good with this "
+"champion (%(percent_win).1f%% win ratio with %(kda).1f KDA over over "
+"%(played)d games)."
+
+#: app/advice.py:78 app/advice.py:143
+#, python-format
+msgid " He has already done %(penta_kills)d penta kills with it"
+msgstr " He has already done %(penta_kills)d penta kills with it"
+
+#: app/advice.py:91
+#, python-format
+msgid ""
+"\"The <span class=\"info enemy\">enemy %(champion)s</span> has a bad KDA "
+"with this champion (%(kda)f)"
+msgstr ""
+"\"The <span class=\"info enemy\">enemy %(champion)s</span> has a bad KDA "
+"with this champion (%(kda)f)"
+
+#: app/advice.py:106
+#, python-format
+msgid ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> is not very good "
+"with this champion (%(percent_win).1f%% win ratio with %(kda).1f KDA over "
+"%(played)d games)."
+msgstr ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> is not very good "
+"with this champion (%(percent_win).1f%% win ratio with %(kda).1f KDA over "
+"%(played)d games)."
+
+#: app/advice.py:121
+#, python-format
+msgid ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> probably mains "
+"<span class=\"info enemy\">%(role)s</span>."
+msgstr ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> probably mains "
+"<span class=\"info enemy\">%(role)s</span>."
+
+#: app/advice.py:139
+#, python-format
+msgid ""
+"The <span class=\"info ally\">allied %(champion)s</span> is good with this "
+"champion (%(percent_win).1f%% win ratio with %(kda).1f KDA over %(played)d "
+"games)."
+msgstr ""
+"The <span class=\"info ally\">allied %(champion)s</span> is good with this "
+"champion (%(percent_win).1f%% win ratio with %(kda).1f KDA over %(played)d "
+"games)."
+
+#: app/advice.py:156
+#, python-format
+msgid ""
+"The <span class=\"info ally\">allied %(champion)s</span> is on a %(wins)d "
+"winning streak."
+msgstr ""
+"The <span class=\"info ally\">allied %(champion)s</span> is on a %(wins)d "
+"winning streak."
+
+#: templates/game.html:4
+#, python-format
+msgid "%(summoner_name)s's match"
+msgstr "%(summoner_name)s's match"
+
+#: templates/game.html:7
+msgid "Good news"
+msgstr "Good news"
+
+#: templates/game.html:12 templates/game.html:39 templates/game.html:66
+msgid "No data"
+msgstr "No data"
+
+#: templates/game.html:19 templates/game.html:46 templates/game.html:73
+msgid "More information"
+msgstr "More information"
+
+#: templates/game.html:34
+msgid "Watch out"
+msgstr "Watch out"
+
+#: templates/game.html:61
+msgid "Information"
+msgstr "Information"
+
+#~ msgid "Search"
+#~ msgstr "Search"
+
+#~ msgid "Disclamer"
+#~ msgstr "Disclamer"
+
+#~ msgid "About"
+#~ msgstr "About"

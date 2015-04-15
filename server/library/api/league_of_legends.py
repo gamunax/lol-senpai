@@ -153,10 +153,13 @@ class LeagueOfLegends(object):
         data = self._request('stats', path, params, cache_expire=60*60*4)
         return data
 
-    def get_league_info_for_summoner(self, summoner_id):
+    def get_league_info_for_summoner(self, summoner_id, ranked_queue='RANKED_SOLO_5x5'):
         path = 'by-summoner/' + str(summoner_id) + '/entry'
-        data = self._request('league', path)
-        return data.get(str(summoner_id))
+        data = self._request('league', path).get(str(summoner_id))
+        for stat in data:
+            if stat.get('queue') == ranked_queue:
+                return stat
+        return None
 
 
 class LeagueOfLegendsImage(object):

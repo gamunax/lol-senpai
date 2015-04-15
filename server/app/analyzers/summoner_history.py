@@ -2,7 +2,7 @@ from app.analyzer import AnalyzerBase
 from app.data import get_stats_history_ranked
 from flask.ext.babel import gettext, ngettext
 from app.advice import EnemyLosingStreakAdvice, EnemyWinningStreakAdvice, EnemyPoorWardCoverageAdvice, \
-    EnemyMainRoleAdvice, AllyWinningStreakAdvice
+    EnemyMainRoleAdvice, AllyWinningStreakAdvice, EnemyLeftRecentlyAdvice
 
 
 class AnalyzerSummonerHistory(AnalyzerBase):
@@ -42,7 +42,6 @@ class AnalyzerSummonerHistory(AnalyzerBase):
         possible_main_role = max(roles, key=roles.get)
         main_role = possible_main_role if stats[possible_main_role] > (stats['game'] / 2 + 1) else None
         wards_per_game = stats['wards_placed'] / stats['game']
-        # print('wards per game', wards_per_game, 'main_role', possible_main_role, main_role)
         if stats['last_losses_in_a_row'] > 2:
             senpai.add_advice(senpai.PROS,
                               EnemyLosingStreakAdvice(player.get_champion().name, stats['last_losses_in_a_row']))
@@ -53,4 +52,6 @@ class AnalyzerSummonerHistory(AnalyzerBase):
             senpai.add_advice(senpai.PROS, EnemyPoorWardCoverageAdvice(player.get_champion().name, wards_per_game))
         if main_role is not None:
             senpai.add_advice(senpai.INFO, EnemyMainRoleAdvice(player.get_champion().name, main_role))
+        if stats['left'] > 0:
+            senpai.add_advice(senpai.INFO, EnemyLeftRecentlyAdvice(player.get_champion().name, stats['left']))
 
