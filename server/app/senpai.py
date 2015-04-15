@@ -66,3 +66,6 @@ class Senpai(object):
     def add_advice(self, type_advice, message):
         self.advices[type_advice].append(message)
 
+    def get_current_player(self):
+        return self.current_player
+
