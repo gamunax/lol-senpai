@@ -1,86 +1,42 @@
 {% extends "base.html" %}
 
+
+{% macro print_list(type) -%}
+    <ul>
+        {% if senpai.get_advices(type)|length == 0 %}
+            <li><i>{{ _("No data") }}</i></li>
+        {% endif %}
+        {% for advice in senpai.get_advices(type) %}
+        <li{% if advice.get_description()|length > 0 %} class="has_description" title="{{ _('More information') }}"{% endif %}>
+            <div class="title">
+                <span class="message">{{ advice.get_message() }}</span>
+            </div>
+             {% if  advice.get_description()|length > 0 %}
+             <div class="description hide">
+                    {{ advice.get_description() }}
+             </div>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+{%- endmacro %}
+
+{% macro print_advice(class, title, type) -%}
+    <article class="{{ class }}">
+        <header>
+            <h3>{{ title }}</h3>
+        </header>
+        <div>
+            {{ print_list(type) }}
+        </div>
+    </article>
+{%- endmacro %}
+
+
 {% block content %}
-<h2>{{ _("%(summoner_name)s's match", summoner_name = senpai.get_current_player().name) }}</h2>
-<article class="good">
-    <header>
-        <h3>{{ _("Good news") }}</h3>
-    </header>
-    <div>
-        <ul>
-            {% if senpai.get_advices(senpai.PROS)|length == 0 %}
-                <li><i>{{ _("No data") }}</i></li>
-            {% endif %}
-            {% for advice in senpai.get_advices(senpai.PROS) %}
-            <li>
-                <div class="title">
-                    <span class="message">{{ advice.get_message() }}</span>
-                    {% if  advice.get_description()|length > 0 %}
-                        <span class="icon arrow-down" title="{{ _('More information') }}"></span>
-                    {% endif %}
-                </div>
-                 {% if  advice.get_description()|length > 0 %}
-                 <div class="description hide">
-                        {{ advice.get_description() }}
-                 </div>
-                {% endif %}
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-</article>
-<article class="danger">
-    <header>
-        <h3>{{ _("Watch out") }}</h3>
-    </header>
-    <div>
-        <ul>
-            {% if senpai.get_advices(senpai.CONS)|length == 0 %}
-                <li><i>{{ _("No data") }}</i></li>
-            {% endif %}
-            {% for advice in senpai.get_advices(senpai.CONS) %}
-            <li>
-                <div class="title">
-                    <span class="message">{{ advice.get_message() }}</span>
-                    {% if  advice.get_description()|length > 0 %}
-                        <span class="icon arrow-down" title="{{ _('More information') }}"></span>
-                    {% endif %}
-                </div>
-                 {% if  advice.get_description()|length > 0 %}
-                 <div class="description hide">
-                        {{ advice.get_description() }}
-                 </div>
-                {% endif %}
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-</article>
-<article class="advice">
-    <header>
-        <h3>{{ _("Information") }}</h3>
-    </header>
-    <div>
-        <ul>
-            {% if senpai.get_advices(senpai.INFO)|length == 0 %}
-                <li><i>{{ _("No data") }}</i></li>
-            {% endif %}
-            {% for advice in senpai.get_advices(senpai.INFO) %}
-            <li>
-                <div class="title">
-                    <span class="message">{{ advice.get_message() }}</span>
-                    {% if  advice.get_description()|length > 0 %}
-                        <span class="icon arrow-down" title="{{ _('More information') }}"></span>
-                    {% endif %}
-                </div>
-                 {% if  advice.get_description()|length > 0 %}
-                 <div class="description hide">
-                        {{ advice.get_description() }}
-                 </div>
-                {% endif %}
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-</article>
+    <h2>{{ _("%(summoner_name)s's match", summoner_name = senpai.get_current_player().name) }}</h2>
+
+    {{ print_advice("good", _("Good news"), senpai.PROS) }}
+    {{ print_advice("danger", _("Watch out"), senpai.CONS) }}
+    {{ print_advice("advice", _("Information"), senpai.INFO) }}
 {% endblock %}

@@ -27,21 +27,28 @@
 
     <nav id="navigation">
         <div class="container">
-            <a href="/{{ g.lang }}" id="logo"><img src="/static/logo_lol-senpai.png"></a>
-            <div class="widgets">
-                <span>{% include "search.html" %}</span>
-                <span><a href="#" class="lang lang-en"><span>ENGLISH</span></a></span>
-                <span><a href="#" class="lang lang-fr"><span>FRENCH</span></a></span>
+            <div>
+                <a href="/{{ g.lang }}" class="logo"><img src="/static/logo_lol-senpai.png"></a>
+                <div class="widgets">
+                    <span class="no-mobile">{% include "search.html" %}</span>
+                    <span><a href="#" class="lang lang-en"><span>ENGLISH</span></a></span>
+                    <span><a href="#" class="lang lang-fr"><span>FRENCH</span></a></span>
+                </div>
             </div>
             <span class="clear"></span>
+            <div class="mobile widgets full">
+                {% include "search.html" %}
+            </div>
         </div>
     </nav>
 
     {% block body %}
     <div class="body">
-        <section class="container">
-            {% block content %}{% endblock %}
-        </section>
+        <div class="container">
+            <section>
+                {% block content %}{% endblock %}
+            </section>
+        </div>
     </div>
     {% endblock %}
 
