@@ -43,7 +43,7 @@ class EnemyPoorWardCoverageAdvice(Advice):
 
     def get_message(self):
         return gettext('The <span class="info enemy">enemy %(champion)s</span> does not ward a lot. '
-                       'He places %(wards_per_game)d wards per game on average',
+                       'He places %(wards_per_game)d wards per game on average.',
                        champion=self.champion_name, wards_per_game=self.wards_per_game)
 
     def get_description(self):
@@ -64,11 +64,12 @@ class EnemyNeverPlayedThisChampionAdvice(Advice):
 
 
 class EnemyGoodWithThisChampionAdvice(Advice):
-    def __init__(self, champion_name, percent_win, played, penta_kills):
+    def __init__(self, champion_name, percent_win, played, penta_kills, kda):
         self.champion_name = champion_name
         self.percent_win = percent_win
         self.penta_kills = penta_kills
         self.played = played
+        self.kda = kda
 
     def get_message(self):
         msg = gettext('The <span class="info enemy">enemy %(champion)s</span> is good with this champion '
