@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 
-
 {% macro print_list(type) -%}
     <ul>
         {% if senpai.get_advices(type)|length == 0 %}
@@ -9,11 +8,11 @@
         {% for advice in senpai.get_advices(type) %}
         <li{% if advice.get_description()|length > 0 %} class="has_description" title="{{ _('More information') }}"{% endif %}>
             <div class="title">
-                <span class="message">{{ advice.get_message() }}</span>
+                <span class="message">{{ advice.get_message()|safe }}</span>
             </div>
              {% if  advice.get_description()|length > 0 %}
              <div class="description hide">
-                    {{ advice.get_description() }}
+                    {{ advice.get_description()|safe }}
              </div>
             {% endif %}
         </li>
