@@ -31,6 +31,7 @@ def create_application(root):
 
     @app.before_request
     def before_request():
+        g.lang = 'en'
         if request.view_args and 'lang' in request.view_args:
             g.lang = request.view_args['lang']
             if g.lang not in ('en', 'fr'):
