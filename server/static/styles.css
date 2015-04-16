@@ -35,7 +35,7 @@ body {
     color: #444444;
     font-family: 'sansationregular', 'Bookman', Georgia, 'Times New Roman', serif;
     background-color: #1a1b1f;
-    min-width: 400px;
+    min-width: 300px;
     font-size: 1em;
 }
 .container {
@@ -330,4 +330,49 @@ article > div {
     .w_search input[type=text] {
         width: calc(100% - 180px);
     }
+
+}
+@media screen and (max-width: 380px) {
+
+    #navigation {
+        line-height: 40px;
+    }
+
+    #navigation .logo {
+        float: none;
+    }
+
+    #navigation .logo img {
+        margin: 10px auto 0;
+    }
+
+    #navigation .widgets {
+        text-align: center;
+    }
+
+    .lang {
+        width: 1.7em;
+        line-height: 1.4em;
+    }
+
+    .body {
+        min-height: calc(100% - 90px - 40px - 160px);
+    }
+
+    #footer p a {
+        margin: 0 5px;
+    }
+
+    .w_search input[type=text] {
+        width: calc(100% - 150px);
+    }
+
+    h2, h3 {
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 1.7em;
+    }
+
 }
