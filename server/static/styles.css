@@ -46,7 +46,7 @@ body {
 
 /* GLOBAL */
 
-h2 {
+h1 {
     font-size: 2em;
     font-weight: bold;
     margin-bottom: 30px;
@@ -242,7 +242,12 @@ a:hover, a:focus, a:active {
 }
 
 /* ARTICLE */
-article{
+
+article {
+    text-align: justify;
+}
+
+article.game{
     border: 1px solid #FFFFFF;
     box-shadow: 0 2px 0px 0 #CECECE;
     margin: 20px 0;
@@ -251,49 +256,49 @@ article{
     background-color: rgba(232, 232, 232, 0.5);
 }
 
-article ul {
+article.game ul {
     list-style: none;
     margin: 2px;
     padding: 10px;
 }
 
-article ul li {
+article.game ul li {
     font-size: 1.1em;
     padding: 12px 5px;
 }
 
-article ul li.has_description {
+article.game ul li.has_description {
     cursor: pointer;
 }
 
-article ul li.has_description:hover {
+article.game ul li.has_description:hover {
     background: rgba(252, 250, 180, 0.2);
 }
 
-article ul li .message .info {
+article.game ul li .message .info {
     font-weight: bold;
 }
 
-article ul li .message .enemy {
+article.game ul li .message .enemy {
     color: #B33737;
 }
 
-article ul li .message .ally {
+article.game ul li .message .ally {
     color: #33CC66;
 }
 
-article ul li .description {
+article.game ul li .description {
     font-family: sansation_lightregular;
     padding: 16px;
     text-align: justify;
 }
 
-article ul li .icon.arrow-down {
+article.game ul li .icon.arrow-down {
     float: right;
     margin-right:30px;
 }
 
-article > header {
+article.game > header {
     color:white;
     border:0;
     padding:10px 15px;
@@ -302,23 +307,30 @@ article > header {
     border-top-right-radius: 3px;
 }
 
-article > header > h3 {
+article.game > header > h2 {
     margin-top:0;
     margin-bottom:0;
     font-size: 1.3em;
     font-weight: bold;
 }
 
-article.good > header{
+article.game.good > header{
     background-color:#33CC66;
 }
 
-article.danger > header {
+article.game.danger > header {
     background-color:#B33737;
 }
 
-article > div {
+article.game > div {
     padding:10px 0
+}
+
+/* ABOUT */
+
+#about img {
+    display: block;
+    margin: 10px auto;
 }
 
 /* PICTO */
@@ -335,7 +347,7 @@ i.icon.info {
     margin-left: 10px;
 	width: 19px;
 	height: 16px;
-	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAQCAYAAAD0xERiAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAGPSURBVHjapNM7aFRBFMbx310XTSQq7CbGJGihSPCBKIiIIhZiEESsBVstxMZG0UJS2FgIAUEQBLXSxmcsbIyNBMGEIEQUCVktokmQ9aKG+F6be+XmMhuF/bo535n/OTNzJjp6eUhABezEIexAB4qI8RK3cRfV7KZiALQOfegJeCWsxn6cwxlcy3aQ1R48yYM2rFzq5MFuq1oXZ8MduIqLIdhG3Eyqz9Hu9W3WtLfYvrYcupLj6M0f8wJaQ9m3nk6Y/PjVwItpdXQKd1LYNuzNZxQLkeXLmvz89duj0WmfZn/UgzXhWArrQZTPOLC1077NK/6u+4ffeTD8vh5wVwrrDrnP38bKLQt1lpp1lZqVlywyj9rSB4hC7vjUjCsDFSOV2H8oSmFjGteHFPYQtQZhgynsNSYbAH3HpRR2JJnooGq1fzbdh6ECunBivsyRN7HxqRnPxqoh+zpOpz+gF+0Zs4LP2JQGJqqzzt97lYfEOJv9m0VswSD68Rij+JYM8uHEL2MBviTF7uMG5kzwnwEAXHpeZsWPMnQAAAAASUVORK5CYII=');
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAQCAYAAAD0xERiAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAGPSURBVHjapNM7aFRBFMbx310XTSQq7CbGJGihSPCBKIiIIhZiEESsBVstxMZG0UJS2FgIAUEQBLXSxmcsbIyNBMGEIEQUCVktokmQ9aKG+F6be+XmMhuF/bo535n/OTNzJjp6eUhABezEIexAB4qI8RK3cRfV7KZiALQOfegJeCWsxn6cwxlcy3aQ1R48yYM2rFzq5MFuq1oXZ8MduIqLIdhG3Eyqz9Hu9W3WtLfYvrYcupLj6M0f8wJaQ9m3nk6Y/PjVwItpdXQKd1LYNuzNZxQLkeXLmvz89duj0WmfZn/UgzXhWArrQZTPOLC1077NK/6u+4ffeTD8vh5wVwrrDrnP38bKLQt1lpp1lZqVlywyj9rSB4hC7vjUjCsDFSOV2H8oSmFjGteHFPYQtQZhgynsNSYbAh2HpRR2JJnooGq1fzbdh6ECunBivsyRN7HxqRnPxqoh+zpOpz+gF+0Zs4LP2JQGJqqzzt97lYfEOJv9m0VswSD68Rij+JYM8uHEL2MBviTF7uMG5kzwnwEAXHpeZsWPMnQAAAAASUVORK5CYII=');
 }
 
 
@@ -398,11 +410,11 @@ i.icon.info {
         width: calc(100% - 150px);
     }
 
-    h2, h3 {
+    h1, h2 {
         text-align: center;
     }
 
-    h2 {
+    h1 {
         font-size: 1.7em;
     }
 

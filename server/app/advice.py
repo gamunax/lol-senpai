@@ -60,7 +60,7 @@ class EnemyGoodWithThisChampionAdvice(Advice):
         self.played = played
         self.kda = kda
         self.message = gettext('The <span class="info enemy">enemy %(champion)s</span> is good with this champion '
-                               '(%(percent_win).1f%% win ratio with %(kda).1f KDA over over %(played)d games).',
+                               '(%(percent_win).1f%% win ratio with %(kda).1f KDA over %(played)d games).',
                                champion=self.champion_name, percent_win=self.percent_win, kda=self.kda, played=self.played)
         if self.penta_kills > 0:
             self.message += gettext(' He has already done %(penta_kills)d penta kills with it', penta_kills=self.penta_kills)
