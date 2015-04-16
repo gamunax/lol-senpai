@@ -16,13 +16,19 @@ def root():
 
 @app.route('/<lang>')
 def main():
-    title = "Home"
+    title = gettext("Home")
     return render_template('main.html', **locals())
+
+
+@app.route('/<lang>/about')
+def about():
+    title = gettext("About")
+    return render_template('about.html', **locals())
 
 
 @app.route('/<lang>/game/<region>/<username>')
 def match(region, username):
-    title = username + "'s match"
+    title = gettext("%(summoner)s's match", summoner=username)
     try:
         senpai = Senpai(region, username)
     except errors.SUMMONERS_NOT_FOUND:

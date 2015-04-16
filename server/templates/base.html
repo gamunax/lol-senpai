@@ -31,8 +31,8 @@
                 <a href="/{{ g.lang }}" class="logo"><img src="/static/logo_lol-senpai.png"></a>
                 <div class="widgets">
                     <span class="no-mobile">{% include "search.html" %}</span>
-                    <span><a href="#" class="lang lang-en"><span>ENGLISH</span></a></span>
-                    <span><a href="#" class="lang lang-fr"><span>FRENCH</span></a></span>
+                    <span><a href="#" class="lang lang-en"><span>{{ _("ENGLISH") }}</span></a></span>
+                    <span><a href="#" class="lang lang-fr"><span>{{ _("FRENCH") }}</span></a></span>
                 </div>
             </div>
             <span class="clear"></span>
@@ -55,11 +55,11 @@
     <footer id="footer">
         <div class="container">
             <p>
-                <a href="/{{ g.lang }}">Search a summoner</a>
-                <a href="/{{ g.lang }}">FAQ</a>
-                <a href="/{{ g.lang }}">About</a>
+                <a href="/{{ g.lang }}">{{ _("Search") }}</a>
+                <a href="/{{ g.lang }}">{{ _("FAQ") }}</a>
+                <a href="/{{ g.lang }}/about">{{ _("About") }}</a>
                 <br>
-                Copyright LoL-Senpai 2015
+                {{ _("Copyright Lol-Senpai 2015") }}
             </p>
         </div>
     </footer>
