@@ -32,7 +32,10 @@ def dialer_analyzers(instance, package, senpai, obj, is_ally=None):
         method_name += "_as_an_" + ("ally" if is_ally else "enemy")
     method = getattr(instance, method_name, None)
     if callable(method):
-        method(senpai, obj)
+        try:
+            method(senpai, obj)
+        except Exception as e:
+            log.error("ERROR EXCEPTION ANALYZER: %s" % str(e), exc_info=1)
 
 
 _analyzers = []

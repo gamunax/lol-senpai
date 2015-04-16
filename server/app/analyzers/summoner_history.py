@@ -8,7 +8,7 @@ from app.advice import EnemyLosingStreakAdvice, EnemyWinningStreakAdvice, EnemyP
 class AnalyzerSummonerHistory(AnalyzerBase):
     def analyze_player_as_an_ally(self, senpai, player):
         stats = get_stats_history_ranked(player.id, senpai.game.gameQueue)
-        if stats['last_wins_in_a_row'] > 2:
+        if stats and stats['last_wins_in_a_row'] > 2:
             senpai.add_advice(senpai.PROS,
                               AllyWinningStreakAdvice(player.get_champion().name, stats['last_wins_in_a_row']))
 
@@ -32,6 +32,8 @@ class AnalyzerSummonerHistory(AnalyzerBase):
         # }
 
         stats = get_stats_history_ranked(player.id, senpai.game.gameQueue)
+        if not stats:
+            return
         roles = {
             'top': stats['top'],
             'jungle': stats['jungle'],
