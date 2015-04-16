@@ -39,7 +39,7 @@ def match(region, username):
     except errors.LoLSenpaiException:
         return page_error(title=gettext("Error Riot's API"), message=gettext("Error with the Riot's API."), code=500)
     except Exception as e:
-        log.info("ERROR EXCEPTION: %s" % str(e))
+        log.error("ERROR EXCEPTION: %s" % str(e), exc_info=1)
         return page_error(title=gettext("Internal server error"),
                           message=gettext("Unknown error :(. Could you please try again in a few moments ?"), code=500)
     return render_template('game.html', **locals())
