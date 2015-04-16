@@ -20,8 +20,8 @@
             <div>
                 <p>{{ _("Aurélien at a Lol LAN Party with his team (the guy at the far left), Febrary 2015. :") }}</p>
                 <img alt="Aurélien at a Lol LAN Party with his team, Febrary 2015" src="../static/aurelien.jpg" />
-                <p>{{ _("Alexandre in Sangam Stadium for the world finale, with Snoopeh, October 2014 :") }}</p>
-                <img alt="Alexandre in Sangam Stadium for the world finale, with Snoopeh, October 2014" src="../static/alexandre.jpg" />
+                <p>{{ _("Alexandre in Sangam Stadium, Seoul for the S04 world championship finale, with Snoopeh, October 2014 :") }}</p>
+                <img alt="Alexandre in Sangam Stadium, Seoul for the S04 world championship finale, with Snoopeh, October 2014" src="../static/alexandre.jpg" />
             </div>
         </article>
 
@@ -39,9 +39,54 @@
             <p>{{ _("While in fact, we had to code something related to URF and the new api. It was our fault for not properly reading the rules. It was too late to adapt our concept and we did not want to throw away our work so here we are.") }}</p>
         </article>
 
+        <h2>{{ _("Information about the technical stack and related choices") }}</h2>
+        <article>
+            <h3>{{ _("Back-end technologies") }}</h3>
+            <p>{{ _("We chose python for our backend technology, along with the Flask framework. It’s a blazing fast  and light plugin allowing us to handle basic routing and http requests. it also including the Jinja2 templating language.") }}</p>
+            <p>{{ _("League of legends is a world-class game. It was obvious that the i18n support was mandatory in order to reach a lot of players. For the sake of the demo, we only implemented the english and french language.") }}</p>
+            <p>{{ _("We rely on gettext through the Flask-Babel plugin and use Poedit to handle .po/.mo files.") }}</p>
+
+            <p>{{ _("Having a cache system is essential to avoid querying Riot’s server too much. Python dict/list are not persistent if the server crash so we chose not to use them.") }}</p>
+            <p>{{ _("Instead we chose to store response FROM the API in the key-value cache store Redis, a NoSQL DB. In Lol-Senpai, the key is the URL and the value is the HTTP response (body).") }}</p>
+            <p>{{ _("The caching strategy is very simplistic at the moment :") }}</p>
+             <ul>
+                <li>{{ _("15 min by default") }}</li>
+                <li>{{ _("1 week for static data (champions’ info for instance) or summoner ids") }}</li>
+                <li>{{ _("few minutes for current games") }}</li>
+            </ul>
+            <p>{{ _("The aim is to rely on the cache as much as possible.") }}</p>
+
+            <p>{{ _("We are also considering storing long term information on our server. Still using NoSQL technologies (maybe MongoDB), to provide more information and data for other modes and not only ranked mode.") }}</p>
+
+            <h3>{{ _("Hosting technologies") }}</h3>
+            <p>{{ _("In order to install, configure and launch these technologies on our server, we chose Docker. It allows us to automate every steps of the build..") }}</p>
+            <p>{{ _("Our flask application runs on nginx (web server). Unfortunately nginx (contrary to apache) does not support WSGI and thus cannot communicate with flask. That’s why Gunicorn comes into play, to act as a interface between our application and the web server.") }}</p>
+            <p>{{ _("Finally Supervisor monitor and control Gunicorn.") }}</p>
+            <p>{{ _("At the moment, we are hosting Lol Senpai on a cheap VPS. This is enough for now but this won’t hold the charge if ever get a small traffic. The next step is going to be the transfer on DigtalOcean who offers nice ssd servers for a cheap price.") }}</p>
+            <p>{{ _("Regarding our architecture, it’s hopefully, it’s going to be multi-servers. We are going to use :") }}</p>
+            <ul>
+                <li>{{ _("HAProxy (acting as a load balanced)") }}</li>
+                <li>{{ _("Redis sentinel for redis replication") }}</li>
+            </ul>
+            <p>{{ _("With this architecture, we believe that this would allow us to add new servers easily if we ever need to. And of course, we would need better servers and would migrate to AWS or OVH.") }}</p>
+            <p>{{ _("Like every developers these days, we use a CVS to work as a team. We chose git because it’s really powerful (despite not using branches for this contest haha).") }}</p>
+
+            <h3>{{ _("Front-end technologies") }}</h3>
+            <p>{{ _("Finally, regarding the frontend side we used HTML5/CSS3 with a little bit a javascript. We love front-end technologies and we use nice stack on our daily job (bower, grunt, angularJS, sass, etc) but we decided to keep the frontend side as light as possible.") }}</p>
+            <p>{{ _("We chose swiftness and handmade code over libraries. The website is responsive and aimed to be used on mobile (as small as 320px width). Mobile connexion are not reliable and we wanted to avoid the load of hundred of ko of librairies.") }}</p>
+
+            <p>{{ _("The faster we deliver, the happier the user is.") }}</p>
+
+        </article>
+
         <h2>{{ _("Contact us") }}</h2>
         <article>
             <p>{{ _("You think that we should add an important information or you have any suggestion regarding this service ? Don't hesitate to contact us at <strong>contact at lol-senpai.com</strong> (English or French only).") }}</p>
+        </article>
+
+        <h2>{{ _("Final word") }}</h2>
+        <article>
+            <p>{{ _("Thank you Riot for given us the opportunity to use your data to build tools for the community. You have been keeping us entertain for years ^_^") }}</p>
         </article>
     </div>
 

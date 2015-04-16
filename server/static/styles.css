@@ -60,9 +60,14 @@ a:hover, a:focus, a:active {
     text-decoration: underline;
 }
 
+li {
+    line-height: 21px;
+}
+
 .hide {
     display: none;
 }
+
 
 /* LANG */
 /* https://github.com/lipis/flag-icon-css */
