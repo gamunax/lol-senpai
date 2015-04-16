@@ -1,2 +1,48 @@
 {% extends "base.html" %}
-<h2>{{ _("About") }}</h2>
+{% block content %}
+    <h1>{{ _("About") }}</h1>
+    <div id="about">
+        <h2>{{ _("Does Riot allow it ?") }}</h2>
+        <article>
+            <p>{{ _("Yes, this application was created during the April 2015 API Challenge Contest. It complies to the terms and conditions of use") }}</p>
+            <p>{{ _("It's worth mentioning that Lol Senpai isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.") }}</p>
+        </article>
+
+        <h2>{{ _("Who are we ?") }}</h2>
+        <article>
+            <p>{{ _("We are both young guys living in Nancy, France :") }}</p>
+            <ul>
+                <li>Aurélien, 21</li>
+                <li>Alexandre, 24</li>
+            </ul>
+            <p>{{ _("We love to build applications from the ground up, coding is our daily job.") }}</p>
+            <p>{{ _("We love to play league of legends and watch pro games. We have been playing for years and one of us even flew all the way to Seoul last October to attend the world finale !") }}</p>
+            <div>
+                <p>{{ _("Aurélien at a Lol LAN Party with his team (the guy at the far left), Febrary 2015. :") }}</p>
+                <img alt="Aurélien at a Lol LAN Party with his team, Febrary 2015" src="../static/aurelien.jpg" />
+                <p>{{ _("Alexandre in Sangam Stadium for the world finale, with Snoopeh, October 2014 :") }}</p>
+                <img alt="Alexandre in Sangam Stadium for the world finale, with Snoopeh, October 2014" src="../static/alexandre.jpg" />
+            </div>
+        </article>
+
+        <h2>{{ _("Why did we decided to participate and how did we come up with this idea ?") }}</h2>
+        <article>
+            <p>{{ _("We did not think twice when we heard we had the opportunity to combine those 2 passions") }}</p>
+            <p>{{ _("We had just to find an idea. As competitors (one of us reached diamond last season), during the loading screen, we usually gather scraps of information from different sites and try to evaluate our opponent strength and foresight the game plan. We thought it could be nice to have all the important information delivered on a silver plate.") }}</p>
+            <p>{{ _("As we use a lot of tools from the community, we think that it was a good opportunity to share a tool of our own.") }}</p>
+        </article>
+
+        <h2>{{ _("Why our submission is completely off-topic ?") }}</h2>
+        <article>
+            <p>{{ _("On April 16, 2015, we realized that our application was off-topic for this contest.") }}</p>
+            <p>{{ _("The explanation is quite simple. We (wrongly) mainly relied on this <a href=\"http://www.riotgames.com/articles/20150330/1661/fyi-our-first-api-challenge\">page</a> and on the fact that our entry was accepted to think that we had a chance to compete.") }}</p>
+            <p>{{ _("While in fact, we had to code something related to URF and the new api. It was our fault for not properly reading the rules. It was too late to adapt our concept and we did not want to throw away our work so here we are.") }}</p>
+        </article>
+
+        <h2>{{ _("Contact us") }}</h2>
+        <article>
+            <p>{{ _("You think that we should add an important information or you have any suggestion regarding this service ? Don't hesitate to contact us at <strong>contact at lol-senpai.com</strong> (English or French only).") }}</p>
+        </article>
+    </div>
+
+{% endblock %}

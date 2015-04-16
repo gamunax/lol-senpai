@@ -24,9 +24,9 @@
 {%- endmacro %}
 
 {% macro print_advice(class, title, type) -%}
-    <article class="{{ class }}">
+    <article class="game {{ class }}">
         <header>
-            <h3>{{ title }}</h3>
+            <h2>{{ title }}</h2>
         </header>
         <div>
             {{ print_list(type) }}
@@ -36,7 +36,7 @@
 
 
 {% block content %}
-    <h2>{{ title }}</h2>
+    <h1>{{ title }}</h1>
 
     {{ print_advice("good", _("Good news"), senpai.PROS) }}
     {{ print_advice("danger", _("Watch out"), senpai.CONS) }}
