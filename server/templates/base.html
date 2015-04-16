@@ -30,7 +30,7 @@
             <div>
                 <a href="/{{ g.lang }}" class="logo"><img src="/static/logo_lol-senpai.png"></a>
                 <div class="widgets">
-                    <span class="no-mobile">{% include "search.html" %}</span>
+                    {% block search_desktop %}<span class="no-mobile">{% include "search.html" %}</span>{% endblock %}
                     <span><a href="#" class="lang lang-en"><span>{{ _("ENGLISH") }}</span></a></span>
                     <span><a href="#" class="lang lang-fr"><span>{{ _("FRENCH") }}</span></a></span>
                 </div>
