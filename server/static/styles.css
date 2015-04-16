@@ -143,14 +143,18 @@ a:hover, a:focus, a:active {
 }
 .home {
     text-align: center;
-    background: url("logo_home.png") no-repeat top center;
     padding: 5px 0;
 }
 .home > strong {
     font-size: 2em;
     margin-left: 20%;
-    margin-bottom: 105px;
     display: block;
+}
+.home > img {
+    display: block;
+    margin: -35px auto 10px;
+    width: 100%;
+    max-width: 500px;
 }
 
 
@@ -232,13 +236,17 @@ a:hover, a:focus, a:active {
 .home .w_search input[type=text] {
     font-size: 1em;
     height: 35px;
-    width: 300px;
+    width: calc(100% - 150px);
+    max-width: 300px;
 }
 .home .w_search select {
     height: 45px;
 }
 .home .w_search button[type=submit] {
     height: 45px;
+}
+.w_search button[type=submit] {
+    padding: 4px 18px;
 }
 
 /* ARTICLE */
@@ -353,6 +361,11 @@ i.icon.info {
 
 /* MOBILE */
 .mobile { display: none; }
+@media screen and (max-width: 900px) {
+    #navigation .w_search button span.no-mobile {
+        display: none;
+    }
+}
 @media screen and (max-width: 730px) {
 
     .mobile { display: inherit; }
