@@ -6,13 +6,16 @@
             <li><i>{{ _("No data") }}</i></li>
         {% endif %}
         {% for advice in senpai.get_advices(type) %}
-        <li{% if advice.has_description() %} class="has_description" title="{{ _('More information') }}"{% endif %}>
+        <li {% if advice.has_description() %}class="has_description"{% endif %}>
             <div class="title">
-                <span class="message">{{ advice.get_message()|safe }}</span>
+                <span class="message">
+                    {{ advice.get_message()|safe }}
+                    {% if advice.has_description() %} <i class="icon info" title="{{ _('More information') }}"></i>{% endif %}
+                </span>
             </div>
              {% if  advice.has_description() %}
              <div class="description hide">
-                    {{ advice.get_description()|safe }}
+                {{ advice.get_description()|safe }}
              </div>
             {% endif %}
         </li>
