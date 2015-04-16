@@ -119,6 +119,7 @@ a:hover, a:focus, a:active {
     /* background-color: #FFFFFF; */
     background-color: rgba(255, 255, 255, 0.7);
     padding: 15px;
+    margin-bottom: 30px;
 }
 .body {
     min-height: calc(100% - 90px - 40px - 70px);
@@ -139,6 +140,17 @@ a:hover, a:focus, a:active {
     max-width: 500px;
     font-size: 1.2em;
     margin: 10px auto 0;
+}
+.home {
+    text-align: center;
+    background: url("logo_home.png") no-repeat top center;
+    padding: 5px 0;
+}
+.home > strong {
+    font-size: 2em;
+    margin-left: 20%;
+    margin-bottom: 105px;
+    display: block;
 }
 
 
@@ -216,6 +228,17 @@ a:hover, a:focus, a:active {
     margin: 0 0 0 -5px;
     cursor: pointer;
     background: #b33737;
+}
+.home .w_search input[type=text] {
+    font-size: 1em;
+    height: 35px;
+    width: 300px;
+}
+.home .w_search select {
+    height: 45px;
+}
+.home .w_search button[type=submit] {
+    height: 45px;
 }
 
 /* ARTICLE */
