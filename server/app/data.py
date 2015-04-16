@@ -92,6 +92,8 @@ def get_info_summoner(summoner_id, ranked_queue):
         'is_in_promo': False
     }
     data = get_wrapper().get_league_info_for_summoner(summoner_id, ranked_queue)
+    if not data or not data.hasattr('entries'):
+        return None
     entries = data.get('entries')[0]
     if entries.get('miniSeries'):
         stats['is_in_promo'] = True
