@@ -1,4 +1,4 @@
-# LoL Senpai
+# LoL Senpai (http://lol-senpai.com)
 This app gives you tips for the upcoming match
 
 ## What is LoL Senpai ?
