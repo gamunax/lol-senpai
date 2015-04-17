@@ -8,12 +8,12 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2015-04-17 18:30+0200\n"
-"PO-Revision-Date: 2015-04-17 19:25+0100\n"
+"PO-Revision-Date: 2015-04-17 23:04+0100\n"
 "Last-Translator: \n"
 "Language-Team: fr <LL@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 1.3\n"
@@ -62,7 +62,7 @@ msgstr "Erreur du serveur"
 
 #: run.py:46
 msgid "Unable to connect to the Riot's API."
-msgstr ""
+msgstr "Impossible de se connecter au serveur de données."
 
 #: run.py:48
 msgid "Rate limit exceeded"
@@ -106,6 +106,9 @@ msgid ""
 "Some players are prone to tilt and cannot think straight after a losing "
 "streak. Try to focus them and take them down to ensure an easier win."
 msgstr ""
+"Certains joueurs ont tendance à abandonner plus facilement après une suite "
+"de défaites. Essayer de se concentrer sur eux pourrait vous assurer une "
+"victoire plus facile."
 
 #: app/advice.py:32
 #, python-format
@@ -118,7 +121,7 @@ msgstr ""
 
 #: app/advice.py:34 app/advice.py:127
 msgid "A winning streak provides a boost of confidence."
-msgstr ""
+msgstr "Une série de victoires fournit un élan de confiance."
 
 #: app/advice.py:41
 #, python-format
@@ -126,6 +129,8 @@ msgid ""
 "The <span class=\"info enemy\">enemy %(champion)s</span> does not ward a "
 "lot. He places %(wards_per_game)d wards per game on average."
 msgstr ""
+"L'<span class=\"info enemy\">ennemi %(champion)s</span> n'utilise que très "
+"peu de wards. Il place en moyenne %(wards_per_game)d wards par game."
 
 #: app/advice.py:44
 msgid ""
@@ -133,6 +138,9 @@ msgid ""
 "to gank and cannot properly control objectives (dragon, nashor). They are in "
 "the dark most of the time."
 msgstr ""
+"La vision est très importante. Une faible couverture de wards signifie que "
+"cet ennemi est plus facile à gank et ne peut pas contrôler correctement les "
+"objectifs (dragon, nashor). Ils sont la plupart du temps dans l'obscurité."
 
 #: app/advice.py:51
 #, python-format
@@ -140,6 +148,8 @@ msgid ""
 "The <span class=\"info enemy\">enemy %(champion)s</span> has never played "
 "this champion before."
 msgstr ""
+"L'<span class=\"info enemy\">ennemi %(champion)s</span> n'a jamais joué ce "
+"champion avant."
 
 #: app/advice.py:62
 #, python-format
@@ -148,11 +158,14 @@ msgid ""
 "champion (%(percent_win).1f%% win ratio with %(kda).1f KDA over %(played)d "
 "games)."
 msgstr ""
+"L'<span class=\"info enemy\">ennemi %(champion)s</span> est bon avec ce "
+"champion (%(percent_win).1f%% de win ratio avec %(kda).1f de KDA sur "
+"%(played)d parties)."
 
 #: app/advice.py:66 app/advice.py:117
 #, python-format
 msgid " He has already done %(penta_kills)d penta kills with it"
-msgstr ""
+msgstr "Il a déjà fait %(penta_kills)d penta kills avec ce champion."
 
 #: app/advice.py:75
 #, python-format
@@ -161,6 +174,9 @@ msgid ""
 "with this champion (%(percent_win).1f%% win ratio with %(kda).1f KDA over "
 "%(played)d games)."
 msgstr ""
+"L'<span class=\"info enemy\">ennemi %(champion)s</span> n'est pas très bon "
+"avec ce champion (%(percent_win).1f%% de win ratio avec %(kda).1f de KDA sur "
+"%(played)d parties)."
 
 #: app/advice.py:85
 #, python-format
@@ -168,6 +184,8 @@ msgid ""
 "The <span class=\"info enemy\">enemy %(champion)s</span> probably mains "
 "<span class=\"info enemy\">%(role)s</span>."
 msgstr ""
+"L'<span class=\"info enemy\">ennemi %(champion)s</span> joue principalement "
+"<span class=\"info enemy\">%(role)s</span>."
 
 #: app/advice.py:94
 #, python-format
@@ -175,6 +193,8 @@ msgid ""
 "The <span class=\"info enemy\">enemy %(champion)s</span> left a ranked game "
 "recently"
 msgstr ""
+"L'<span class=\"info enemy\">ennemi %(champion)s</span> a récemment quitté "
+"une partie classée."
 
 #: app/advice.py:101
 #, python-format
@@ -182,6 +202,8 @@ msgid ""
 "The <span class=\"info enemy\">enemy %(champion)s</span> is in a promotion "
 "series."
 msgstr ""
+"L'<span class=\"info enemy\">ennemi %(champion)s</span> est en série de "
+"promotion."
 
 #: app/advice.py:112
 #, python-format
@@ -190,6 +212,9 @@ msgid ""
 "champion (%(percent_win).1f%% win ratio with %(kda).1f KDA over %(played)d "
 "games)."
 msgstr ""
+"L'<span class=\"info ally\">allié %(champion)s</span> est bon avec ce "
+"champion (%(percent_win).1f%% de win ratio avec %(kda).1f de KDA sur "
+"%(played)d parties)."
 
 #: app/advice.py:125
 #, python-format
@@ -197,6 +222,8 @@ msgid ""
 "The <span class=\"info ally\">allied %(champion)s</span> is on a %(wins)d "
 "winning streak."
 msgstr ""
+"L'<span class=\"info ally\">allié %(champion)s</span> a gagné %(wins)d "
+"victoires de suite."
 
 #: app/advice.py:133
 #, python-format
@@ -204,6 +231,8 @@ msgid ""
 "The <span class=\"info ally\">allied %(champion)s</span> is in a promotion "
 "series."
 msgstr ""
+"L'<span class=\"info ally\">allié %(champion)s</span> est en série de "
+"promotion."
 
 #: templates/about.html:5
 msgid "Does Riot allow it?"
@@ -356,6 +385,8 @@ msgid ""
 "This contest was the opportunity for us to learn and experiment new "
 "technologies."
 msgstr ""
+"Ce concours a été l'occasion pour nous d'apprendre et d'expérimenter de "
+"nouvelles technologies."
 
 #: templates/about.html:45
 msgid "Back-end technologies"
@@ -432,7 +463,7 @@ msgstr "Quelques minutes pour récupérer le match en cours d'un joueur"
 
 #: templates/about.html:58
 msgid "The aim is to rely on the cache as much as possible."
-msgstr ""
+msgstr "Le but est de s'appuyer sur le cache autant que possible."
 
 #: templates/about.html:60
 msgid ""
@@ -440,6 +471,10 @@ msgid ""
 "NoSQL technologies (maybe MongoDB), to provide more information and data for "
 "other modes and not only ranked mode."
 msgstr ""
+"Nous envisageons également de stocker des informations à long terme sur "
+"notre serveur. À l'aide de technologies NoSQL (peut-être MongoDB), de "
+"fournir plus de renseignements et de données pour d'autres modes de jeu et "
+"pas seulement sur les parties classées."
 
 #: templates/about.html:62
 msgid "Hosting technologies"
@@ -450,6 +485,9 @@ msgid ""
 "In order to install, configure and launch these technologies on our server, "
 "we chose Docker. It allows us to automate every steps of the build."
 msgstr ""
+"Pour installer, configurer et lancer ces technologies sur notre serveur, "
+"nous avons choisi la technologie Docker. Il nous permet d'automatiser toutes "
+"les étapes de l'installation et la configuration du système."
 
 #: templates/about.html:64
 msgid ""
@@ -458,10 +496,14 @@ msgid ""
 "flask. That’s why Gunicorn comes into play, to act as an interface between "
 "our application and the web server."
 msgstr ""
+"Notre application Flask s'exécute sur nginx (serveur web). Nginx "
+"(contrairement à apache) ne prend pas en charge le WSGI et donc ne peut pas "
+"communiquer avec Flask directement. C'est à ce moment que Gunicorn arrive en "
+"jeu, pour servir d'interface entre notre application et le serveur web."
 
 #: templates/about.html:65
 msgid "Finally Supervisor monitor and control Gunicorn."
-msgstr ""
+msgstr "Enfin, Supervisor surveille et contrôle Gunicorn."
 
 #: templates/about.html:66
 msgid ""
@@ -470,12 +512,19 @@ msgid ""
 "step is going to be the transfer on DigtalOcean who offers nice ssd servers "
 "for a cheap price."
 msgstr ""
+"Actuellement, nous hébergeons Lol Senpai sur un VPS pas cher. Cela suffit "
+"pour l'instant, mais cela ne tiendra pas la charge si nous jamais nous "
+"obtenions un petit trafic. La prochaine étape va être le transfert de "
+"l'application sur DigitalOcean, qui propose des serveurs SSD agréables pour "
+"un prix dérisoire."
 
 #: templates/about.html:67
 msgid ""
 "Regarding our architecture, hopefully, it’s going to be multi-servers. We "
 "are going to use:"
 msgstr ""
+"Au sujet de notre architecture, si tout va bien, nous aurons plusieurs "
+"serveurs. Nous allons utiliser :"
 
 #: templates/about.html:69
 msgid "HAProxy (acting as a load balancer)"
@@ -491,6 +540,10 @@ msgid ""
 "servers easily if we ever need to. And of course, we would need better "
 "servers and would migrate to AWS or OVH."
 msgstr ""
+"Avec cette architecture, nous pensons que cela nous permettrait d'ajouter de "
+"nouveaux serveurs facilement si nous en avions l'utilité. Et bien sûr, si "
+"jamais nous avons besoin de serveurs encore plus puissants, nous migreront "
+"vers des plateformes plus performantes telles que AWS ou OVH."
 
 #: templates/about.html:73
 msgid ""
@@ -498,6 +551,9 @@ msgid ""
 "git because it’s really powerful (despite not using branches for this "
 "contest haha)."
 msgstr ""
+"Comme tous les développeurs ces jours-ci, nous utilisons un CVS pour "
+"travailler en équipe. Nous avons choisi git parce qu'il est vraiment très "
+"puissant (en dépit de ne pas utiliser des branches pour ce concours haha)."
 
 #: templates/about.html:75
 msgid "Front-end technologies"
@@ -510,6 +566,11 @@ msgid ""
 "daily job (bower, grunt, angularJS, sass, etc) but we decided to keep the "
 "frontend side as light as possible."
 msgstr ""
+"Enfin, concernant le côté fron-tend, nous avons utilisé HTML5/CSS3 avec un "
+"peu de javascript. Nous aimons les technologies front-end et nous en "
+"utilisons pas mal dans notre travail quotidien (bower, grunt, angularJS, "
+"sass, etc.), mais nous avons décidé de garder le côté front-end aussi léger "
+"que possible."
 
 #: templates/about.html:77
 msgid ""
@@ -518,10 +579,14 @@ msgid ""
 "connections are not reliable and we wanted to avoid the load of hundred of "
 "ko of libraries."
 msgstr ""
+"Nous avons choisi la rapidité et le code à la main que d'utiliser des "
+"bibliothèques. Le site est réactif et est destiné à être utilisé sur mobiles "
+"(jusqu'à une largeur de 320px). Les connexions mobiles n'étant pas fiables, "
+"nous voulions éviter la charge de centaines de ko de bibliothèques."
 
 #: templates/about.html:79
 msgid "The faster we deliver, the happier the user is."
-msgstr ""
+msgstr "Plus vite nous livrons, heureux est l'utilisateur."
 
 #: templates/about.html:83
 msgid "Contact us"
@@ -572,7 +637,7 @@ msgstr "Copyright Lol-Senpai 2015"
 
 #: templates/faq.html:2
 msgid "What is LoL Senpai?"
-msgstr "Qu'Est-ce que LoL Senpai ?"
+msgstr "Qu'est-ce que LoL Senpai ?"
 
 #: templates/faq.html:4
 msgid ""
@@ -589,7 +654,7 @@ msgid ""
 "Gathering info about your enemy by hand is a tedious process that you cannot "
 "always achieve within the limited time of the loading screen."
 msgstr ""
-"Récupérer vous-même des informations sur votre ennemi est un processus "
+"Récupérez vous-même des informations sur votre ennemi est un processus "
 "fastidieux, que vous ne pouvez pas toujours obtenir dans le temps limité de "
 "l'écran de chargement."
 
@@ -625,7 +690,7 @@ msgstr "Force avec un champion ou un rôle spécifique"
 
 #: templates/faq.html:15
 msgid "Wards coverage"
-msgstr "Utilisation des Wards"
+msgstr "Utilisation des wards"
 
 #: templates/faq.html:16
 msgid "Suitability of runes"
@@ -656,8 +721,8 @@ msgid ""
 "However, we believe that high ranked players (starting from mid diamond and "
 "above) would not find this tool as useful as other players."
 msgstr ""
-"Cependant, nous pensons que les joueurs à haut niveau (à partir de mi-"
-"diamant et supérieur) ne trouveront pas cet outil aussi utile que d'autres."
+"Cependant, nous pensons que les joueurs à haut niveau (à partir de diamant "
+"3 / diamant 4) ne trouveront pas cet outil aussi utile que d'autres."
 
 #: templates/faq.html:26
 msgid ""
@@ -677,23 +742,29 @@ msgid ""
 "implement everything that we have imagined. Hopefully, the next updates will "
 "concern the following matters."
 msgstr ""
+"17 jours a été une petite fenêtre pour créer quelque chose de significatif, "
+"et nous n'avons pas pu réaliser tout ce dont nous avons imaginé. J'espère "
+"que les prochaines mises à jour concernent les questions suivantes."
 
 #: templates/faq.html:33
 msgid "Improve the performance of our application and servers"
-msgstr ""
+msgstr "Améliorer les performances de nos applications et serveurs"
 
 #: templates/faq.html:34
 msgid ""
 "We know that the site is really slow at the moment and we are working on it."
 msgstr ""
+"Nous savons que le site est assez lent en ce moment et nous travaillons là-"
+"dessus."
 
 #: templates/faq.html:36
 msgid "More description related to advices"
-msgstr ""
+msgstr "Plus de descriptions associées aux conseils"
 
 #: templates/faq.html:37
 msgid "Right now, descriptions related to advices are incomplete."
 msgstr ""
+"Actuellement, les descriptions associées aux conseils sont incomplètes."
 
 #: templates/faq.html:39
 msgid "Information about runes"
@@ -704,39 +775,51 @@ msgid ""
 "We did not even scratch the surface of what we want to achieve with runes. "
 "Ideally, we would like to warn summoners about:"
 msgstr ""
+"Nous n'avons même pas rayer la surface de ce que nous voulions atteindre "
+"avec les runes. Idéalement, nous aimerions avertir les invocateurs pour :"
 
 #: templates/faq.html:42
 msgid ""
 "Plain wasted runes (mana regen/energy regen on champ who does not need it)"
 msgstr ""
+"Runes inutiles (regen mana / regen d'énergie sur des champions qui n'en ont "
+"pas besoin)"
 
 #: templates/faq.html:43
 msgid ""
 "Sub optimal runes (player running tier1/tier2 runes or pages with incomplete "
 "rune pages)"
 msgstr ""
+"Runes sous-optimales (joueur qui utilise des runes tier1/tier2, ou des pages "
+"avec des runes inachevées)"
 
 #: templates/faq.html:44
 msgid ""
 "Questionable runes (Fiddle jungle running ad runes or no armor runes when "
 "the opposite team is full ad comp)"
 msgstr ""
+"Runes douteuses (fiddle jungler avec des runes AD, ou pas de runes d'armure "
+"quand l'équipe en face à une composition full AD)"
 
 #: templates/faq.html:45
 msgid ""
 "Cheesy runes (a riven running a full ad page is dangerous and is something "
 "we should warn the player about)"
 msgstr ""
+"Cheesy runes (une Riven avec une page full AD est dangereux et c'est quelque "
+"chose que nous devrions avertir le joueur concerné)"
 
 #: templates/faq.html:48
 msgid "Persistent storage of information for a ‘machine learning'"
-msgstr ""
+msgstr "Stockage persistant de l'information pour une « machine learning »"
 
 #: templates/faq.html:49
 msgid ""
 "For this contest, we only provided information using on the fly data. We "
 "could go much further."
 msgstr ""
+"Pour ce concours, nous avons seulement utilisé des données récupérées à la "
+"volée. Nous pourrions aller beaucoup plus loin."
 
 #: templates/faq.html:50
 msgid ""
@@ -744,6 +827,9 @@ msgid ""
 "upcoming matchup within the elo range of the player based on historical data "
 "on a given patch."
 msgstr ""
+"Pour l'exemple, on peut imaginer donner des informations détaillées sur un "
+"affrontement à venir, spécifique au sein d'un groupe d'elo de joueurs, "
+"basées sur les données historiques sur un patch donné."
 
 #: templates/faq.html:51
 msgid ""
@@ -751,12 +837,19 @@ msgid ""
 "a silver player that Vayne top played a certain way is really strong versus "
 "some champions when it’s only a diamond+ thing and really hard to execute."
 msgstr ""
+"Se concentrer sur la plage d'elo du joueur est vraiment important pour nous. "
+"Il n'y a, par exemple, aucun intérêt à mentionner à un joueur silver que "
+"Vayne top, jouée d'une certaine manière, est vraiment forte contre certains "
+"champions quand c'est en réalité un pick de niche à très haut elo et que "
+"c'est dur à exécuter."
 
 #: templates/faq.html:52
 msgid ""
 "Most counter champion sites are only based on votes from the community. This "
 "is not accurate."
 msgstr ""
+"La plupart des sites qui propose des counters champion reposent uniquement "
+"sur les votes de la communauté. Ce qui n'est pas exact."
 
 #: templates/faq.html:53
 msgid ""
@@ -764,16 +857,23 @@ msgid ""
 "of a matchup and power spikes of each champion using real, meaningful data "
 "for the player?"
 msgstr ""
+"Imaginez que nous puissions récupérer les données d'une tonne de matchs pour "
+"déterminer les moments clés et l'issu d'un matchup en utilisant des données "
+"réelles et significatives pour le joueur."
 
 #: templates/faq.html:54
 msgid "These data could also be useful to determine a viable builder order."
 msgstr ""
+"Ces données pourraient également être utiles pour déterminer un ordre de "
+"build viable."
 
 #: templates/faq.html:55
 msgid ""
 "We could also imagine to evaluating the strength of each team based on their "
 "composition and give a game plan like a coach would do."
 msgstr ""
+"Nous pourrions aussi imaginer d'évaluer la force de chaque équipe basée sur "
+"leur composition et donner un plan de jeu comme le ferait un entraîneur."
 
 #: templates/faq.html:56
 msgid ""
@@ -782,12 +882,20 @@ msgid ""
 "35min mark. Your Lee sin is proven to be a strong ganker, try to focus on "
 "toplane to shut Nasus down\"."
 msgstr ""
+"\"Ok les gars, vous avez une composition early, vous devriez essayer "
+"d'utiliser vos avantages pour y mettre fin, car leurs Nasus et Cassiop "
+"risque de vous éclatez au-delà de la 35ième minute. Votre Lee sin s'est "
+"avéré être un ganker fort, essayez de mettre l'accent sur la toplane afin de "
+"mettre Nasus au fond\"."
 
 #: templates/faq.html:57
 msgid ""
 "This kind of thing is obvious to high ranked players, but could really help "
 "bronze/silver players to step up their games and climb faster."
 msgstr ""
+"Ce genre de choses est évident pour les joueurs de haut niveau, mais il "
+"pourrait vraiment aider les joueurs bronze/argent à intensifier leurs jeux "
+"et s'améliorer plus rapidement."
 
 #: templates/game.html:6
 msgid "No data"
