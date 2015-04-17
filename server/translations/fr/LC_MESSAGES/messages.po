@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-04-17 18:30+0200\n"
-"PO-Revision-Date: 2015-04-17 23:04+0100\n"
+"POT-Creation-Date: 2015-04-17 23:28+0200\n"
+"PO-Revision-Date: 2015-04-17 23:30+0100\n"
 "Last-Translator: \n"
 "Language-Team: fr <LL@li.org>\n"
 "Language: fr\n"
@@ -623,7 +623,7 @@ msgstr "ANGLAIS"
 msgid "FRENCH"
 msgstr "FRANCAIS"
 
-#: templates/base.html:58
+#: templates/base.html:58 templates/search.html:17
 msgid "Search"
 msgstr "Recherche"
 
@@ -916,6 +916,10 @@ msgstr "Méfiez-vous"
 #: templates/game.html:43
 msgid "Information"
 msgstr "Information"
+
+#: templates/search.html:3
+msgid "Search an in-game summoner..."
+msgstr "Rechercher un invocateur ..."
 
 #~ msgid "Game not compatible"
 #~ msgstr "Mode de jeu non compatible"

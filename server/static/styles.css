@@ -251,6 +251,7 @@ li {
 }
 .w_search button[type=submit] {
     padding: 4px 18px;
+    text-transform: uppercase;
 }
 
 /* ARTICLE */

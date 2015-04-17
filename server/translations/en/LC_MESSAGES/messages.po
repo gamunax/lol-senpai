@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-04-17 18:30+0200\n"
-"PO-Revision-Date: 2015-04-17 22:59+0100\n"
+"POT-Creation-Date: 2015-04-17 23:28+0200\n"
+"PO-Revision-Date: 2015-04-17 23:30+0100\n"
 "Last-Translator: \n"
 "Language-Team: en <LL@li.org>\n"
 "Language: en\n"
@@ -601,7 +601,7 @@ msgstr "ENGLISH"
 msgid "FRENCH"
 msgstr "FRENCH"
 
-#: templates/base.html:58
+#: templates/base.html:58 templates/search.html:17
 msgid "Search"
 msgstr "Search"
 
@@ -884,6 +884,10 @@ msgstr "Watch out"
 #: templates/game.html:43
 msgid "Information"
 msgstr "Information"
+
+#: templates/search.html:3
+msgid "Search an in-game summoner..."
+msgstr "Search an in-game summoner..."
 
 #~ msgid "This summoner is not in game"
 #~ msgstr "This summoner is not in game"
