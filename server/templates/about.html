@@ -2,37 +2,37 @@
 {% block content %}
     <h1>{{ _("About") }}</h1>
     <div id="about">
-        <h2>{{ _("Does Riot allow it ?") }}</h2>
+        <h2>{{ _("Does Riot allow it?") }}</h2>
         <article>
-            <p>{{ _("Yes, this application was created during the April 2015 API Challenge Contest. It complies to the terms and conditions of use") }}</p>
+            <p>{{ _("Yes, this application was created during the April 2015 API Challenge Contest. It complies to the terms and conditions of use.") }}</p>
             <p>{{ _("It's worth mentioning that Lol Senpai isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.") }}</p>
         </article>
 
-        <h2>{{ _("Who are we ?") }}</h2>
+        <h2>{{ _("Who are we?") }}</h2>
         <article>
-            <p>{{ _("We are both young guys living in Nancy, France :") }}</p>
+            <p>{{ _("We are both young guys living in Nancy, France:") }}</p>
             <ul>
                 <li>Aurélien, 21</li>
                 <li>Alexandre, 24</li>
             </ul>
             <p>{{ _("We love to build applications from the ground up, coding is our daily job.") }}</p>
-            <p>{{ _("We love to play league of legends and watch pro games. We have been playing for years and one of us even flew all the way to Seoul last October to attend the world finale !") }}</p>
+            <p>{{ _("We love to play league of legends and watch pro games. We have been playing for years and one of us even flew all the way to Seoul last October to attend the world finale!") }}</p>
             <div>
-                <p>{{ _("Aurélien at a Lol LAN Party with his team (the guy at the far left), February 2015. :") }}</p>
-                <img alt="Aurélien at a Lol LAN Party with his team, Febrary 2015" src="../static/aurelien.jpg" />
-                <p>{{ _("Alexandre in Sangam Stadium, Seoul for the S04 world championship finale, with Snoopeh, October 2014 :") }}</p>
-                <img alt="Alexandre in Sangam Stadium, Seoul for the S04 world championship finale, with Snoopeh, October 2014" src="../static/alexandre.jpg" />
+                <p>{{ _("Aurélien at a Lol LAN Party with his team (the guy at the far left), February 2015:") }}</p>
+                <img alt="Aurélien at a Lol LAN Party with his team, Febrary 2015" src="/static/aurelien.jpg" />
+                <p>{{ _("Alexandre in Sangam Stadium, Seoul for the S04 world championship finale, with Snoopeh, October 2014:") }}</p>
+                <img alt="Alexandre in Sangam Stadium, Seoul for the S04 world championship finale, with Snoopeh, October 2014" src="/static/alexandre.jpg" />
             </div>
         </article>
 
-        <h2>{{ _("Why did we decided to participate and how did we come up with this idea ?") }}</h2>
+        <h2>{{ _("Why did we decided to participate and how did we come up with this idea?") }}</h2>
         <article>
             <p>{{ _("We did not think twice when we heard we had the opportunity to combine those 2 passions (coding and League of Legends).") }}</p>
             <p>{{ _("We just had to find an idea. As competitors (one of us reached diamond last season), during the loading screen, we usually gather scraps of information from different sites and try to evaluate our opponents strength and foresight the game plan. We thought it could be nice to have all the important information delivered on a silver plate.") }}</p>
             <p>{{ _("As we use a lot of tools from the community, we thought that it was a good opportunity to share a tool of our own.") }}</p>
         </article>
 
-        <h2>{{ _("Why is our submission completely off-topic ?") }}</h2>
+        <h2>{{ _("Why is our submission completely off-topic?") }}</h2>
         <article>
             <p>{{ _("On April 16, 2015, we realized that our application was off-topic for this contest.") }}</p>
             <p>{{ _("The explanation is quite simple. We (wrongly) mainly relied on this <a href=\"http://www.riotgames.com/articles/20150330/1661/fyi-our-first-api-challenge\">page</a> and on the fact that our entry was accepted to think that we had a chance to compete.") }}</p>
@@ -49,22 +49,22 @@
 
             <p>{{ _("Having a cache system is essential to avoid querying Riot’s server too much. Python dict/list are not persistent if the server crash so we chose not to use them.") }}</p>
             <p>{{ _("Instead we chose to store response FROM the API in the key-value cache store Redis, a NoSQL DB. In Lol-Senpai, the key is the URL and the value is the HTTP response (body).") }}</p>
-            <p>{{ _("The caching strategy is very simplistic at the moment :") }}</p>
+            <p>{{ _("The caching strategy is very simplistic at the moment:") }}</p>
              <ul>
                 <li>{{ _("15 min by default") }}</li>
-                <li>{{ _("1 week for static data (champions’ info for instance) or summoner ids") }}</li>
-                <li>{{ _("few minutes for current games") }}</li>
+                <li>{{ _("1 week for static data (champions info for instance) or summoner ids") }}</li>
+                <li>{{ _("Few minutes for current games") }}</li>
             </ul>
             <p>{{ _("The aim is to rely on the cache as much as possible.") }}</p>
 
             <p>{{ _("We are also considering storing long term information on our server. Using NoSQL technologies (maybe MongoDB), to provide more information and data for other modes and not only ranked mode.") }}</p>
 
             <h3>{{ _("Hosting technologies") }}</h3>
-            <p>{{ _("In order to install, configure and launch these technologies on our server, we chose Docker. It allows us to automate every steps of the build..") }}</p>
+            <p>{{ _("In order to install, configure and launch these technologies on our server, we chose Docker. It allows us to automate every steps of the build.") }}</p>
             <p>{{ _("Our flask application runs on nginx (web server). Unfortunately nginx (contrary to apache) does not support WSGI and thus cannot communicate with flask. That’s why Gunicorn comes into play, to act as an interface between our application and the web server.") }}</p>
             <p>{{ _("Finally Supervisor monitor and control Gunicorn.") }}</p>
             <p>{{ _("At the moment, we are hosting Lol Senpai on a cheap VPS. This is enough for now but this won’t hold the charge if we ever get a small traffic. The next step is going to be the transfer on DigtalOcean who offers nice ssd servers for a cheap price.") }}</p>
-            <p>{{ _("Regarding our architecture, hopefully, it’s going to be multi-servers. We are going to use :") }}</p>
+            <p>{{ _("Regarding our architecture, hopefully, it’s going to be multi-servers. We are going to use:") }}</p>
             <ul>
                 <li>{{ _("HAProxy (acting as a load balancer)") }}</li>
                 <li>{{ _("Redis sentinel for redis replication") }}</li>
@@ -87,7 +87,7 @@
 
         <h2>{{ _("Final word") }}</h2>
         <article>
-            <p>{{ _("Thank you Riot for giving us the opportunity to use your data to build tools for the community. You have been keeping us entertain for years ^_^") }}</p>
+            <p>{{ _("Thank you Riot for giving us the opportunity to use your data to build tools for the community. You have been keeping us entertain for years. ^_^") }}</p>
         </article>
     </div>
 

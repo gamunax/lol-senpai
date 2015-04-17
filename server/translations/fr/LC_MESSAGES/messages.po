@@ -7,26 +7,810 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-04-06 16:49+0200\n"
-"PO-Revision-Date: 2015-04-06 17:45+0100\n"
+"POT-Creation-Date: 2015-04-17 18:30+0200\n"
+"PO-Revision-Date: 2015-04-17 19:25+0100\n"
+"Last-Translator: \n"
 "Language-Team: fr <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 1.3\n"
-"Last-Translator: \n"
-"Language: fr\n"
 "X-Generator: Poedit 1.7.5\n"
 
-#: templates/base.html:30
+#: run.py:19
+msgid "Home"
+msgstr "Accueil"
+
+#: run.py:25 templates/about.html:3 templates/base.html:60
+msgid "About"
+msgstr "A propos"
+
+#: run.py:36
+#, python-format
+msgid "%(summoner)s's match"
+msgstr "Match de %(summoner)s"
+
+#: run.py:40
+msgid "Summoner not found"
+msgstr "Invocateur introuvable"
+
+#: run.py:40
+msgid "This summoner doesn't exist in this region."
+msgstr "Cet invocateur n'existe pas dans cette région."
+
+#: run.py:42
+msgid "Game not found"
+msgstr "Partie introuvable"
+
+#: run.py:42
+msgid "This summoner is not in game."
+msgstr "Cet invocateur n'est pas en jeu."
+
+#: run.py:44
+msgid "Game mode not compatible"
+msgstr "Mode de jeu non compatible"
+
+#: run.py:44
+msgid "Lol-Senpai works only for ranked games."
+msgstr "Lol-Senpai fonctionne uniquement pour les parties classées."
+
+#: run.py:46
+msgid "Server error"
+msgstr "Erreur du serveur"
+
+#: run.py:46
+msgid "Unable to connect to the Riot's API."
+msgstr ""
+
+#: run.py:48
+msgid "Rate limit exceeded"
+msgstr "Nombre de requêtes trop important"
+
+#: run.py:49
+msgid "Rate limit exceeded. :( Could you please try again in a few moments?"
+msgstr ""
+"Nous recevons trop de sollicitations pour le moment. Veuillez réessayer dans "
+"quelques instants."
+
+#: run.py:51
+msgid "Error Riot's API"
+msgstr "Problème serveur"
+
+#: run.py:51
+msgid "Error with the Riot's API."
+msgstr "Impossible de récupérer les données sur les serveurs de jeu."
+
+#: run.py:54
+msgid "Internal server error"
+msgstr "Erreur interne"
+
+#: run.py:55
+msgid "Unknown error. :( Could you please try again in a few moments?"
+msgstr ""
+"Erreur inconnue du serveur. :( Pouvez-vous recommencer dans quelques "
+"instants ?"
+
+#: app/advice.py:22
+#, python-format
+msgid ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> is on a %(loss)d "
+"losing streak."
+msgstr ""
+"L'<span class=\"info enemy\">ennemi %(champion)s</span> a perdu %(loss)d "
+"parties de suite."
+
+#: app/advice.py:24
+msgid ""
+"Some players are prone to tilt and cannot think straight after a losing "
+"streak. Try to focus them and take them down to ensure an easier win."
+msgstr ""
+
+#: app/advice.py:32
+#, python-format
+msgid ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> is on a %(wins)d "
+"winning streak."
+msgstr ""
+"L'<span class=\"info enemy\">ennemi %(champion)s</span> a gagné %(wins)d "
+"parties de suite."
+
+#: app/advice.py:34 app/advice.py:127
+msgid "A winning streak provides a boost of confidence."
+msgstr ""
+
+#: app/advice.py:41
+#, python-format
+msgid ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> does not ward a "
+"lot. He places %(wards_per_game)d wards per game on average."
+msgstr ""
+
+#: app/advice.py:44
+msgid ""
+"Vision is everything. A poor ward coverage means that this enemy is easier "
+"to gank and cannot properly control objectives (dragon, nashor). They are in "
+"the dark most of the time."
+msgstr ""
+
+#: app/advice.py:51
+#, python-format
+msgid ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> has never played "
+"this champion before."
+msgstr ""
+
+#: app/advice.py:62
+#, python-format
+msgid ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> is good with this "
+"champion (%(percent_win).1f%% win ratio with %(kda).1f KDA over %(played)d "
+"games)."
+msgstr ""
+
+#: app/advice.py:66 app/advice.py:117
+#, python-format
+msgid " He has already done %(penta_kills)d penta kills with it"
+msgstr ""
+
+#: app/advice.py:75
+#, python-format
+msgid ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> is not very good "
+"with this champion (%(percent_win).1f%% win ratio with %(kda).1f KDA over "
+"%(played)d games)."
+msgstr ""
+
+#: app/advice.py:85
+#, python-format
+msgid ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> probably mains "
+"<span class=\"info enemy\">%(role)s</span>."
+msgstr ""
+
+#: app/advice.py:94
+#, python-format
+msgid ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> left a ranked game "
+"recently"
+msgstr ""
+
+#: app/advice.py:101
+#, python-format
+msgid ""
+"The <span class=\"info enemy\">enemy %(champion)s</span> is in a promotion "
+"series."
+msgstr ""
+
+#: app/advice.py:112
+#, python-format
+msgid ""
+"The <span class=\"info ally\">allied %(champion)s</span> is good with this "
+"champion (%(percent_win).1f%% win ratio with %(kda).1f KDA over %(played)d "
+"games)."
+msgstr ""
+
+#: app/advice.py:125
+#, python-format
+msgid ""
+"The <span class=\"info ally\">allied %(champion)s</span> is on a %(wins)d "
+"winning streak."
+msgstr ""
+
+#: app/advice.py:133
+#, python-format
+msgid ""
+"The <span class=\"info ally\">allied %(champion)s</span> is in a promotion "
+"series."
+msgstr ""
+
+#: templates/about.html:5
+msgid "Does Riot allow it?"
+msgstr "Est-ce que Riot autorise cette application ?"
+
+#: templates/about.html:7
+msgid ""
+"Yes, this application was created during the April 2015 API Challenge "
+"Contest. It complies to the terms and conditions of use."
+msgstr ""
+"Oui, cette application a été créée au cours du concours \"April 2015 API "
+"Challenge Contest\", par Riot. Il est conforme aux conditions d'utilisation "
+"du service."
+
+#: templates/about.html:8
+msgid ""
+"It's worth mentioning that Lol Senpai isn’t endorsed by Riot Games and "
+"doesn’t reflect the views or opinions of Riot Games or anyone officially "
+"involved in producing or managing League of Legends. League of Legends and "
+"Riot Games are trademarks or registered trademarks of Riot Games, Inc. "
+"League of Legends © Riot Games, Inc."
+msgstr ""
+"Il est important de mentionner que Lol Senpai n'est pas approuvé par Riot "
+"Games et ne reflète pas les vues ou les opinions de Riot Games ou quelqu'un "
+"officiellement impliquée dans la production ou la gestion de League of "
+"Legends. League of Legends et Riot Games sont des marques commerciales ou "
+"des marques déposées de Riot Games, Inc. League of Legends © Riot Games, Inc."
+
+#: templates/about.html:11
+msgid "Who are we?"
+msgstr "Qui sommes nous ?"
+
+#: templates/about.html:13
+msgid "We are both young guys living in Nancy, France:"
+msgstr "Nous sommes deux jeunes hommes vivant à Nancy, en France :"
+
+#: templates/about.html:18
+msgid ""
+"We love to build applications from the ground up, coding is our daily job."
+msgstr ""
+"Nous aimons créer des applications à partir de rien, la programmation est "
+"notre travail quotidien."
+
+#: templates/about.html:19
+msgid ""
+"We love to play league of legends and watch pro games. We have been playing "
+"for years and one of us even flew all the way to Seoul last October to "
+"attend the world finale!"
+msgstr ""
+"Nous aimons jouer League of Legends et regarder les matchs pro. Nous avons "
+"joué pendant des années et l'un de nous a même volé jusqu'à Séoul en octobre "
+"dernier pour assister à la finale mondiale !"
+
+#: templates/about.html:21
+msgid ""
+"Aurélien at a Lol LAN Party with his team (the guy at the far left), "
+"February 2015:"
+msgstr ""
+"Aurélien à un tournoi de LoL avec son équipe (le gars tout à gauche), en "
+"Février 2015 :"
+
+#: templates/about.html:23
+msgid ""
+"Alexandre in Sangam Stadium, Seoul for the S04 world championship finale, "
+"with Snoopeh, October 2014:"
+msgstr ""
+"Alexandre à Sangam Stadium, Seoul pour les S04 world championship finale, "
+"avec Snoopeh, Octobre 2014 :"
+
+#: templates/about.html:28
+msgid ""
+"Why did we decided to participate and how did we come up with this idea?"
+msgstr ""
+"Pourquoi avons-nous décidé de participer et comment sommes-nous arrivés à "
+"cette idée ?"
+
+#: templates/about.html:30
+msgid ""
+"We did not think twice when we heard we had the opportunity to combine those "
+"2 passions (coding and League of Legends)."
+msgstr ""
+"Nous n'y avons pas réfléchis à deux fois lorsque l'on a eu l'opportunité de "
+"combiné nos 2 passions."
+
+#: templates/about.html:31
+msgid ""
+"We just had to find an idea. As competitors (one of us reached diamond last "
+"season), during the loading screen, we usually gather scraps of information "
+"from different sites and try to evaluate our opponents strength and "
+"foresight the game plan. We thought it could be nice to have all the "
+"important information delivered on a silver plate."
+msgstr ""
+"Nous avons juste eu à trouver une idée. Comme tous les compétiteurs (l'un de "
+"nous était diamant la saison dernière), au cours de l'écran de chargement, "
+"nous rassemblons habituellement quelques d'informations provenant de "
+"différents sites et tentons d'évaluer la force de notre adversaire et de "
+"définir le plan de match. Nous avons pensé qu'il pourrait être agréable "
+"d'avoir toutes les informations importantes livrées sur un plateau d'argent."
+
+#: templates/about.html:32
+msgid ""
+"As we use a lot of tools from the community, we thought that it was a good "
+"opportunity to share a tool of our own."
+msgstr ""
+"Comme nous utilisons beaucoup d'outils de la communauté, nous pensons que "
+"c'était un service utile à proposer."
+
+#: templates/about.html:35
+msgid "Why is our submission completely off-topic?"
+msgstr "Pourquoi notre rendu est complètement hors-sujet ?"
+
+#: templates/about.html:37
+msgid ""
+"On April 16, 2015, we realized that our application was off-topic for this "
+"contest."
+msgstr ""
+"Le 16 Avril 2015, nous avons réalisé que notre demande était hors-sujet pour "
+"ce concours."
+
+#: templates/about.html:38
+msgid ""
+"The explanation is quite simple. We (wrongly) mainly relied on this <a href="
+"\"http://www.riotgames.com/articles/20150330/1661/fyi-our-first-api-challenge"
+"\">page</a> and on the fact that our entry was accepted to think that we had "
+"a chance to compete."
+msgstr ""
+"L'explication est assez simple. Nous nous sommes appuyés (à tort) "
+"principalement sur cette <a href=\"http://www.riotgames.com/"
+"articles/20150330/1661/fyi-our-first-api-challenge\">page</a> ; ainsi que "
+"sur le fait que notre inscription ait été acceptée, nous pensions que nous "
+"avions une chance de concourir."
+
+#: templates/about.html:39
+msgid ""
+"While in fact, we had to code something related to URF and the new api. It "
+"was our fault for not properly reading the rules. It was too late to adapt "
+"our concept and we did not want to throw away our work so here we are."
+msgstr ""
+"Alors qu'en fait, nous aurions dû coder quelque chose lié au mode URF et à "
+"la nouvelle API. Notre faute a été de ne pas correctement lire les règles. "
+"Il était trop tard pour adapter notre concept et nous ne voulions pas jeter "
+"notre travail."
+
+#: templates/about.html:42
+msgid "Information about the technical stack and related choices"
+msgstr "Informations à propos des choix techniques"
+
+#: templates/about.html:44
+msgid ""
+"This contest was the opportunity for us to learn and experiment new "
+"technologies."
+msgstr ""
+
+#: templates/about.html:45
+msgid "Back-end technologies"
+msgstr "Technologies Back-end"
+
+#: templates/about.html:46
+msgid ""
+"We chose python for our backend technology, along with the Flask framework. "
+"It’s a blazing fast  and light plugin allowing us to handle basic routing "
+"and http requests. it also includes the Jinja2 templating language."
+msgstr ""
+"Nous avons choisis de faire notre backend en Python, avec le framework "
+"Flask. C’est un plugin léger, qui permet de faire des sites internet, avec "
+"gestion des routes, des requêtes HTTP, des templates (via Jinja2), … de "
+"manière relativement simple et propre."
+
+#: templates/about.html:47
+msgid ""
+"League of legends is a world-class game. It was obvious that the i18n "
+"support was mandatory in order to reach a lot of players. For the sake of "
+"the demo, we only implemented the english and french language."
+msgstr ""
+"League of Legends est un jeu international. Le support i18n est donc "
+"obligatoire afin de pouvoir s'adresser au plus grand nombre de joueurs "
+"possibles. Pour ce concours, nous aurons seulement le temps d'implémenter "
+"les langues françaises en anglaises."
+
+#: templates/about.html:48
+msgid ""
+"We rely on gettext through the Flask-Babel plugin and use Poedit to handle ."
+"po/.mo files."
+msgstr ""
+"Nous utilisons pour cela GetText avec le plugin Flask-Babel et Poedit pour "
+"générer les fichiers .po/.mo."
+
+#: templates/about.html:50
+msgid ""
+"Having a cache system is essential to avoid querying Riot’s server too much. "
+"Python dict/list are not persistent if the server crash so we chose not to "
+"use them."
+msgstr ""
+"Avoir un système de cache est essentiel pour éviter de faire trop de "
+"requêtes sur les serveur de Riot. Les dictionnaires ou listes en Python ne "
+"sont pas persistants si le serveur crash, nous avons donc choisis de nous "
+"tourner vers autre chose."
+
+#: templates/about.html:51
+msgid ""
+"Instead we chose to store response FROM the API in the key-value cache store "
+"Redis, a NoSQL DB. In Lol-Senpai, the key is the URL and the value is the "
+"HTTP response (body)."
+msgstr ""
+"Nous avons en effet décidé de stocker les réponses de l'API dans un système "
+"de clé-valeur, Redis, une base de données NoSQL. Sur Lol-Senpai, la clé est "
+"l'URL, et la valeur est le contenu de la réponse HTTP."
+
+#: templates/about.html:52
+msgid "The caching strategy is very simplistic at the moment:"
+msgstr "Notre stratégie de cache est très simple pour le moment :"
+
+#: templates/about.html:54
+msgid "15 min by default"
+msgstr "15 minutes par défaut"
+
+#: templates/about.html:55
+msgid "1 week for static data (champions info for instance) or summoner ids"
+msgstr ""
+"Une semaine pour les données statiques (les informations sur les champions "
+"par exemple), ou sur les ID des invocateurs."
+
+#: templates/about.html:56
+msgid "Few minutes for current games"
+msgstr "Quelques minutes pour récupérer le match en cours d'un joueur"
+
+#: templates/about.html:58
+msgid "The aim is to rely on the cache as much as possible."
+msgstr ""
+
+#: templates/about.html:60
+msgid ""
+"We are also considering storing long term information on our server. Using "
+"NoSQL technologies (maybe MongoDB), to provide more information and data for "
+"other modes and not only ranked mode."
+msgstr ""
+
+#: templates/about.html:62
+msgid "Hosting technologies"
+msgstr "Technologies d'hébergements"
+
+#: templates/about.html:63
+msgid ""
+"In order to install, configure and launch these technologies on our server, "
+"we chose Docker. It allows us to automate every steps of the build."
+msgstr ""
+
+#: templates/about.html:64
+msgid ""
+"Our flask application runs on nginx (web server). Unfortunately nginx "
+"(contrary to apache) does not support WSGI and thus cannot communicate with "
+"flask. That’s why Gunicorn comes into play, to act as an interface between "
+"our application and the web server."
+msgstr ""
+
+#: templates/about.html:65
+msgid "Finally Supervisor monitor and control Gunicorn."
+msgstr ""
+
+#: templates/about.html:66
+msgid ""
+"At the moment, we are hosting Lol Senpai on a cheap VPS. This is enough for "
+"now but this won’t hold the charge if we ever get a small traffic. The next "
+"step is going to be the transfer on DigtalOcean who offers nice ssd servers "
+"for a cheap price."
+msgstr ""
+
+#: templates/about.html:67
+msgid ""
+"Regarding our architecture, hopefully, it’s going to be multi-servers. We "
+"are going to use:"
+msgstr ""
+
+#: templates/about.html:69
+msgid "HAProxy (acting as a load balancer)"
+msgstr "HAProxy (afin de répartir la charge)"
+
+#: templates/about.html:70
+msgid "Redis sentinel for redis replication"
+msgstr "Redis sentinel pour la réplication de Redis"
+
+#: templates/about.html:72
+msgid ""
+"With this architecture, we believe that this would allow us to add new "
+"servers easily if we ever need to. And of course, we would need better "
+"servers and would migrate to AWS or OVH."
+msgstr ""
+
+#: templates/about.html:73
+msgid ""
+"Like every developers these days, we use a CVS to work as a team. We chose "
+"git because it’s really powerful (despite not using branches for this "
+"contest haha)."
+msgstr ""
+
+#: templates/about.html:75
+msgid "Front-end technologies"
+msgstr "Technologies Front-end"
+
+#: templates/about.html:76
+msgid ""
+"Finally, regarding the frontend side we used HTML5/CSS3 with a little bit of "
+"javascript. We love front-end technologies and we use nice stack on our "
+"daily job (bower, grunt, angularJS, sass, etc) but we decided to keep the "
+"frontend side as light as possible."
+msgstr ""
+
+#: templates/about.html:77
+msgid ""
+"We chose swiftness and handmade code over libraries. The website is "
+"responsive and aimed to be used on mobile (as small as 320px width). Mobile "
+"connections are not reliable and we wanted to avoid the load of hundred of "
+"ko of libraries."
+msgstr ""
+
+#: templates/about.html:79
+msgid "The faster we deliver, the happier the user is."
+msgstr ""
+
+#: templates/about.html:83
+msgid "Contact us"
+msgstr "Nous contacter"
+
+#: templates/about.html:85
+msgid ""
+"You think that we should add an important information or you have any "
+"suggestion regarding this service ? Don't hesitate to contact us at "
+"<strong>contact at lol-senpai.com</strong> (English or French only)."
+msgstr ""
+"Vous pensez que nous devrions ajouter une information importante, ou vous "
+"avez des suggestions concernant ce service ? N'hésitez pas à nous contacter "
+"à <strong>contact at lol-senpai.com</strong> (anglais ou français seulement)."
+
+#: templates/about.html:88
+msgid "Final word"
+msgstr "Finale mondiale"
+
+#: templates/about.html:90
+msgid ""
+"Thank you Riot for giving us the opportunity to use your data to build tools "
+"for the community. You have been keeping us entertain for years. ^_^"
+msgstr ""
+"Merci à Riot pour nous offrir la possibilité d'utiliser vos données pour "
+"construire des outils pour la communauté. Vous nous faites kiffer depuis des "
+"années. :)"
+
+#: templates/base.html:34
+msgid "ENGLISH"
+msgstr "ANGLAIS"
+
+#: templates/base.html:35
+msgid "FRENCH"
+msgstr "FRANCAIS"
+
+#: templates/base.html:58
 msgid "Search"
 msgstr "Recherche"
 
-#: templates/base.html:31
-msgid "Disclamer"
-msgstr "CGU"
+#: templates/base.html:59
+msgid "FAQ"
+msgstr "FAQ"
 
-#: templates/base.html:32
-msgid "About"
-msgstr "A propos"
+#: templates/base.html:62
+msgid "Copyright Lol-Senpai 2015"
+msgstr "Copyright Lol-Senpai 2015"
+
+#: templates/faq.html:2
+msgid "What is LoL Senpai?"
+msgstr "Qu'Est-ce que LoL Senpai ?"
+
+#: templates/faq.html:4
+msgid ""
+"LoL Senpai is a tool aiming to support ranked players in the video game "
+"League of legends. It provides advices about the upcoming ranked game and "
+"your opponents."
+msgstr ""
+"LoL Senpai est un outil qui permet de vous aidez pour vos parties classées "
+"dans League of Legends. Il vous conseille en fonction des précédentes "
+"parties classées de vos adversaires."
+
+#: templates/faq.html:5
+msgid ""
+"Gathering info about your enemy by hand is a tedious process that you cannot "
+"always achieve within the limited time of the loading screen."
+msgstr ""
+"Récupérer vous-même des informations sur votre ennemi est un processus "
+"fastidieux, que vous ne pouvez pas toujours obtenir dans le temps limité de "
+"l'écran de chargement."
+
+#: templates/faq.html:6
+msgid ""
+"LoL Senpai acts as a mini-coach and tell you what are the key information "
+"about the upcoming game."
+msgstr ""
+"LoL Senpai agit comme un mini-coach et vous dit quelles sont les "
+"informations clés que vous devez savoir pour le match à venir."
+
+#: templates/faq.html:9
+msgid "Which kind of info do you provide?"
+msgstr "Quels genres d'informations fournissez-vous ?"
+
+#: templates/faq.html:11
+msgid ""
+"We put emphasis on the enemy's weaknesses and on your team's strengths, "
+"leaving out weaknesses about your own team. The reason behind that is that "
+"we want to put you in a positive mindset."
+msgstr ""
+"Nous mettons l'accent sur les faiblesses de l'ennemi et la force de votre "
+"équipe, en laissant donc les faiblesses au sujet de votre propre équipe de "
+"côté. Nous voulons en fait vous mettre dans un état d'esprit positif."
+
+#: templates/faq.html:12
+msgid "Information provided concern, but are not limited to:"
+msgstr "Quelques exemples des types d'informations fournies :"
+
+#: templates/faq.html:14
+msgid "Strength with a champion or on a specific role"
+msgstr "Force avec un champion ou un rôle spécifique"
+
+#: templates/faq.html:15
+msgid "Wards coverage"
+msgstr "Utilisation des Wards"
+
+#: templates/faq.html:16
+msgid "Suitability of runes"
+msgstr "Pertinence des runes"
+
+#: templates/faq.html:17
+msgid "Winning/Losing streaks"
+msgstr "Suite de victoires/défaites"
+
+#: templates/faq.html:18
+msgid "And much more"
+msgstr "Et plus encore"
+
+#: templates/faq.html:22
+msgid "Who can benefit from these information?"
+msgstr "Qui peut bénéficier de ces informations ?"
+
+#: templates/faq.html:24
+msgid ""
+"Basically, every summoner interested in the ranked mode can benefit from "
+"these information."
+msgstr ""
+"Fondamentalement, chaque joueur intéressé par les parties classés peut tirer "
+"avantage de ces informations."
+
+#: templates/faq.html:25
+msgid ""
+"However, we believe that high ranked players (starting from mid diamond and "
+"above) would not find this tool as useful as other players."
+msgstr ""
+"Cependant, nous pensons que les joueurs à haut niveau (à partir de mi-"
+"diamant et supérieur) ne trouveront pas cet outil aussi utile que d'autres."
+
+#: templates/faq.html:26
+msgid ""
+"Additionally, each information is provided with an optional description, "
+"helping out players to interpret it."
+msgstr ""
+"Au passage, chaque information est fournie avec une description aidant les "
+"joueurs à l'interpréter."
+
+#: templates/faq.html:29
+msgid "What's next?"
+msgstr "Et ensuite ?"
+
+#: templates/faq.html:31
+msgid ""
+"17 days was a small window to create something meaningful and we could not "
+"implement everything that we have imagined. Hopefully, the next updates will "
+"concern the following matters."
+msgstr ""
+
+#: templates/faq.html:33
+msgid "Improve the performance of our application and servers"
+msgstr ""
+
+#: templates/faq.html:34
+msgid ""
+"We know that the site is really slow at the moment and we are working on it."
+msgstr ""
+
+#: templates/faq.html:36
+msgid "More description related to advices"
+msgstr ""
+
+#: templates/faq.html:37
+msgid "Right now, descriptions related to advices are incomplete."
+msgstr ""
+
+#: templates/faq.html:39
+msgid "Information about runes"
+msgstr "Informations à propos des runes"
+
+#: templates/faq.html:40
+msgid ""
+"We did not even scratch the surface of what we want to achieve with runes. "
+"Ideally, we would like to warn summoners about:"
+msgstr ""
+
+#: templates/faq.html:42
+msgid ""
+"Plain wasted runes (mana regen/energy regen on champ who does not need it)"
+msgstr ""
+
+#: templates/faq.html:43
+msgid ""
+"Sub optimal runes (player running tier1/tier2 runes or pages with incomplete "
+"rune pages)"
+msgstr ""
+
+#: templates/faq.html:44
+msgid ""
+"Questionable runes (Fiddle jungle running ad runes or no armor runes when "
+"the opposite team is full ad comp)"
+msgstr ""
+
+#: templates/faq.html:45
+msgid ""
+"Cheesy runes (a riven running a full ad page is dangerous and is something "
+"we should warn the player about)"
+msgstr ""
+
+#: templates/faq.html:48
+msgid "Persistent storage of information for a ‘machine learning'"
+msgstr ""
+
+#: templates/faq.html:49
+msgid ""
+"For this contest, we only provided information using on the fly data. We "
+"could go much further."
+msgstr ""
+
+#: templates/faq.html:50
+msgid ""
+"For the instance we could imagine giving detailed info about a specific "
+"upcoming matchup within the elo range of the player based on historical data "
+"on a given patch."
+msgstr ""
+
+#: templates/faq.html:51
+msgid ""
+"The elo range thing is really important to us, there is no point of telling "
+"a silver player that Vayne top played a certain way is really strong versus "
+"some champions when it’s only a diamond+ thing and really hard to execute."
+msgstr ""
+
+#: templates/faq.html:52
+msgid ""
+"Most counter champion sites are only based on votes from the community. This "
+"is not accurate."
+msgstr ""
+
+#: templates/faq.html:53
+msgid ""
+"What if we could query tons of match history to determine the real outcome "
+"of a matchup and power spikes of each champion using real, meaningful data "
+"for the player?"
+msgstr ""
+
+#: templates/faq.html:54
+msgid "These data could also be useful to determine a viable builder order."
+msgstr ""
+
+#: templates/faq.html:55
+msgid ""
+"We could also imagine to evaluating the strength of each team based on their "
+"composition and give a game plan like a coach would do."
+msgstr ""
+
+#: templates/faq.html:56
+msgid ""
+"\"Ok guys, you have an early comp, you should try push your advantages to "
+"end it because their Nasus and Cassiop are going to rip you apart past the "
+"35min mark. Your Lee sin is proven to be a strong ganker, try to focus on "
+"toplane to shut Nasus down\"."
+msgstr ""
+
+#: templates/faq.html:57
+msgid ""
+"This kind of thing is obvious to high ranked players, but could really help "
+"bronze/silver players to step up their games and climb faster."
+msgstr ""
+
+#: templates/game.html:6
+msgid "No data"
+msgstr "Aucune donnée"
+
+#: templates/game.html:13
+msgid "More information"
+msgstr "Plus d'informations"
+
+#: templates/game.html:41
+msgid "Good news"
+msgstr "Bonnes nouvelles"
+
+#: templates/game.html:42
+msgid "Watch out"
+msgstr "Méfiez-vous"
+
+#: templates/game.html:43
+msgid "Information"
+msgstr "Information"
+
+#~ msgid "Game not compatible"
+#~ msgstr "Mode de jeu non compatible"
+
+#~ msgid "Disclamer"
+#~ msgstr "CGU"

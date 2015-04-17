@@ -239,7 +239,6 @@ li {
     background: #b33737;
 }
 .home .w_search input[type=text] {
-    font-size: 1em;
     height: 35px;
     width: calc(100% - 150px);
     max-width: 300px;
