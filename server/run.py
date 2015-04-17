@@ -26,6 +26,11 @@ def about():
     return render_template('about.html', **locals())
 
 
+@app.route('/riot.txt')
+def riottxt():
+    return '772f4e2a-de73-4d71-8f19-e8c51290e475'
+
+
 @app.route('/<lang>/game/<region>/<username>')
 def match(region, username):
     title = gettext("%(summoner)s's match", summoner=username)
