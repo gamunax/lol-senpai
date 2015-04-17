@@ -66,14 +66,6 @@ class EnemyGoodWithThisChampionAdvice(Advice):
             self.message += gettext(' He has already done %(penta_kills)d penta kills with it', penta_kills=self.penta_kills)
 
 
-class EnemyHasAGoodKDAWithThisChampionAdvice(Advice):
-    def __init__(self, champion_name, kda):
-        self.champion_name = champion_name
-        self.kda = kda
-        self.message = gettext('"The <span class="info enemy">enemy %(champion)s</span> has a bad KDA with this champion (%(kda)f)',
-                               champion=self.champion_name, kda=self.kda)
-
-
 class EnemyBadWithThisChampionAdvice(Advice):
     def __init__(self, champion_name, percent_win, played, kda):
         self.champion_name = champion_name

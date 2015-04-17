@@ -17,8 +17,6 @@ class AnalyzerSkillChampion(AnalyzerBase):
         stats = get_stats_champion_ranked(player.id, player.championId)
         if stats is None:
             senpai.add_advice(senpai.PROS, EnemyNeverPlayedThisChampionAdvice(player.get_champion().name))
-        elif stats['kda'] < 1:
-            senpai.add_advice(senpai.PROS, EnemyHasAGoodKDAWithThisChampionAdvice(player.get_champion().name, stats['kda']))
         elif stats['played'] > 3 and stats['percent_win'] > 70:
             senpai.add_advice(senpai.CONS, EnemyGoodWithThisChampionAdvice(player.get_champion().name,
                                                                            stats['percent_win'], stats['played'], stats['pentaKills'], stats['kda']))
