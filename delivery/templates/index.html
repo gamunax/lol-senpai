@@ -1,0 +1,311 @@
+{% extends "base.html" %}
+
+{% block container %}
+<h2>Summary</h2>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Value</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Latest GIT revision</td>
+        <td>27c3a0c</td>
+        <td>
+            <button type="button" class="btn btn-default btn-xs" id="GitFetchSubmit">GIT FETCH</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<h2>Releases</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Image ID</th>
+        <th>Repository</th>
+        <th>Tag (GIT Revision)</th>
+        <th>Created</th>
+        <th>Size</th>
+        <th>Remove</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="success">
+        <td>64698ee0dfe3</td>
+        <td>senpai</td>
+        <td>27c3a0c (latest)</td>
+        <td>2 hours ago</td>
+        <td>786.6 MB</td>
+        <td>
+            <button type="button" class="btn btn-danger btn-xs remove-confirm" data-path="release/64698ee0dfe3" disabled="disabled">Remove</button>
+        </td>
+    </tr>
+    <tr class="warning">
+        <td>0ca571d528ac</td>
+        <td>senpai</td>
+        <td>f9dc40a</td>
+        <td>17 hours ago</td>
+        <td>786.6 MB</td>
+        <td>
+            <button type="button" class="btn btn-danger btn-xs remove-confirm" data-path="release/0ca571d528ac" disabled="disabled">Remove</button>
+        </td>
+    </tr>
+    <tr class="danger">
+        <td>a49c4488c5c5</td>
+        <td>senpai</td>
+        <td>56fe2aa</td>
+        <td>2 weeks ago</td>
+        <td>786.6 MB</td>
+        <td>
+            <button type="button" class="btn btn-danger btn-xs remove-confirm" data-path="release/a49c4488c5c5">Remove</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_new_release">New release</button>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<h2>Containers</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>HAProxy weight</th>
+        <th>HAProxy state</th>
+        <th>Container ID</th>
+        <th>Container image</th>
+        <th>Container status</th>
+        <th>Container actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="success">
+        <td>python1</td>
+        <td>
+            1
+            <button type="button" class="btn btn-default btn-xs edit-weight" data-name="python1">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            </button>
+        </td>
+        <td>
+            Enabled
+            <button type="button" class="btn btn-default btn-xs edit-state" data-name="python1">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            </button>
+        </td>
+        <td>3a168348857f</td>
+        <td>senpai:f9dc40a</td>
+        <td>Up 18 hours</td>
+        <td>
+            <button type="button" class="btn btn-success btn-xs new-container" data-name="python1" disabled="disabled">New</button>
+            <button type="button" class="btn btn-danger btn-xs remove-confirm" data-path="container/3a168348857f">Remove</button>
+        </td>
+    </tr>
+    <tr class="danger">
+        <td>python2</td>
+        <td>
+            0
+            <button type="button" class="btn btn-default btn-xs edit-weight" data-name="python2">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            </button>
+        </td>
+        <td>
+            Disabled
+            <button type="button" class="btn btn-default btn-xs edit-state" data-name="python2">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            </button>
+        </td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>
+            <button type="button" class="btn btn-success btn-xs new-container" data-name="python2">New</button>
+            <button type="button" class="btn btn-danger btn-xs" disabled="disabled">Remove</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<button type="button" class="btn btn-success" disabled="disabled">Add container</button>
+
+<div class="modal fade" id="modal_weight" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Edit HAProxy weight of <i id="HAProxyWeightID">?</i></h4>
+            </div>
+            <div class="modal-body form-horizontal">
+                <div class="form-group">
+                    <label for="HAProxyWeight" class="col-sm-3 control-label">Weight</label>
+                    <div class="col-sm-9">
+                        <input id="HAProxyWeight" type="number" class="form-control" placeholder="Integer (the value 0 used to not have new traffic)">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" id="HAProxyWeightSubmit">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_state" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Edit HAProxy state of <i id="HAProxyStateID">?</i></h4>
+            </div>
+            <div class="modal-body">
+                <p class="alert alert-warning" role="alert">Disable a server will cause a total interruption of traffic, even those with any requests being served. It is recommended to set a weight of 0 to this server, and wait for the end of the current requests before disabling it completely.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" id="HAProxyStateEnable">Enable</button>
+                <button type="button" class="btn btn-danger" id="HAProxyStateDisable">Disable</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_confirm" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Remove <i id="PathRemove">?</i></h4>
+            </div>
+            <div class="modal-body">
+                <p class="alert alert-warning" role="alert">Are you sure?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" id="PathRemoveConfirm">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_new_container" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">New container for <i id="NewContainerName">?</i></h4>
+            </div>
+            <div class="modal-body form-horizontal">
+                <div class="form-group">
+                    <label for="DockerImage" class="col-sm-3 control-label">Release</label>
+                    <div class="col-sm-9">
+                        <select id="DockerImage" class="form-control">
+                            <option value="64698ee0dfe3">senpai:27c3a0c (latest)</option>
+                            <option value="0ca571d528ac">senpai:f9dc40a</option>
+                            <option value="a49c4488c5c5">senpai:56fe2aa</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" id="NewContainerSubmit">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_new_release" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">New release</h4>
+            </div>
+            <div class="modal-body form-horizontal">
+                <div class="form-group">
+                    <label for="GITRevision" class="col-sm-3 control-label">GIT Revision</label>
+                    <div class="col-sm-9">
+                        <input id="GITRevision" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" id="NewReleaseSubmit">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+    var modal_weight = $("#modal_weight");
+    $(".edit-weight").click(function () {
+        $("#HAProxyWeightID", modal_weight).text($(this).attr('data-name'));
+        modal_weight.modal('show');
+    });
+
+    var modal_state = $("#modal_state");
+    $(".edit-state").click(function () {
+        $("#HAProxyStateID", modal_state).text($(this).attr('data-name'));
+        modal_state.modal('show');
+    });
+
+    var modal_confirm = $("#modal_confirm");
+    $(".remove-confirm").click(function () {
+        $("#PathRemove", modal_confirm).text($(this).attr('data-path'));
+        modal_confirm.modal('show');
+    });
+
+    var modal_new_container = $("#modal_new_container");
+    $(".new-container").click(function () {
+        $("#NewContainerName", modal_new_container).text($(this).attr('data-name'));
+        modal_new_container.modal('show');
+    });
+
+    var modal_new_release = $("#modal_new_release");
+
+    $("#GitFetchSubmit").click(function(){
+        alert("/execute/git/fetch");
+    });
+    $("#HAProxyWeightSubmit", modal_weight).click(function(){
+        alert("/execute/haproxy/" + $("#HAProxyWeightID", modal_weight).text() + "/weight/" + $("#HAProxyWeight", modal_weight).val());
+    });
+    $("#HAProxyStateEnable", modal_state).click(function(){
+        alert("/execute/haproxy/" + $("#HAProxyStateID", modal_state).text() + "/state/enable");
+    });
+    $("#HAProxyStateDisable", modal_state).click(function(){
+        alert("/execute/haproxy/" + $("#HAProxyStateID", modal_state).text() + "/state/disable");
+    });
+    $("#PathRemoveConfirm", modal_confirm).click(function(){
+        alert("/execute/" + $("#PathRemove", modal_confirm).text() + "/remove");
+    });
+    $("#NewContainerSubmit", modal_new_container).click(function(){
+        alert("/execute/container/" + $("#NewContainerName", modal_new_container).text() + "/new/" + $("#DockerImage", modal_new_container).val());
+    });
+    $("#NewReleaseSubmit", modal_new_release).click(function(){
+        alert("/execute/release/new/" + $("#GITRevision", modal_new_release).val());
+    });
+</script>
+{% endblock %}
