@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block container %}
+<h2>{{ path }}</h2>
+
+<pre>
+<code style="color: #c7254e"><b>{{ command }}</b></code>
+
+<div id="results"></div>
+
+<b id="summary" class="text-info">Command still in progress...</b>
+</pre>
+
+<a id="return_link" href="/" class="btn btn-primary disabled">Return to the delivery's page</a>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+if (!!window.EventSource) {
+    var source = new EventSource("{{ path }}");
+    var results = $("#results");
+    source.onmessage = function(e) {
+        if (e.data.substr(0, 13) == "RETURN_VALUE=") {
+            source.close();
+            if (e.data == "RETURN_VALUE=0") {
+                $("#summary").text("The command was terminated successfully.")
+                        .removeClass("text-info").addClass("text-success");
+            } else {
+                $("#summary").text("The command wasn't terminated successfully (" + e.data + ").")
+                        .removeClass("text-info").addClass("text-danger");
+            }
+            $("#return_link").removeClass("disabled");
+            return;
+        }
+        results.text(results.text() + e.data + "\n");
+    };
+    source.onerror = function(e) {
+        console.log("EVENT ERROR:", e, e.message);
+    }
+}
+</script>
+{% endblock %}
