@@ -8,7 +8,7 @@ from app.advice import EnemyLosingStreakAdvice, EnemyWinningStreakAdvice, EnemyP
 class AnalyzerSummonerHistory(AnalyzerBase):
     def analyze_player_as_an_ally(self, senpai, player):
         stats = get_stats_history_ranked(player.id, senpai.game.gameQueue)
-        if stats and stats['last_wins_in_a_row'] > 2:
+        if not senpai.get_current_player().is_me(player.id) and stats['last_wins_in_a_row'] > 2:
             senpai.add_advice(senpai.PROS,
                               AllyWinningStreakAdvice(player.get_champion().name, stats['last_wins_in_a_row']))
 
@@ -50,7 +50,7 @@ class AnalyzerSummonerHistory(AnalyzerBase):
         if stats['last_wins_in_a_row'] > 2:
             senpai.add_advice(senpai.CONS,
                               EnemyWinningStreakAdvice(player.get_champion().name, stats['last_wins_in_a_row']))
-        if wards_per_game < 7 and main_role is not 'adc':
+        if senpai.game.is_five_ranked() and wards_per_game < 7 and main_role is not 'adc':
             senpai.add_advice(senpai.PROS, EnemyPoorWardCoverageAdvice(player.get_champion().name, wards_per_game))
         if main_role is not None:
             senpai.add_advice(senpai.INFO, EnemyMainRoleAdvice(player.get_champion().name, main_role))

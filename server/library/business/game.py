@@ -47,3 +47,6 @@ class CurrentGame(Game):
         for champ in json_data.get('bannedChampions'):
             self.bannedChampions.append(self.BannedChampions(champ))
 
+    def is_five_ranked(self):
+        return self.gameQueue == 'RANKED_SOLO_5x5' or self.gameQueue == 'RANKED_PREMADE_5x5'
+

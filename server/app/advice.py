@@ -102,6 +102,38 @@ class EnemyInPromoAdvice(Advice):
                                champion=self.champion_name)
 
 
+class EnemyMissingRunesAdvice(Advice):
+    def __init__(self, champion_name, nb_missing_runes):
+        self.champion_name = champion_name
+        self.nb_missing_runes = nb_missing_runes
+        self.message = gettext('The <span class="info enemy">enemy %(champion)s</span> '
+                               'has %(nb_missing_runes)d missing runes',
+                               champion=self.champion_name, nb_missing_runes=self.nb_missing_runes)
+
+
+class EnemyNotMaxTierRunesAdvice(Advice):
+    def __init__(self, champion_name, stats_not_max_tier):
+        self.champion_name = champion_name
+        self.stats_not_max_tier = stats_not_max_tier
+
+        self.message = gettext('The <span class="info enemy">enemy %(champion)s</span> '
+                               'has some tier 1 or 2 runes :',
+                               champion=self.champion_name, nb_not_max_tier_runes=self.nb_not_max_tier_runes)
+
+        if self.stats_not_max_tier['blue'] > 0:
+            self.message += gettext(' %(count)d glyphs',
+                                    count=self.stats_not_max_tier['blue'])
+        if self.stats_not_max_tier['red'] > 0:
+            self.message += gettext(' %(count)d marks',
+                                    count=self.stats_not_max_tier['red'])
+        if self.stats_not_max_tier['yellow'] > 0:
+            self.message += gettext(' %(count)d seals',
+                                    count=self.stats_not_max_tier['yellow'])
+        if self.stats_not_max_tier['black'] > 0:
+            self.message += gettext(' %(count)d quintessences',
+                                    count=self.stats_not_max_tier['black'])
+
+
 class AllyGoodWithThisChampionAdvice(Advice):
     def __init__(self, champion_name, percent_win, played, penta_kills, kda):
         self.champion_name = champion_name
