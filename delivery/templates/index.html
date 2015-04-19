@@ -13,7 +13,7 @@
     <tbody>
     <tr>
         <td>Latest GIT revision</td>
-        <td>27c3a0c</td>
+        <td>{{ latest_git_revision }}</td>
         <td>
             <button type="button" class="btn btn-default btn-xs" id="GitFetchSubmit">GIT FETCH</button>
         </td>
@@ -179,9 +179,9 @@
                     <label for="DockerImage" class="col-sm-3 control-label">Release</label>
                     <div class="col-sm-9">
                         <select id="DockerImage" class="form-control">
-                            <option value="64698ee0dfe3">senpai:27c3a0c (latest)</option>
-                            <option value="0ca571d528ac">senpai:f9dc40a</option>
-                            <option value="a49c4488c5c5">senpai:56fe2aa</option>
+                            {% for release in releases %}
+                            <option value="{{ release.image_id }}">{{ release.repository }}:{{ release.tag }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                 </div>
@@ -207,7 +207,7 @@
                 <div class="form-group">
                     <label for="GITRevision" class="col-sm-3 control-label">GIT Revision</label>
                     <div class="col-sm-9">
-                        <input id="GITRevision" type="text" class="form-control">
+                        <input id="GITRevision" type="text" class="form-control" value="{{ latest_git_revision }}"
                     </div>
                 </div>
             </div>

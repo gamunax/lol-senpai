@@ -21,7 +21,8 @@ def execute_command(args):
 
 
 def get_latest_git_revision():
-    return subprocess.check_output(['git', "-C", root_directory, 'rev-parse', '--short', 'HEAD'])
+    out = subprocess.check_output(['git', "-C", root_directory, 'rev-parse', '--short', 'HEAD'])
+    return out.decode("utf-8")[:7]
 
 
 @app.route('/')
