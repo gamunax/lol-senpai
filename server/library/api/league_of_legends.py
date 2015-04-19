@@ -1,6 +1,7 @@
 from library.business.summoner import Summoner
 from library.business.champion import Champion
 from library.business.game import CurrentGame, Game
+from library.business.rune import Rune
 from library.api.constants import API_LIST, REGIONAL_ENDPOINTS, SEASONS
 from library.api import errors
 import urllib.request as request
@@ -95,9 +96,20 @@ class LeagueOfLegends(object):
                 return Summoner(data[user], self.region)
 
     def get_summoner_runes(self, summoner_id):
-        """ Returns a match history based on  'summoner_id' """
+        """ Returns runes of a summoner  'summoner_id' """
         data = self._request('summoner', str(summoner_id) + '/runes')
         return data.get(str(summoner_id)).get('pages')
+
+    def get_runes(self, rune_id=None, rune_data='all'):
+        """ Returns info about the rune 'rune_id' """
+        # https://global.api.pvp.net/api/lol/static-data/euw/v1.2/rune/5273?runeData=all&api_key=fcb32d30-62c9-4888-a299-0596441978f8
+        # https://global.api.pvp.net/api/lol/static-data/euw/v1.2/rune?api_key=fcb32d30-62c9-4888-a299-0596441978f8
+        path = 'rune' + ('/' + str(rune_id) if rune_id else '')
+        params = {'runeData': rune_data}
+        data = self._request('static-data', path, params, cache_expire=60*60*24*7)
+        if rune_id:
+            return Rune(data)
+        return None
 
     def get_match_history(self, summoner_id, ranked_queue='RANKED_SOLO_5x5', begin_index=0, end_index=None):
         """ Returns a match history based on  'summoner_id' """

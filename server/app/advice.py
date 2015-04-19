@@ -102,6 +102,24 @@ class EnemyInPromoAdvice(Advice):
                                champion=self.champion_name)
 
 
+class EnemyMissingRunesAdvice(Advice):
+    def __init__(self, champion_name, nb_missing_runes):
+        self.champion_name = champion_name
+        self.nb_missing_runes = nb_missing_runes
+        self.message = gettext('The <span class="info enemy">enemy %(champion)s</span> '
+                               'has %(nb_missing_runes)d missing runes',
+                               champion=self.champion_name, nb_missing_runes=self.nb_missing_runes)
+
+
+class EnemyNotTierMaxRunesAdvice(Advice):
+    def __init__(self, champion_name, nb_not_tier_max_runes):
+        self.champion_name = champion_name
+        self.nb_not_tier_max_runes = nb_not_tier_max_runes
+        self.message = gettext('The <span class="info enemy">enemy %(champion)s</span> '
+                               'has %(nb_not_tier_max_runes)d tier 1 or 2 runes',
+                               champion=self.champion_name, nb_not_tier_max_runes=self.nb_not_tier_max_runes)
+
+
 class AllyGoodWithThisChampionAdvice(Advice):
     def __init__(self, champion_name, percent_win, played, penta_kills, kda):
         self.champion_name = champion_name

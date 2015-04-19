@@ -27,4 +27,5 @@ ANALYZER_CLASSES = [
     'app.analyzers.skill_champion.AnalyzerSkillChampion',
     'app.analyzers.summoner_history.AnalyzerSummonerHistory',
     'app.analyzers.summoner.AnalyzerSummoner',
+    'app.analyzers.rune.AnalyzerRune'
 ]

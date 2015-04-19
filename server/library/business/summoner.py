@@ -1,5 +1,6 @@
 from general import get_wrapper
 from library.business.league import League
+from library.business.rune import RunePage
 
 
 class Summoner(object):
@@ -29,6 +30,9 @@ class Summoner(object):
         else:
             return self.leagues
 
+    def is_me(self, id):
+        return self.id == id
+
 
 class Player(Summoner):
     def __init__(self, json_data, region):
@@ -39,7 +43,8 @@ class Player(Summoner):
         self.spell1Id = json_data.get("spell1Id")
         self.spell2Id = json_data.get("spell2Id")
         self.teamId = json_data.get("teamId")
-        self.runes = json_data.get('runes')
+        self.runes = RunePage(json_data.get('runes'))
+        #print(self.runes)
         self.masteries = json_data.get('masteries')
         self.stats = json_data.get('stats')
         self.wards_placed = self.stats.get('wardsPlaced') if self.stats else None
