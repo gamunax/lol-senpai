@@ -1,4 +1,5 @@
 from general import get_wrapper
+from flask.ext.babel import gettext, ngettext
 
 
 class RunePage(object):
@@ -11,23 +12,36 @@ class RunePage(object):
                     if 'runeId' in rune:
                         self.runes.append(get_wrapper().get_runes(rune['runeId']))
         self.nb_missing_runes = self.get_nb_missing_runes()
-        self.nb_not_tier_max_runes = self.get_nb_not_tier_max_runes()
+        self.nb_not_max_tier_runes = self.get_nb_not_max_tier_runes()
 
     def get_nb_missing_runes(self):
         return self.max_runes - len(self.runes)
 
-    def get_nb_not_tier_max_runes(self):
-        count = 0
+    def get_nb_not_max_tier_runes(self):
+        stats = {
+            'red': 0,
+            'yellow': 0,
+            'blue': 0,
+            'black': 0,
+        }
+
         for rune in self.runes:
             if not rune.is_max_tier():
-                count += 1
-        return count
+                stats[rune.type] += 1
+        return stats
 
     def __str__(self):
-        return 'This rune page has %d missing runes and %d not tier max runes' % (self.nb_missing_runes, self.nb_not_tier_max_runes)
+        return 'This rune page has %d missing runes' % (self.nb_missing_runes)
 
 
 class Rune(object):
+
+    color_to_type = {
+        'red': gettext('mark'),
+        'yellow': gettext('seal'),
+        'blue': gettext('glyph'),
+        'black': gettext('quintessence'),
+    }
 
     def __init__(self, json_data):
         self.id = json_data.get('id')
@@ -39,6 +53,7 @@ class Rune(object):
         self.isRune = json_data.get('rune').get('isRune')
         self.tier = json_data.get('rune').get('tier')
         self.type = json_data.get('rune').get('type')
+        self.type_name = self.color_to_type[self.type]
 
     def is_max_tier(self):
         return self.tier == "3"

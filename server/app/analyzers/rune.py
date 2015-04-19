@@ -1,5 +1,5 @@
 from app.analyzer import AnalyzerBase
-from app.advice import EnemyMissingRunesAdvice, EnemyNotTierMaxRunesAdvice
+from app.advice import EnemyMissingRunesAdvice, EnemyNotMaxTierRunesAdvice
 
 
 class AnalyzerRune(AnalyzerBase):
@@ -8,6 +8,9 @@ class AnalyzerRune(AnalyzerBase):
         if player.runes.nb_missing_runes > 0:
             senpai.add_advice(senpai.PROS,
                               EnemyMissingRunesAdvice(player.get_champion().name, player.runes.nb_missing_runes))
-        if player.runes.nb_not_tier_max_runes > 0:
+
+        stats_not_max_tier = player.runes.get_nb_not_max_tier_runes()
+        if stats_not_max_tier['red'] > 0 or stats_not_max_tier['blue'] > 0 \
+                or stats_not_max_tier['yellow'] > 0 or stats_not_max_tier['black'] > 0:
             senpai.add_advice(senpai.PROS,
-                              EnemyNotTierMaxRunesAdvice(player.get_champion().name, player.runes.nb_not_tier_max_runes))
+                              EnemyNotMaxTierRunesAdvice(player.get_champion().name, stats_not_max_tier))
