@@ -96,10 +96,16 @@ class EnemyLeftRecentlyAdvice(Advice):
 
 
 class EnemyInPromoAdvice(Advice):
-    def __init__(self, champion_name):
+    def __init__(self, champion_name, stats_promo):
         self.champion_name = champion_name
-        self.message = gettext('The <span class="info enemy">enemy %(champion)s</span> is in a promotion series.',
-                               champion=self.champion_name)
+        self.stats_promo = stats_promo
+        self.progress = self.stats_promo['progress']
+        self.message = gettext('The <span class="info enemy">enemy %(champion)s</span> is in a promotion series for %(tier)s %(division)s :',
+                            champion=self.champion_name, tier=stats_promo['next_tier'], division=stats_promo['next_division'])
+        self.message += '<ul class="series-history">'
+        for result in self.progress:
+            self.message += '<li class="series-result series-result-' + result + '"></li>'
+        self.message += '</ul>'
 
 
 class EnemyMissingRunesAdvice(Advice):
@@ -115,22 +121,21 @@ class EnemyNotMaxTierRunesAdvice(Advice):
     def __init__(self, champion_name, stats_not_max_tier):
         self.champion_name = champion_name
         self.stats_not_max_tier = stats_not_max_tier
-
         self.message = gettext('The <span class="info enemy">enemy %(champion)s</span> '
-                               'has some tier 1 or 2 runes :',
-                               champion=self.champion_name, nb_not_max_tier_runes=self.nb_not_max_tier_runes)
+                               'has some tier 1 or tier 2 runes :',
+                               champion=self.champion_name)
 
         if self.stats_not_max_tier['blue'] > 0:
-            self.message += gettext(' %(count)d glyphs',
+            self.message += gettext(' %(count)d glyph(s)',
                                     count=self.stats_not_max_tier['blue'])
         if self.stats_not_max_tier['red'] > 0:
-            self.message += gettext(' %(count)d marks',
+            self.message += gettext(' %(count)d mark(s)',
                                     count=self.stats_not_max_tier['red'])
         if self.stats_not_max_tier['yellow'] > 0:
-            self.message += gettext(' %(count)d seals',
+            self.message += gettext(' %(count)d seal(s)',
                                     count=self.stats_not_max_tier['yellow'])
         if self.stats_not_max_tier['black'] > 0:
-            self.message += gettext(' %(count)d quintessences',
+            self.message += gettext(' %(count)d quintessence(s)',
                                     count=self.stats_not_max_tier['black'])
 
 
@@ -160,7 +165,13 @@ class AllyWinningStreakAdvice(Advice):
 
 
 class AllyInPromoAdvice(Advice):
-    def __init__(self, champion_name):
+    def __init__(self, champion_name, stats_promo):
         self.champion_name = champion_name
-        self.message = gettext('The <span class="info ally">allied %(champion)s</span> is in a promotion series.',
-                               champion=self.champion_name)
+        self.stats_promo = stats_promo
+        self.progress = self.stats_promo['progress']
+        self.message = gettext('The <span class="info ally">allied %(champion)s</span> is in a promotion series for %(tier)s %(division)s : ',
+                               champion=self.champion_name, tier=stats_promo['next_tier'], division=stats_promo['next_division'])
+        self.message += '<ul class="series-history">'
+        for result in self.progress:
+            self.message += '<li class="series-result series-result-' + result + '"></li>'
+        self.message += '</ul>'

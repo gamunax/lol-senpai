@@ -22,9 +22,8 @@ class Summoner(object):
 
     def get_league_info(self, queue=None):
         if len(self.leagues) == 0:
-            leagues = get_wrapper().get_league_info_for_summoner(self.id)
-            for league in leagues:
-                    self.leagues[league.get('queue')] = League(league, self.region)
+            league = get_wrapper().get_league_info_for_summoner(self.id)
+            self.leagues[queue] = League(league, self.region)
         if queue is not None:
             return self.leagues[queue]
         else:
@@ -80,4 +79,4 @@ class Player(Summoner):
             return 'TOP'
 
     def __str__(self):
-        return '%s, role: %s, lane: %s, result: %s' % (self.get_champion().name, self.role, self.lane, self.win)
+        return '%s, role: %s, lane: %s' % (self.get_champion().name, self.role, self.lane)
