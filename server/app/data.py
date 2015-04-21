@@ -114,5 +114,4 @@ def get_info_summoner(summoner, ranked_queue):
         next_league_info = league.get_next_league()
         stats['next_division'] = next_league_info['division']
         stats['next_tier'] = next_league_info['tier']
-    print('STATS', stats)
     return stats

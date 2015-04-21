@@ -177,6 +177,7 @@ li {
     position: relative;
     text-indent: -9999px;
     width: 10px !important;
+    padding: 0;
 }
 .series-history .series-result:first-child {
     margin-left: 0;
@@ -197,6 +198,7 @@ li {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
     border: 2px solid #5f9826;
     border-radius: 5px;
+    height: 10px;
 }
 .series-history .series-result-L::before, .series-history .series-result-L::after {
     background-color: #c51e1e;

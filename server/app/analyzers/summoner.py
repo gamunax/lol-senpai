@@ -11,6 +11,5 @@ class AnalyzerSummoner(AnalyzerBase):
 
     def analyze_player_as_an_enemy(self, senpai, player):
         stats = get_info_summoner(player, senpai.game.gameQueue)
-        print('STATS', stats)
         if stats and stats['is_in_promo'] is True:
             senpai.add_advice(senpai.CONS, EnemyInPromoAdvice(player.get_champion().name, stats))
