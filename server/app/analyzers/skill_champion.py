@@ -9,7 +9,7 @@ from app.advice import EnemyNeverPlayedThisChampionAdvice, EnemyGoodWithThisCham
 class AnalyzerSkillChampion(AnalyzerBase):
     def analyze_player_as_an_ally(self, senpai, player):
         stats = get_stats_champion_ranked(player.id, player.championId)
-        if not senpai.get_current_player().is_me(player.id) and stats and stats['played'] > 3 and stats['percent_win'] >= 65:
+        if not senpai.get_current_player().is_me(player.id) and stats and stats['is_really_good']:
             senpai.add_advice(senpai.PROS, AllyGoodWithThisChampionAdvice(player.get_champion().name,
                                                                           stats['percent_win'], stats['played'], stats['pentaKills'], stats['kda']))
 
@@ -17,7 +17,7 @@ class AnalyzerSkillChampion(AnalyzerBase):
         stats = get_stats_champion_ranked(player.id, player.championId)
         if stats is None:
             senpai.add_advice(senpai.PROS, EnemyNeverPlayedThisChampionAdvice(player.get_champion().name))
-        elif stats['played'] > 3 and stats['percent_win'] >= 65:
+        elif stats['is_really_good']:
             senpai.add_advice(senpai.CONS, EnemyGoodWithThisChampionAdvice(player.get_champion().name,
                                                                            stats['percent_win'], stats['played'], stats['pentaKills'], stats['kda']))
         elif stats['played'] > 3 and stats['percent_win'] < 30:

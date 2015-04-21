@@ -77,3 +77,6 @@ MAP_NAMES = {
     11: 'Summoner\'s Rift - Map 5v5',
     12: 'Howling Abyss - ARAM Map'
 }
+
+DIVISIONS = ['V', 'IV', 'III', 'II', 'I']
+TIERS = ['BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND', 'MASTER', 'CHALLENGER']

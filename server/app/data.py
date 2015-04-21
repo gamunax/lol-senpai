@@ -1,6 +1,18 @@
 from general import get_wrapper, function_logger
 
 
+def is_player_good_with_this_champion(ratio, nb_games, asymptote=65):
+    """
+    Try to determine if a player is good with a champion, taking into account his win ratio correlated to the number of games
+    :param ratio:
+    :param nb_games:
+    :param asymptote:
+    :return:
+    """
+    formula = 1 / (nb_games * 0.018) + asymptote
+    return nb_games > 3 and ratio + 1 >= formula
+
+
 @function_logger
 def get_stats_champion_ranked(summoner_id, champion_id=0):
     data = get_wrapper().get_ranked_stats(summoner_id)
@@ -21,7 +33,9 @@ def get_stats_champion_ranked(summoner_id, champion_id=0):
                 'deaths': stats.get('totalDeathsPerSession'),
                 'played': stats.get('totalSessionsPlayed'),
                 'kda': kda,
-                'percent_win': round(stats.get('totalSessionsWon') * 100 / stats.get('totalSessionsPlayed'), 2)
+                'percent_win': round(stats.get('totalSessionsWon') * 100 / stats.get('totalSessionsPlayed'), 2),
+                'is_really_good': is_player_good_with_this_champion(
+                    (stats.get('totalSessionsWon') / stats.get('totalSessionsPlayed')) * 100, stats.get('totalSessionsPlayed'))
             }
     return None
 
@@ -87,14 +101,18 @@ def get_stats_history_ranked(summoner_id, ranked_queue=None, batch=1):
 
 
 @function_logger
-def get_info_summoner(summoner_id, ranked_queue):
+def get_info_summoner(summoner, ranked_queue):
     stats = {
         'is_in_promo': False
     }
-    data = get_wrapper().get_league_info_for_summoner(summoner_id, ranked_queue)
-    if not data or 'entries' not in data:
-        return None
-    entries = data.get('entries')[0]
-    if entries.get('miniSeries'):
-        stats['is_in_promo'] = True
+    league = summoner.get_league_info(ranked_queue)
+    stats['is_in_promo'] = league.is_in_promo()
+    if stats['is_in_promo']:
+        league_info = league.get_info_about_promo()
+        for info in league_info:
+            stats[info] = league_info[info]
+        next_league_info = league.get_next_league()
+        stats['next_division'] = next_league_info['division']
+        stats['next_tier'] = next_league_info['tier']
+    print('STATS', stats)
     return stats
