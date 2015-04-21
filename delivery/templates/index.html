@@ -46,7 +46,7 @@
         <td>{{ release.created }}</td>
         <td>{{ release.size }}</td>
         <td>
-            <button type="button" class="btn btn-danger btn-xs{% if release.is_used %} remove-confirm" data-path="release/{{ release.image_id }}{% else %}" disabled="disabled{% endif %}">Remove</button>
+            <button type="button" class="btn btn-danger btn-xs{% if not release.is_used %} remove-confirm" data-path="release/{{ release.image_id }}{% else %}" disabled="disabled{% endif %}">Remove</button>
         </td>
     </tr>
     {% endfor %}
@@ -184,6 +184,10 @@
                             {% endfor %}
                         </select>
                     </div>
+                    <label for="ApiKey" class="col-sm-3 control-label">API Key</label>
+                    <div class="col-sm-9">
+                        <input id="ApiKey" type="text" class="form-control" placeholder="API key for this instance">
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -207,7 +211,7 @@
                 <div class="form-group">
                     <label for="GITRevision" class="col-sm-3 control-label">GIT Revision</label>
                     <div class="col-sm-9">
-                        <input id="GITRevision" type="text" class="form-control" value="{{ latest_git_revision }}"
+                        <input id="GITRevision" type="text" class="form-control" value="{{ latest_git_revision }}">
                     </div>
                 </div>
             </div>
@@ -252,22 +256,23 @@
         document.location.href = "/execute/git/fetch";
     });
     $("#HAProxyWeightSubmit", modal_weight).click(function(){
-        alert("/execute/haproxy/" + $("#HAProxyWeightID", modal_weight).text() + "/weight/" + $("#HAProxyWeight", modal_weight).val());
+        document.location.href = "/execute/haproxy/" + $("#HAProxyWeightID", modal_weight).text() + "/weight/" + $("#HAProxyWeight", modal_weight).val();
     });
     $("#HAProxyStateEnable", modal_state).click(function(){
-        alert("/execute/haproxy/" + $("#HAProxyStateID", modal_state).text() + "/state/enable");
+        document.location.href = "/execute/haproxy/" + $("#HAProxyStateID", modal_state).text() + "/state/enable";
     });
     $("#HAProxyStateDisable", modal_state).click(function(){
-        alert("/execute/haproxy/" + $("#HAProxyStateID", modal_state).text() + "/state/disable");
+        document.location.href = "/execute/haproxy/" + $("#HAProxyStateID", modal_state).text() + "/state/disable";
     });
     $("#PathRemoveConfirm", modal_confirm).click(function(){
-        alert("/execute/" + $("#PathRemove", modal_confirm).text() + "/remove");
+        document.location.href = "/execute/" + $("#PathRemove", modal_confirm).text() + "/remove";
     });
     $("#NewContainerSubmit", modal_new_container).click(function(){
-        alert("/execute/container/" + $("#NewContainerName", modal_new_container).text() + "/new/" + $("#DockerImage", modal_new_container).val());
+        document.location.href = "/execute/container/" + $("#NewContainerName", modal_new_container).text() + "/new/"
+        + $("#DockerImage", modal_new_container).val() + "/" + $("#ApiKey", modal_new_container).val();
     });
     $("#NewReleaseSubmit", modal_new_release).click(function(){
-        alert("/execute/release/new/" + $("#GITRevision", modal_new_release).val());
+        document.location.href = "/execute/release/new/" + $("#GITRevision", modal_new_release).val();
     });
 </script>
 {% endblock %}

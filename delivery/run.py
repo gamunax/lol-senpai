@@ -9,6 +9,22 @@ app = Flask(__name__)
 root_directory = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
 
+SERVERS = [
+    {
+        "type": "python",
+        "name": "python1",
+        "ip": "127.0.0.1",
+        "port": 5001
+    },
+    {
+        "type": "python",
+        "name": "python2",
+        "ip": "127.0.0.1",
+        "port": 5002
+    }
+]
+
+
 def args_to_command(args):
     from shlex import quote
     return " ".join([quote(arg) for arg in args])
@@ -46,24 +62,37 @@ def root():
             release["image_id"] = image["Id"][:12]
             release["repository"] = repo
             release["tag"] = tag + (" (latest)" if tag == latest_git_revision else "")
+            release["name"] = repo + ":" + tag
             release["created"] = time.ctime(image["Created"])
             release["size"] = "%.1f MB" % (image["VirtualSize"] / 1000000.0)
-            release["is_used"] = True  # TODO
-            release["state"] = "success"  # TODO
+            release["is_used"] = False
+            release["state"] = ""
             releases.append(release)
-    # TODO: containers
-    state = "success"
-    has_image = False
-    containers.append({
-        "name": "python1",
-        "haproxy_weight": 0,
-        "haproxy_state": "Disabled",
-        "container_id": "-",
-        "container_image": "-",
-        "container_status": "-",
-        "has_image": has_image,
-        "state": state
-    })
+    for server in SERVERS:
+        containers.append({
+            "type": server["type"],
+            "name": server["name"],
+            "ip": server["ip"],
+            "port": server["port"],
+            "haproxy_weight": "?",
+            "haproxy_state": "?",
+            "container_id": "-",
+            "container_image": "-",
+            "container_status": "-",
+            "has_image": False,
+            "state": ""
+        })
+    for instance in c.containers():
+        for container in containers:
+            if instance["Ports"] == container["port"]:
+                for release in releases:
+                    if instance["Image"] == release["name"]:
+                        release["is_used"] = True
+                container["container_id"] = instance["Id"][:12]
+                container["container_image"] = instance["Image"]
+                container["container_status"] = instance["Status"]
+                container["has_image"] = True
+    # State
     return render_template('index.html', **locals())
 
 
@@ -82,6 +111,27 @@ def execute_release_new(revision):
     return_code = int(str(p.wait()))
     if return_code:
         abort(404, "Revision not found")
+    if request.headers.get('accept') == 'text/event-stream':
+        def build():
+            import json
+            c = Client()
+            for line in c.build(path=root_directory, rm=True, tag='senpai:'+revision):
+                obj = json.loads(line.decode("utf-8"))
+                if "stream" in obj:
+                    yield "data: %s\n\n" % obj["stream"]
+            yield "data: RETURN_VALUE=0\n\n"
+        return Response(build(), content_type='text/event-stream')
+    return render_template('execute.html', path=request.path, command="docker build senpai:"+revision)
+
+
+@app.route('/execute/container/<server_name>/new/<image>/<api_key>')
+def execute_release_new(server_name, image, api_key):
+    instance_server = None
+    for server in SERVERS:
+        if server["name"] == server_name:
+            instance_server = server
+    if not instance_server:
+        abort(404, "Server not found")
     if request.headers.get('accept') == 'text/event-stream':
         def build():
             import json
