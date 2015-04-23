@@ -80,3 +80,6 @@ MAP_NAMES = {
 
 DIVISIONS = ['V', 'IV', 'III', 'II', 'I']
 TIERS = ['BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND', 'MASTER', 'CHALLENGER']
+
+MANA_RUNES = ['FlatMPPoolMod', 'FlatMPRegenMod', 'PercentMPPoolMod', 'PercentMPRegenMod', 'rFlatMPRegenModPerLevel']
+ENERGY_RUNES = ['FlatEnergyPoolMod', 'FlatEnergyRegenMod', 'rFlatEnergyModPerLevel', 'rFlatEnergyRegenModPerLevel']

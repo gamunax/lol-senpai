@@ -100,8 +100,9 @@ class EnemyInPromoAdvice(Advice):
         self.champion_name = champion_name
         self.stats_promo = stats_promo
         self.progress = self.stats_promo['progress']
+        next_division = stats_promo['next_division'] if (stats_promo['next_tier'] != 'MASTER' and stats_promo['next_tier'] != 'CHALLENGER') else ''
         self.message = gettext('The <span class="info enemy">enemy %(champion)s</span> is in a promotion series for %(tier)s %(division)s :',
-                            champion=self.champion_name, tier=stats_promo['next_tier'], division=stats_promo['next_division'])
+                            champion=self.champion_name, tier=stats_promo['next_tier'], division=next_division)
         self.message += '<ul class="series-history">'
         for result in self.progress:
             self.message += '<li class="series-result series-result-' + result + '"></li>'
@@ -169,8 +170,9 @@ class AllyInPromoAdvice(Advice):
         self.champion_name = champion_name
         self.stats_promo = stats_promo
         self.progress = self.stats_promo['progress']
+        next_division = stats_promo['next_division'] if (stats_promo['next_tier'] != 'MASTER' and stats_promo['next_tier'] != 'CHALLENGER') else ''
         self.message = gettext('The <span class="info ally">allied %(champion)s</span> is in a promotion series for %(tier)s %(division)s : ',
-                               champion=self.champion_name, tier=stats_promo['next_tier'], division=stats_promo['next_division'])
+                               champion=self.champion_name, tier=stats_promo['next_tier'], division=next_division)
         self.message += '<ul class="series-history">'
         for result in self.progress:
             self.message += '<li class="series-result series-result-' + result + '"></li>'

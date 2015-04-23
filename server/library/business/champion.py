@@ -7,7 +7,7 @@ class Champion(object):
         self.tags = json_data.get('tags')
         self.image = json_data.get('image')
         self.image_url = self.get_image_url()
-        self.partype = json_data.get('partype') #None, Mana, BloodWell, Battlefury, Energy, Heat, Shield
+        self.partype = json_data.get('partype') # None, Mana, BloodWell, Battlefury, Energy, Heat, Shield
 
     def __str__(self):
         return '%s, id: %s, tags: %s, image: %s' % (self.name, str(self.id), self.tags, self.image_url)
