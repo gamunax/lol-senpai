@@ -30,12 +30,27 @@ class RunePage(object):
                 stats[rune.type] += 1
         return stats
 
-    def get_useless_runes(self, champion_type):
+    def get_rune(self, rune_id):
         for rune in self.runes:
-            rune.is_useless_for_this_champion(champion_type)
+            if rune.id == rune_id:
+                return rune
+        return None
+
+    def get_useless_runes(self, champion_type):
+        useless_runes = {}
+        for rune in self.runes:
+            if rune.is_useless_for_this_champion(champion_type):
+                if rune.id in useless_runes:
+                    rune = useless_runes[rune.id]
+                    rune.count += 1
+                    useless_runes[rune.id] = rune
+                else:
+                    rune.count = 1
+                    useless_runes[rune.id] = rune
+        return useless_runes
 
     def __str__(self):
-        return 'This rune page has %d missing runes' % (self.nb_missing_runes)
+        return 'This rune page has %d missing runes' % self.nb_missing_runes
 
 
 class Rune(object):
@@ -58,12 +73,13 @@ class Rune(object):
         self.tier = json_data.get('rune').get('tier')
         self.type = json_data.get('rune').get('type')
         self.type_name = self.color_to_type[self.type]
+        self.sanitizedDescription = json_data.get('sanitizedDescription')
 
     def is_max_tier(self):
         return self.tier == "3"
 
     def is_useless_for_this_champion(self, champion_type):
-        type = champion_type  # None, Mana, BloodWell, Battlefury, Energy, Heat, Shiel
+        type = champion_type  # None, Mana, BloodWell, Battlefury, Energy, Heat, Shield
         for stat in self.stats:
             if type != "Mana" and stat in MANA_RUNES:
                 return True

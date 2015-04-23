@@ -12,6 +12,11 @@ API_LIST = {
     'summoner': '1.4'
 }
 
+LOCALES = {
+    'en': 'en_US',
+    'fr': 'fr_FR',
+}
+
 REGIONAL_ENDPOINTS = {
     'br': 'BR1',
     'eune': 'EUN1',
