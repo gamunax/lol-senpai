@@ -2,11 +2,12 @@ from library.business.summoner import Summoner
 from library.business.champion import Champion
 from library.business.game import CurrentGame, Game
 from library.business.rune import Rune
-from library.api.constants import API_LIST, REGIONAL_ENDPOINTS, SEASONS
+from library.api.constants import API_LIST, REGIONAL_ENDPOINTS, SEASONS, LOCALES
 from library.api import errors
 import urllib.request as request
 from general import log, Cache
 from settings import API_KEY
+from flask import g
 
 import json
 
@@ -105,7 +106,10 @@ class LeagueOfLegends(object):
         # https://global.api.pvp.net/api/lol/static-data/euw/v1.2/rune/5273?runeData=all&api_key=fcb32d30-62c9-4888-a299-0596441978f8
         # https://global.api.pvp.net/api/lol/static-data/euw/v1.2/rune?api_key=fcb32d30-62c9-4888-a299-0596441978f8
         path = 'rune' + ('/' + str(rune_id) if rune_id else '')
-        params = {'runeData': rune_data}
+        params = {
+            'runeData': rune_data,
+            'locale': LOCALES[g.lang]
+        }
         data = self._request('static-data', path, params, cache_expire=60*60*24*7)
         if rune_id:
             return Rune(data)
@@ -127,7 +131,10 @@ class LeagueOfLegends(object):
     def get_champions(self, champion_id=None, champ_data='all'):
         """ Returns the list of champions or info about a specific champion """
         path = 'champion' + ('/' + str(champion_id) if champion_id else '')
-        params = {'champData': champ_data}
+        params = {
+            'champData': champ_data,
+            'locale': LOCALES[g.lang]
+        }
         data = self._request('static-data', path, params, cache_expire=60*60*24*7)
         if champion_id:
             return Champion(data)

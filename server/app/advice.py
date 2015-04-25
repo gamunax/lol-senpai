@@ -100,8 +100,9 @@ class EnemyInPromoAdvice(Advice):
         self.champion_name = champion_name
         self.stats_promo = stats_promo
         self.progress = self.stats_promo['progress']
+        next_division = stats_promo['next_division'] if (stats_promo['next_tier'] != 'MASTER' and stats_promo['next_tier'] != 'CHALLENGER') else ''
         self.message = gettext('The <span class="info enemy">enemy %(champion)s</span> is in a promotion series for %(tier)s %(division)s :',
-                            champion=self.champion_name, tier=stats_promo['next_tier'], division=stats_promo['next_division'])
+                            champion=self.champion_name, tier=stats_promo['next_tier'], division=next_division)
         self.message += '<ul class="series-history">'
         for result in self.progress:
             self.message += '<li class="series-result series-result-' + result + '"></li>'
@@ -139,6 +140,20 @@ class EnemyNotMaxTierRunesAdvice(Advice):
                                     count=self.stats_not_max_tier['black'])
 
 
+class EnemyUselessRunesAdvice(Advice):
+    def __init__(self, champion_name, useless_runes):
+        self.champion_name = champion_name
+        self.useless_runes = useless_runes
+        self.message = gettext('The <span class="info enemy">enemy %(champion)s</span> '
+                               'has some useless runes : ',
+                               champion=self.champion_name)
+        rune_messages = ''
+        for rune in self.useless_runes:
+            print('FU', rune, self.useless_runes[rune].count, self.useless_runes[rune].sanitizedDescription)
+            rune_messages += (', ' if len(rune_messages) > 0 else '') + gettext('%(rune)s (x%(count)d)', rune=self.useless_runes[rune].sanitizedDescription, count=self.useless_runes[rune].count)
+        self.message += rune_messages
+
+
 class AllyGoodWithThisChampionAdvice(Advice):
     def __init__(self, champion_name, percent_win, played, penta_kills, kda):
         self.champion_name = champion_name
@@ -169,8 +184,9 @@ class AllyInPromoAdvice(Advice):
         self.champion_name = champion_name
         self.stats_promo = stats_promo
         self.progress = self.stats_promo['progress']
+        next_division = stats_promo['next_division'] if (stats_promo['next_tier'] != 'MASTER' and stats_promo['next_tier'] != 'CHALLENGER') else ''
         self.message = gettext('The <span class="info ally">allied %(champion)s</span> is in a promotion series for %(tier)s %(division)s : ',
-                               champion=self.champion_name, tier=stats_promo['next_tier'], division=stats_promo['next_division'])
+                               champion=self.champion_name, tier=stats_promo['next_tier'], division=next_division)
         self.message += '<ul class="series-history">'
         for result in self.progress:
             self.message += '<li class="series-result series-result-' + result + '"></li>'

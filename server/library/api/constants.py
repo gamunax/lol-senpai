@@ -12,6 +12,11 @@ API_LIST = {
     'summoner': '1.4'
 }
 
+LOCALES = {
+    'en': 'en_US',
+    'fr': 'fr_FR',
+}
+
 REGIONAL_ENDPOINTS = {
     'br': 'BR1',
     'eune': 'EUN1',
@@ -80,3 +85,6 @@ MAP_NAMES = {
 
 DIVISIONS = ['V', 'IV', 'III', 'II', 'I']
 TIERS = ['BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND', 'MASTER', 'CHALLENGER']
+
+MANA_RUNES = ['FlatMPPoolMod', 'FlatMPRegenMod', 'PercentMPPoolMod', 'PercentMPRegenMod', 'rFlatMPRegenModPerLevel']
+ENERGY_RUNES = ['FlatEnergyPoolMod', 'FlatEnergyRegenMod', 'rFlatEnergyModPerLevel', 'rFlatEnergyRegenModPerLevel']
