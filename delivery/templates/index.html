@@ -180,10 +180,12 @@
                     <div class="col-sm-9">
                         <select id="DockerImage" class="form-control">
                             {% for release in releases %}
-                            <option value="{{ release.image_id }}">{{ release.repository }}:{{ release.tag }}</option>
+                            <option value="{{ release.name }}">{{ release.name }}</option>
                             {% endfor %}
                         </select>
                     </div>
+                </div>
+                <div class="form-group">
                     <label for="ApiKey" class="col-sm-3 control-label">API Key</label>
                     <div class="col-sm-9">
                         <input id="ApiKey" type="text" class="form-control" placeholder="API key for this instance">

@@ -84,7 +84,11 @@ def root():
         })
     for instance in c.containers():
         for container in containers:
-            if instance["Ports"] == container["port"]:
+            is_server = False
+            for port in instance["Ports"]:
+                if "PublicPort" in port and port["PublicPort"] == container["port"]:
+                    is_server = True
+            if is_server:
                 for release in releases:
                     if instance["Image"] == release["name"]:
                         release["is_used"] = True
@@ -125,7 +129,7 @@ def execute_release_new(revision):
 
 
 @app.route('/execute/container/<server_name>/new/<image>/<api_key>')
-def execute_release_new(server_name, image, api_key):
+def execute_container_new(server_name, image, api_key):
     instance_server = None
     for server in SERVERS:
         if server["name"] == server_name:
@@ -133,16 +137,37 @@ def execute_release_new(server_name, image, api_key):
     if not instance_server:
         abort(404, "Server not found")
     if request.headers.get('accept') == 'text/event-stream':
-        def build():
-            import json
+        def start():
             c = Client()
-            for line in c.build(path=root_directory, rm=True, tag='senpai:'+revision):
-                obj = json.loads(line.decode("utf-8"))
-                if "stream" in obj:
-                    yield "data: %s\n\n" % obj["stream"]
-            yield "data: RETURN_VALUE=0\n\n"
-        return Response(build(), content_type='text/event-stream')
-    return render_template('execute.html', path=request.path, command="docker build senpai:"+revision)
+            try:
+                yield "data: Create container...\n\n"
+                container = c.create_container(image=image, name="senpai-"+instance_server["name"], ports=[5000],
+                                               environment={"API_KEY": api_key})
+                yield "data: Start container...\n\n"
+                c.start(container=container.get('Id'), port_bindings={5000: ('127.0.0.1', instance_server["port"])},
+                        links=[("senpai-redis", "redis")])
+                yield "data: RETURN_VALUE=0\n\n"
+            except Exception as e:
+                yield "data: Error: %s\n\n" % str(e)
+                yield "data: RETURN_VALUE=1\n\n"
+        return Response(start(), content_type='text/event-stream')
+    return render_template('execute.html', path=request.path, command="docker start "+server_name+":"+image)
+
+
+@app.route('/execute/container/<container_id>/remove')
+def execute_container_remove(container_id):
+    if request.headers.get('accept') == 'text/event-stream':
+        def remove():
+            c = Client()
+            try:
+                yield "data: Remove container...\n\n"
+                c.remove_container(container=container_id, force=True)
+                yield "data: RETURN_VALUE=0\n\n"
+            except Exception as e:
+                yield "data: Error: %s\n\n" % str(e)
+                yield "data: RETURN_VALUE=1\n\n"
+        return Response(remove(), content_type='text/event-stream')
+    return render_template('execute.html', path=request.path, command="docker rm "+container_id)
 
 
 if __name__ == '__main__':
