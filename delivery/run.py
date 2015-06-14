@@ -170,5 +170,21 @@ def execute_container_remove(container_id):
     return render_template('execute.html', path=request.path, command="docker rm "+container_id)
 
 
+@app.route('/execute/release/<image_id>/remove')
+def execute_release_remove(image_id):
+    if request.headers.get('accept') == 'text/event-stream':
+        def remove():
+            c = Client()
+            try:
+                yield "data: Remove image...\n\n"
+                c.remove_image(image=image_id, force=True)
+                yield "data: RETURN_VALUE=0\n\n"
+            except Exception as e:
+                yield "data: Error: %s\n\n" % str(e)
+                yield "data: RETURN_VALUE=1\n\n"
+        return Response(remove(), content_type='text/event-stream')
+    return render_template('execute.html', path=request.path, command="docker rmi "+image_id)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
