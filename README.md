@@ -1,3 +1,9 @@
+
+#Retired Project
+
+This project was made during a 15 days API challenge. Riot gave us the opportunity to use their API to create a small product.
+We put it online for a few months before retiring it.
+
 # LoL Senpai (http://lol-senpai.com)
 This app gives you tips for the upcoming match
 
